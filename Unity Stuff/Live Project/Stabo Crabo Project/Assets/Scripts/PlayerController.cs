@@ -14,8 +14,14 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     private float turnSpeed;
     private bool isSprinting = false;
+    private bool isGrabbing = false;
+
+    private Transform grabParent;
+    private Transform grabObject;
     
     //Defining Components
+    public ColliderListController grabCollider;
+
     private Rigidbody rb;
     private Vector3 moveDirection = Vector3.zero;
     private Quaternion targetRotation;
@@ -36,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         //movement input
         moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
+        //sprint input
         if(Input.GetKeyDown(KeyCode.LeftShift)) //sprint button on
         {
             isSprinting = true;
@@ -47,6 +54,23 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
             moveSpeed = baseMoveSpeed; //reset movement
             turnSpeed = baseTurnSpeed;
+        }
+        //grab input
+        //this is currently hold. can use the isGrabbing bool to change it to toggle if needed
+        if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
+        {
+            isGrabbing = true;
+            grabObject = grabCollider.colList[0].transform; //save the prop
+            grabParent = grabObject.parent; //save the prop's parent
+            grabObject.GetComponent<Rigidbody>().isKinematic = true;
+            grabCollider.colList[0].transform.parent = grabCollider.transform; //make the grabbed object a child of the grabbing collider
+            //this is a temporary solution, I will need to refine this method as I expect it will cause issues
+        }
+        if(Input.GetMouseButtonUp(0) && isGrabbing)
+        {
+            isGrabbing = false;
+            grabObject.parent = grabParent; //return the original parent  
+            grabObject.GetComponent<Rigidbody>().isKinematic = false;         
         }
 
 
