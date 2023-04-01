@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     
     //Defining Components
     public ColliderListController grabCollider;
+    public Animator crabAnimator;
 
     private Rigidbody rb;
     private Vector3 moveDirection = Vector3.zero;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         //movement input
         moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
         //sprint input
-        if(Input.GetKeyDown(KeyCode.LeftShift)) //sprint button on
+        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1) //sprint button on
         {
             isSprinting = true;
             moveSpeed = sprintMoveSpeed; //increase movement
@@ -99,6 +100,23 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition((rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime)); //move the player
+        if(moveDirection.magnitude > 0.1) //if there is some movement:
+        {
+            if(isSprinting)
+            {
+                crabAnimator.SetBool("isRunning", true); //set sprinting animation
+            }
+            else
+            {
+                crabAnimator.SetBool("isWalking", true); //set walking animation
+                crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
+            }
+            rb.MovePosition((rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime)); //move the player
+        }
+        else
+        {
+            crabAnimator.SetBool("isWalking", false); //un-set walking animation
+            crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
+        }
     }
 }
