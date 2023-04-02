@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float sprintMoveSpeed = 5.0f;
     public float baseTurnSpeed = 2.0f;
     public float sprintTurnSpeed = 4.0f;
+    public float stabCoolDown = 1.0f; //how fast can stab be spammed
+    private float stabTimer; //variable used to time stabs
 
     private float moveSpeed;
     private float turnSpeed;
@@ -18,13 +20,18 @@ public class PlayerController : MonoBehaviour
 
     private Transform grabParent;
     private Transform grabObject;
+    private Transform stabObject;
+    public Transform stabAirTarget; //where the stab will go if there is no other target
 
     //rig animation
     public Transform armTargetL; //target to verride L arm animation
     private Vector3 startPosArmTargetL;
+    public Transform armTargetR; //target to verride R arm animation
+    private Vector3 startPosArmTargetR;
     
     //Defining Components
     public ColliderListController grabCollider;
+    public ColliderListController stabCollider;
     public Animator crabAnimator;
 
     private Rigidbody rb;
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
         //store initial Lhand Position
         startPosArmTargetL = armTargetL.localPosition; //the initial position for the L hand target
+        startPosArmTargetR = armTargetR.localPosition; //the initial position for the L hand target
     }
 
     void Update()
@@ -62,26 +70,17 @@ public class PlayerController : MonoBehaviour
             moveSpeed = baseMoveSpeed; //reset movement
             turnSpeed = baseTurnSpeed;
         }
-        //grab input
-        //this is currently hold. can use the isGrabbing bool to change it to toggle if needed
-        if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
-        {
-            isGrabbing = true;
-            grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
-            grabParent = grabObject.parent; //save the prop's parent
-            armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
-            grabObject.GetComponent<Rigidbody>().isKinematic = true;
-            grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
-            //this is a temporary solution, I will need to refine this method as I expect it will cause issues
-        }
-        if(Input.GetMouseButtonUp(0) && isGrabbing)
-        {
-            isGrabbing = false;
-            grabObject.parent = grabParent; //return the original parent  
-            grabObject.GetComponent<Rigidbody>().isKinematic = false;
-            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton        
-        }
 
+        GrabCheck(); //put the grab inputs and code into a function
+        if(stabTimer <= 0) //if the cool down has been exhausted
+        {
+            StabCheck(); //function for checking and executing stabs
+        }
+        else
+        {
+            stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
+        }
+        
 
         //apply rotation
         if(moveDirection != Vector3.zero) //if there is some amount of movement
@@ -98,8 +97,6 @@ public class PlayerController : MonoBehaviour
                     targetRotation *= Quaternion.Euler(0,90,0);//change in the other direction by 90deg
                 }
             }
-            //transform.rotation = targetRotation; //aligns the player to face the moveDirection
-            //targetRotation *= Quaternion.Euler(0,-90,0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
             
         }
@@ -126,5 +123,52 @@ public class PlayerController : MonoBehaviour
             crabAnimator.SetBool("isWalking", false); //un-set walking animation
             crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
         }
+    }
+
+    private void GrabCheck()
+    {
+        if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
+        {
+            isGrabbing = true;
+            grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
+            grabParent = grabObject.parent; //save the prop's parent
+            armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
+            grabObject.GetComponent<Rigidbody>().isKinematic = true;
+            grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
+            //this is a temporary solution, I will need to refine this method as I expect it will cause issues
+        }
+        if(Input.GetMouseButtonUp(0) && isGrabbing)
+        {
+            isGrabbing = false;
+            grabObject.parent = grabParent; //return the original parent  
+            grabObject.GetComponent<Rigidbody>().isKinematic = false;
+            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton        
+        }
+    }
+
+    private void StabCheck()
+    {
+        if(Input.GetMouseButtonDown(1)) //if rmb pressed
+        {
+            if(stabCollider.colList.Count > 0) //if there is something to stab
+            {
+                stabObject = stabCollider.colList[0].gameObject.transform; //save the object
+                armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
+                stabObject.GetComponent<StabbableController>().Stabbed(); //call the object's stabbed function
+                Invoke("FinishStab",0.5f);
+            }
+            else
+            {
+                armTargetR.position = stabAirTarget.position; //stab the air
+                Invoke("FinishStab",0.5f);
+            }
+        stabTimer = stabCoolDown; //reset the timer to the cooldown amount
+        }
+    }
+
+    private void FinishStab() //in lieu of an animation or timed co-routine, invoking this function at a delay
+    {
+        armTargetR.localPosition = startPosArmTargetR; //return the arm to its start posiiton
+
     }
 }
