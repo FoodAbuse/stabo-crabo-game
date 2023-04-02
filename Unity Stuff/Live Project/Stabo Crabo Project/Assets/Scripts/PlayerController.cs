@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
 
     private Transform grabParent;
     private Transform grabObject;
+
+    //rig animation
+    public Transform armTargetL; //target to verride L arm animation
+    private Vector3 startPosArmTargetL;
     
     //Defining Components
     public ColliderListController grabCollider;
@@ -36,7 +40,9 @@ public class PlayerController : MonoBehaviour
         //set initial moveSpeeds
         moveSpeed = baseMoveSpeed;
         turnSpeed = baseTurnSpeed;
-        
+
+        //store initial Lhand Position
+        startPosArmTargetL = armTargetL.localPosition; //the initial position for the L hand target
     }
 
     void Update()
@@ -61,17 +67,19 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
         {
             isGrabbing = true;
-            grabObject = grabCollider.colList[0].transform; //save the prop
+            grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
             grabParent = grabObject.parent; //save the prop's parent
+            armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
             grabObject.GetComponent<Rigidbody>().isKinematic = true;
-            grabCollider.colList[0].transform.parent = grabCollider.transform; //make the grabbed object a child of the grabbing collider
+            grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
             //this is a temporary solution, I will need to refine this method as I expect it will cause issues
         }
         if(Input.GetMouseButtonUp(0) && isGrabbing)
         {
             isGrabbing = false;
             grabObject.parent = grabParent; //return the original parent  
-            grabObject.GetComponent<Rigidbody>().isKinematic = false;         
+            grabObject.GetComponent<Rigidbody>().isKinematic = false;
+            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton        
         }
 
 

@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class ColliderListController : MonoBehaviour
 {
-    public List<GameObject> colList = new List<GameObject>();
+    public List<Collider> colList = new List<Collider>();
     public List<string> tagList = new List<string>();
 
     //Script for collecting objects that are within collider bounds
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collisions");
         if(tagList.Contains(other.tag))
         {
-            colList.Add(other.gameObject); //adds the object to the list            
+            colList.Add(other); //adds the collider to the list            
         }        
         
     }
 
     void OnTriggerExit(Collider other)
     {
-        colList.Remove(other.gameObject); //removes the object from the list
+        colList.Remove(other); //removes the collider from the list
     }
 }
