@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
             if(isSprinting)
             {
                 crabAnimator.SetBool("isRunning", true); //set sprinting animation
+                crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
             }
             else
             {
