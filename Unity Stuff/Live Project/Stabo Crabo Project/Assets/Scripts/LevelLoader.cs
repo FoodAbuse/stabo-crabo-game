@@ -37,7 +37,7 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void LoadNextLevel(string levelName) //function accessible to other scripts
-    {
+    { //might eventually change level name to level index??
         StartCoroutine(LoadLevel(levelName, transitionSpeed));
 
     }

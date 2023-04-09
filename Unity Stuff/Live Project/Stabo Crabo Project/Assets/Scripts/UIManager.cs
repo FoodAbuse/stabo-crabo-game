@@ -12,11 +12,14 @@ public class UIManager : MonoBehaviour
     //reference to different menu panels
     public GameObject panelTitle;
     public GameObject panelMain;
+    public static GameObject panelEndScreen;
+    [SerializeField]
+    private GameObject panelEndScreenRef;
 
     [SerializeField]
     private Animator titleAnimator;
 
-    private GameObject panelCurrent; //the pannel that is currently active
+    private static GameObject panelCurrent; //the pannel that is currently active
 
 
     void Awake()
@@ -35,6 +38,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        InitialisePanels();//initial set of UI variables
         
     }
 
@@ -50,10 +54,16 @@ public class UIManager : MonoBehaviour
             }
 
         }
+
+        if(Input.GetKey(KeyCode.Escape)) //when esc is pushed
+        {
+            //call menuscreen method passing pause panel
+            //pause the game
+        }
         
     }
 
-    public void MenuScreen(GameObject targetPanel) //changes the current menu panel
+    public static void MenuScreen(GameObject targetPanel) //changes the current menu panel
     {
         panelCurrent.SetActive(false); //disable the currently active panel
         targetPanel.SetActive(true); //activate the new panel
@@ -68,6 +78,11 @@ public class UIManager : MonoBehaviour
     public void TitleAnimation() //starts an animation that ends with the title screen being visible
     {
         titleAnimator.SetTrigger("Start");
+    }
+
+    private void InitialisePanels()
+    {
+        panelEndScreen = panelEndScreenRef; //set the refernce
     }
 
 }

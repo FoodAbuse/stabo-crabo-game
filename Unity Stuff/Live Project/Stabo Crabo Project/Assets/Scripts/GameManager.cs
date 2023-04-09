@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
 
         //check if there is a next level, and unlock it
         
-        //enable UI to show endscreen stats
+        UIManager.MenuScreen(UIManager.panelEndScreen); //enable UI to show endscreen stats
 
         //trigger any end animation or transition
 
-        //tell level loader to return to the menu or level select or whatever
+        //tell level loader to return to the menu
 
 
     }
