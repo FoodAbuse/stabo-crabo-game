@@ -2862,6 +2862,18 @@ MonoBehaviour:
           m_StringArgument: MainGame
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1535026137}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ExitMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2015918903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5843,6 +5855,16 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1535026137}
+    - target: {fileID: 7824836124977865684, guid: 6c8f5bf70658cb9468445368334cde03,
+        type: 3}
+      propertyPath: transitionPause
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824836124977865684, guid: 6c8f5bf70658cb9468445368334cde03,
+        type: 3}
+      propertyPath: transitionSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c8f5bf70658cb9468445368334cde03, type: 3}

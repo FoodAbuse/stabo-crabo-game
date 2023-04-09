@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(panelTitle.GetComponent<CanvasGroup>().interactable) //checks if the title screen is currently active
+        if(panelTitle.GetComponent<CanvasGroup>().interactable && panelTitle.activeSelf) //checks if the title screen is currently active
         {
             if(Input.anyKey) //checks for any input
             {
@@ -58,6 +58,11 @@ public class UIManager : MonoBehaviour
         panelCurrent.SetActive(false); //disable the currently active panel
         targetPanel.SetActive(true); //activate the new panel
         panelCurrent = targetPanel;
+    }
+
+    public void ExitMenu()//closes current menu screen
+    {
+        panelCurrent.SetActive(false);
     }
 
     public void TitleAnimation() //starts an animation that ends with the title screen being visible

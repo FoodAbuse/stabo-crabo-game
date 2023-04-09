@@ -39,13 +39,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel(string levelName) //function accessible to other scripts
     {
         StartCoroutine(LoadLevel(levelName, transitionSpeed));
-        Debug.Log("public function called");
 
     }
 
     IEnumerator LoadLevel(string levelName, float transitionSpeed)
     {
-        Debug.Log("co routine called");
         transition.SetFloat("TransitionSpeed", 1/transitionSpeed); //set the speed of the animation
         transition.SetBool("Start", true); //play animation - fade to black
         yield return new WaitForSeconds(transitionPause); //pauses the co-routine for x amount of seconds
@@ -57,6 +55,5 @@ public class LevelLoader : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f); //waits for the time it will take the initial fade to end
         uiManager.TitleAnimation();
-        Debug.Log("starting title animation after " + transitionSpeed + " + " + transitionPause + " seconds");
     }
 }
