@@ -16,10 +16,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject panelEndScreenRef;
 
+    //animators
     [SerializeField]
     private Animator titleAnimator;
+    private Animator hintAnimator;
 
-    private static GameObject panelCurrent; //the pannel that is currently active
+    private GameObject panelCurrent; //the pannel that is currently active
 
 
     void Awake()
@@ -63,7 +65,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public static void MenuScreen(GameObject targetPanel) //changes the current menu panel
+    public void MenuScreen(GameObject targetPanel) //changes the current menu panel
     {
         panelCurrent.SetActive(false); //disable the currently active panel
         targetPanel.SetActive(true); //activate the new panel
@@ -83,6 +85,20 @@ public class UIManager : MonoBehaviour
     private void InitialisePanels()
     {
         panelEndScreen = panelEndScreenRef; //set the refernce
+    }
+
+    public void ShowHint(string hintKey) //starts a hint fade-in animation
+    {
+        hintAnimator = GameObject.Find("Txt_" + hintKey + "Hint").GetComponent<Animator>(); //assigns the appropriate animator
+        hintAnimator.SetBool("Visible", true); //starts it's animaton
+    }
+    public void HideHint() //starts a hint fade-out animation
+    {
+        if(hintAnimator) //if the animator is not null
+        {
+            hintAnimator.SetBool("Visible", false); //starts the fade out - this only works if the animator has already been assigned using the ShowHint method
+        }
+        hintAnimator = null; //reset the animator to null
     }
 
 }

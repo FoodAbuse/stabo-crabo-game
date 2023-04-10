@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     //purpose of this is to manage the levels and the game itself
     private static GameManager _instance; //the static holder for this script
 
+    private static UIManager ui;
+
     //tracking variables
     private static Level levelCurrent;
     public static float timerCurrent;
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+
         InitialiseLevels(); //load in level data and set all the variables
         levelCurrent = firstLevel;
         timerCurrent = 0.0f; //this should move to a level load/start method
@@ -51,9 +55,29 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //testing purposes area
-        if(Input.GetKey("k"))
+        if(Input.GetKey("e")) //e for [E]scape
         {
             levelPhase = 2;
+        }
+        if(Input.GetKey("m")) //m for [M]ove
+        {
+            ui.ShowHint("Move");
+        }
+        if(Input.GetKey("g"))//g for [G]rab
+        {
+            ui.ShowHint("Grab");
+        }
+        if(Input.GetKey("p"))//r for s[P]rint
+        {
+            ui.ShowHint("Sprint");
+        }
+        if(Input.GetKey("t"))//t for s[T]ab
+        {
+            ui.ShowHint("Stab");
+        }
+        if(Input.GetKey("h"))//h for [H]ide
+        {
+            ui.HideHint();
         }
 
         //actual area
@@ -84,7 +108,7 @@ public class GameManager : MonoBehaviour
 
         //check if there is a next level, and unlock it
         
-        UIManager.MenuScreen(UIManager.panelEndScreen); //enable UI to show endscreen stats
+        ui.MenuScreen(UIManager.panelEndScreen); //enable UI to show endscreen stats
 
         //trigger any end animation or transition
 
