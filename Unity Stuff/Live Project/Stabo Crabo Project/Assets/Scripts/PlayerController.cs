@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     private Transform grabParent;
     private Transform grabObject;
     private Transform stabObject;
-    public Transform stabAirTarget; //where the stab will go if there is no other target
+    [SerializeField]
+    private Transform stabAirTarget; //where the stab will go if there is no other target
+    [SerializeField]
+    private Transform grabLightTarget; //where the arm will go when holding a light object
 
     //rig animation
     public Transform armTargetL; //target to verride L arm animation
@@ -137,6 +140,11 @@ public class PlayerController : MonoBehaviour
             grabObject.GetComponent<Rigidbody>().isKinematic = true;
             grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
             //this is a temporary solution, I will need to refine this method as I expect it will cause issues
+
+            if(grabObject.tag == "GrabLight")//if the object is light
+            {
+                armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
+            }
         }
         if(Input.GetMouseButtonUp(0) && isGrabbing)
         {
