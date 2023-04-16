@@ -12,9 +12,10 @@ public class UIManager : MonoBehaviour
     //reference to different menu panels
     public GameObject panelTitle;
     public GameObject panelMain;
-    public static GameObject panelEndScreen;
     [SerializeField]
-    private GameObject panelEndScreenRef;
+    private GameObject panelEndScreen;
+    [SerializeField]
+    private TextMeshProUGUI timeText; //shows the time on level completion
 
     //animators
     [SerializeField]
@@ -88,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     private void InitialisePanels()
     {
-        panelEndScreen = panelEndScreenRef; //set the refernce
+        //this is here in case there are static reference panels that need initialising
     }
 
     public void ShowHint(string hintKey) //starts a hint fade-in animation
@@ -109,6 +110,15 @@ public class UIManager : MonoBehaviour
     {
         ShowHint("Escape"); //bring up esape text
         escapePanel.SetBool("Visible", true); //the escape panel animation
+    }
+
+    public void Outro() //called form game manager for outro phase
+    {
+        escapePanel.SetBool("Visible", false); //disable the black bars
+        timeText.text = "Time: " + GameManager.timerString;
+
+        MenuScreen(panelEndScreen); //show the end panel
+        //switch to a zoomed out camera after a little bit or something
     }
 
 }

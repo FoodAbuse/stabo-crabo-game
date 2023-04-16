@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     //tracking variables
     //private static Level levelCurrent;
     public static float timerCurrent;
+    public static string timerString;
     public static int levelPhase; //0 - intro, 1 - puzzles, 2-escape, 3 - end
 
     //level variables
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         timerCurrent = 0.0f; //this should move to a level load/start method
 
         InitialiseTargets();//initialise target list
+        levelPhase = 1; //at the moment skipping straight to 1 as there is no intro set up
 
 
     }
@@ -102,7 +104,12 @@ public class GameManager : MonoBehaviour
     public static void LevelWon() //called by escape zones to trigger the end of the level
     {
         Debug.Log("Level Won!");
-        Debug.Log("finished in " + timerCurrent);
+
+        int tMinutes = (int)timerCurrent / 60; //divide the float by 60 and convert to integer
+        int tSeconds = (int)timerCurrent % 60; //get the remainder after dividing by 60
+        timerString = tMinutes.ToString("00") + ":" + tSeconds.ToString("00"); //set the formatting of the time
+        Debug.Log("finished in " + tMinutes.ToString);
+        
         levelPhase = 3; //enter the end phase
         //levelCurrent.completed = true; //the player has now completed this level
         //levelCurrent.timerLast = timerCurrent; //store the time
@@ -114,8 +121,11 @@ public class GameManager : MonoBehaviour
         //save the game
 
         //check if there is a next level, and unlock it
-        
-        ui.MenuScreen(UIManager.panelEndScreen); //enable UI to show endscreen stats
+
+        ui.Outro(); //outro animation and UI changes
+        ui.HideHint(); //hide the escape text hint
+
+        //zoom out camera and play crab animation or something
 
         //trigger any end animation or transition
 

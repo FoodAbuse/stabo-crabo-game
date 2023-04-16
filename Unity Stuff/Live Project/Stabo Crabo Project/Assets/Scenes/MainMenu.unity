@@ -585,6 +585,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &629925583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5371976132157888113, guid: 7b1d5d4698a708742a05b777e71fe5da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5371976132743003276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &876282154 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7824836124977865684, guid: 6c8f5bf70658cb9468445368334cde03,
@@ -1626,6 +1638,12 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1 &2025902311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5371976132114924781, guid: 7b1d5d4698a708742a05b777e71fe5da,
+    type: 3}
+  m_PrefabInstance: {fileID: 5371976132743003276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2057677443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1744,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5371976132157888119, guid: 7b1d5d4698a708742a05b777e71fe5da,
+        type: 3}
+      propertyPath: m_Name
+      value: Txt_EndTime
+      objectReference: {fileID: 0}
     - target: {fileID: 5371976133249815174, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1741,6 +1764,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5371976133941878613, guid: 7b1d5d4698a708742a05b777e71fe5da,
+        type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 629925583}
+    - target: {fileID: 5371976133941878613, guid: 7b1d5d4698a708742a05b777e71fe5da,
+        type: 3}
+      propertyPath: panelEndScreen
+      value: 
+      objectReference: {fileID: 2025902311}
     - target: {fileID: 5371976133941878614, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_RootOrder
