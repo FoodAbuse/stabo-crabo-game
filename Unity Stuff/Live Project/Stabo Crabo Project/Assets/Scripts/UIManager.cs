@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Animator titleAnimator;
     private Animator hintAnimator;
+    [SerializeField]
+    private Animator escapePanel;
 
     private GameObject panelCurrent; //the pannel that is currently active
 
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         InitialisePanels();//initial set of UI variables
+        panelCurrent = panelTitle;
         
     }
 
@@ -50,9 +53,10 @@ public class UIManager : MonoBehaviour
         {
             if(Input.anyKey) //checks for any input
             {
-                panelTitle.SetActive(false); //disables title screen
+                /*panelTitle.SetActive(false); //disables title screen
                 panelMain.SetActive(true); //enables main menu
-                panelCurrent = panelMain;
+                panelCurrent = panelMain;*/
+                MenuScreen(panelMain);
             }
 
         }
@@ -99,6 +103,12 @@ public class UIManager : MonoBehaviour
             hintAnimator.SetBool("Visible", false); //starts the fade out - this only works if the animator has already been assigned using the ShowHint method
         }
         hintAnimator = null; //reset the animator to null
+    }
+
+    public void EscapeScreen() //called form game manager for escape phase
+    {
+        ShowHint("Escape"); //bring up esape text
+        escapePanel.SetBool("Visible", true); //the escape panel animation
     }
 
 }

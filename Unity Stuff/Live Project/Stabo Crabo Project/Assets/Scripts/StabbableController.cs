@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StabbableController : MonoBehaviour
 {
+    //[SerializeField]
+    //private Animator animator; //the NPC animator
+
     private Vector3 stabTeleport;
     void Start()
     {
@@ -17,6 +20,13 @@ public class StabbableController : MonoBehaviour
 
     public void Stabbed()
     {
-        transform.position += stabTeleport; //placeholder effect that just teleprots the target a lil bit
+        GameManager.TargetKilled(gameObject); //call the target killed script in the game manager
+        //animator.SetTrigger("Dead"); //play death animation
+        Death();
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject); //destroy self
     }
 }
