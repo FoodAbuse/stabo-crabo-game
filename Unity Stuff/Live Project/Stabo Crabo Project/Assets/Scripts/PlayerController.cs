@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 startPosArmTargetR;
     
     //Defining Components
-    public ColliderListController grabCollider;
-    public ColliderListController stabCollider;
+    public ColliderCollection grabCollider;
+    public ColliderCollection stabCollider;
     public Animator crabAnimator;
 
     private Rigidbody rb;

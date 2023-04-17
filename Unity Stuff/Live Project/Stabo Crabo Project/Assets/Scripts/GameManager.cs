@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
         int tMinutes = (int)timerCurrent / 60; //divide the float by 60 and convert to integer
         int tSeconds = (int)timerCurrent % 60; //get the remainder after dividing by 60
         timerString = tMinutes.ToString("00") + ":" + tSeconds.ToString("00"); //set the formatting of the time
-        Debug.Log("finished in " + tMinutes.ToString);
         
         levelPhase = 3; //enter the end phase
         //levelCurrent.completed = true; //the player has now completed this level

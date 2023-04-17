@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EscapeZoneController : MonoBehaviour
+public class EscapeController : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
