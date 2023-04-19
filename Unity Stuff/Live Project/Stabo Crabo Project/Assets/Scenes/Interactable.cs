@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
     //grabbable and stabbable scipts can inherit from this script potentially
 
     //variables for highlighting
-    private Renderer renderer; //this object's renderer.
+    private new Renderer renderer; //this object's renderer.
     
     void Start()
     {
@@ -16,7 +16,7 @@ public class Interactable : MonoBehaviour
     }
 
 
-    //doesnt seem to work right now because unlit material has no emission parameter
+    //doesnt seem to work right now because unlit material has no emission
     public void ToggleHighlight(bool toggle) //called to turn the highlight on or off
     {
         if(toggle) //if toggle parameter is true

@@ -15,12 +15,28 @@ public class NPCController : MonoBehaviour
     public float timeToNewDestination = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination
     private float countdownToNewDestination = 0.0f;
 
+    //NPC behaviour variable
+    public enum Behaviours {Idle, Chasing, Fleeing, Roaming}
+    public Behaviours behaviour; //The Current behaviour of the NPC
+
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
     }
 
     void Update()
+    {
+        switch (behaviour)
+        {
+            case Behaviours.Roaming:
+                Roaming();//wanders at a set interval
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void Roaming() //waits, then sets a random destination and moves there - run during update
     {
         if(agent.velocity.magnitude == 0.0f) //if we are stationary
         {
@@ -41,11 +57,9 @@ public class NPCController : MonoBehaviour
                 countdownToNewDestination -= 1 * Time.deltaTime; //tick down countdown
             }
         }
-        
-        
     }
 
-    public static Vector3 RandomPointInBounds(Bounds bounds) 
+    private Vector3 RandomPointInBounds(Bounds bounds) //picks a random location within a bounds
     {
         return new Vector3(
         Random.Range(bounds.min.x, bounds.max.x),
