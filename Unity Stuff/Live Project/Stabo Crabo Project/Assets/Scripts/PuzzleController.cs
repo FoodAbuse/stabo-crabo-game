@@ -7,7 +7,7 @@ public class PuzzleController : MonoBehaviour
     //this script will be applied to empty game objects in order to make puzzles work
 
     //type of trigger
-    public enum Trigger {ObjectTag, HeldObject, Object}
+    public enum Trigger {ObjectTag = 100, HeldObject = 200, Object = 300}
     public Trigger myTrigger;
 
     //required gameobject
@@ -15,14 +15,14 @@ public class PuzzleController : MonoBehaviour
     public GameObject lookForObject;
 
     //resulting action
-    public enum Result {Animation, NPCDestination, CreateObject}
+    public enum Result {Animation = 100, NPCDestination = 200, CreateObject = 300}
     public Result myResult;
 
     //result variables
-    public Animator resultingAnimator;
-    public string animTriggerName;
+    public Animator animator;
+    public string animTrigger;
     public Transform targetPoint; //used for spawning objects, or setting NPC destinations
-    public NPCController affectedNPC;
+    public NPCController NPC;
     public GameObject spawnPrefab;
 
     void OnTriggerEnter(Collider other)
@@ -31,13 +31,19 @@ public class PuzzleController : MonoBehaviour
         switch(myTrigger)
         {
             case Trigger.ObjectTag:
-                //look for tag
+                if(other.tag == lookForTag) //if the tag matches
+                {
+                    Outcome();
+                }
                 break;
             case Trigger.HeldObject:
                 //look for object and its parent / and its child or smt
                 break;
             case Trigger.Object:
-                //look for matching gameoject
+                if(other.gameObject == lookForObject) //if the game objects match
+                {
+                    Outcome();
+                }
                 break;
         }
     }
@@ -47,13 +53,13 @@ public class PuzzleController : MonoBehaviour
         switch(myResult)
         {
             case Result.Animation:
-                //play animation
+                animator.SetTrigger(animTrigger); //play animation
                 break;
             case Result.NPCDestination:
-                //set NPC navmesh destination
+                NPC.agent.SetDestination(targetPoint.position); //set NPC navmesh destination
                 break;
             case Result.CreateObject:
-                //spawn a prefab
+                Instantiate(spawnPrefab, targetPoint.position, targetPoint.rotation);//spawn a prefab
                 break;
         }
     }

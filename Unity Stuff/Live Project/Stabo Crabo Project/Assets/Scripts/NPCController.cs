@@ -16,7 +16,7 @@ public class NPCController : MonoBehaviour
     private float countdownToNewDestination = 0.0f;
 
     //NPC behaviour variable
-    public enum Behaviours {Idle, Chasing, Fleeing, Roaming}
+    public enum Behaviours {Idle = 100, Chasing = 200, Fleeing = 300, Roaming = 400}
     public Behaviours behaviour; //The Current behaviour of the NPC
 
     void Start()
