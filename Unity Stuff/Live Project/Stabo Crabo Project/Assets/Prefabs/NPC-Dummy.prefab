@@ -129,10 +129,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 2
+  m_Radius: 0.3
+  m_Height: 2.2090998
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.8954501, z: 0}
 --- !u!114 &7725181462407892239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7725181462407892244
@@ -182,4 +182,4 @@ MonoBehaviour:
   agent: {fileID: 7725181462407892243}
   destinationBounds: {fileID: 0}
   timeToNewDestination: 10
-  behaviour: 3
+  behaviour: 100

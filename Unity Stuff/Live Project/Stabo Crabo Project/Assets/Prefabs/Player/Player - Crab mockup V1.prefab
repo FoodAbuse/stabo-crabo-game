@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6230234162629878372}
   - component: {fileID: 5689504836546537831}
   - component: {fileID: 8960616665693407829}
+  - component: {fileID: 4172470949307995719}
   m_Layer: 6
   m_Name: Player - Crab mockup V1
   m_TagString: Player
@@ -37,7 +38,7 @@ Transform:
   - {fileID: 6015723781177939147}
   - {fileID: 7507483389159949484}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6230234162629878372
 CapsuleCollider:
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 2.5
   sprintMoveSpeed: 5
-  baseTurnSpeed: 2
+  baseTurnSpeed: 5
   sprintTurnSpeed: 4
   stabCoolDown: 1
   stabAirTarget: {fileID: 5231416061976954442}
@@ -93,6 +94,19 @@ MonoBehaviour:
   grabCollider: {fileID: 3098731094229348510}
   stabCollider: {fileID: 5978864006391755224}
   crabAnimator: {fileID: 8044916713778067458}
+--- !u!65 &4172470949307995719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989616146170233752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &1550701316947917554
 GameObject:
   m_ObjectHideFlags: 0

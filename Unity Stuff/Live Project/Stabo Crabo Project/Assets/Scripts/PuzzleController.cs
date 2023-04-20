@@ -24,9 +24,11 @@ public class PuzzleController : MonoBehaviour
     public Transform targetPoint; //used for spawning objects, or setting NPC destinations
     public NPCController NPC;
     public GameObject spawnPrefab;
+    public List<GameObject> destroyObjects;
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         //trigger type
         switch(myTrigger)
         {
@@ -37,7 +39,15 @@ public class PuzzleController : MonoBehaviour
                 }
                 break;
             case Trigger.HeldObject:
-                //look for object and its parent / and its child or smt
+                if(other.tag == "Player") //checks for player
+                {
+                    Debug.Log("player found");
+                    if(other.GetComponent<PlayerController>().grabObject.gameObject == lookForObject) //player is holding target object
+                    {
+                        Debug.Log("Object Found");
+                        Outcome();
+                    }
+                }
                 break;
             case Trigger.Object:
                 if(other.gameObject == lookForObject) //if the game objects match
@@ -56,11 +66,16 @@ public class PuzzleController : MonoBehaviour
                 animator.SetTrigger(animTrigger); //play animation
                 break;
             case Result.NPCDestination:
+            Debug.Log("Setting Destination");
                 NPC.agent.SetDestination(targetPoint.position); //set NPC navmesh destination
                 break;
             case Result.CreateObject:
                 Instantiate(spawnPrefab, targetPoint.position, targetPoint.rotation);//spawn a prefab
                 break;
+        }
+        foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it
+        {
+            Destroy(x);
         }
     }
 

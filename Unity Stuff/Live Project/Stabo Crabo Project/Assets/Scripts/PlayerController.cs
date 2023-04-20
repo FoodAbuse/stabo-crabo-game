@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
     private bool isGrabbing = false;
 
     private Transform grabParent;
-    private Transform grabObject;
-    private Transform stabObject;
+    [HideInInspector]
+    public Transform grabObject;
+    [HideInInspector]
+    public Transform stabObject;
     [SerializeField]
     private Transform stabAirTarget; //where the stab will go if there is no other target
     [SerializeField]
@@ -151,7 +153,8 @@ public class PlayerController : MonoBehaviour
             isGrabbing = false;
             grabObject.parent = grabParent; //return the original parent  
             grabObject.GetComponent<Rigidbody>().isKinematic = false;
-            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton        
+            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton  
+            grabObject = null; //reset grabObject      
         }
     }
 
