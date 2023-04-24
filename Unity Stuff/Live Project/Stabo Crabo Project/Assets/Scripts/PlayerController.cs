@@ -96,10 +96,12 @@ public class PlayerController : MonoBehaviour
                 if((transform.right - moveDirection).magnitude < (-transform.right - moveDirection).magnitude) //checks which side of the crab is closest to the target direction
                 {
                     targetRotation *= Quaternion.Euler(0,-90,0);//change target rotation by 90deg
+                    crabAnimator.SetBool("reverseRun", true);
                 }
                 else
                 {
                     targetRotation *= Quaternion.Euler(0,90,0);//change in the other direction by 90deg
+                    crabAnimator.SetBool("reverseRun", false);
                 }
             }
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
