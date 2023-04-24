@@ -11,6 +11,7 @@ public class NPCController : MonoBehaviour
     public NavMeshAgent agent; //the agent component on this NPC object
     public Collider destinationBounds; //area for random position to be generated in
     private NavMeshPath path; //create an empty navmesh path
+    public Animator animator;
 
     public float timeToNewDestination = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination
     private float countdownToNewDestination = 0.0f;
@@ -34,6 +35,13 @@ public class NPCController : MonoBehaviour
             default:
                 break;
         }
+
+    }
+
+    void LateUpdate() //runs after update?
+    {
+        float speed = agent.velocity.magnitude; //grabs the current agent vector's magnitude
+        animator.SetFloat("Speed", speed); //set the animator parameter to match
     }
 
     private void Roaming() //waits, then sets a random destination and moves there - run during update
