@@ -13,16 +13,29 @@ public class NPCController : MonoBehaviour
     private NavMeshPath path; //create an empty navmesh path
     public Animator animator;
 
-    public float timeToNewDestination = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination
+    public float newDestTimeMin = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination'
+    public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
 
     //NPC behaviour variable
-    public enum Behaviours {Idle = 100, Chasing = 200, Fleeing = 300, Roaming = 400}
+    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Chasing = 200, Fleeing = 300, Roaming = 400}
     public Behaviours behaviour; //The Current behaviour of the NPC
 
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
+        switch(behaviour) //initial switches based on behaviour
+        {
+            case Behaviours.Sitting:
+                animator.Play("NPC_SitIdle");
+                break;
+            case Behaviours.Lying:
+                animator.Play("NPC_LyingDown");
+                break;
+            case Behaviours.Searching:
+                animator.Play("NPC_Idle3");
+                break;
+        }
     }
 
     void Update()
@@ -38,7 +51,7 @@ public class NPCController : MonoBehaviour
 
     }
 
-    void LateUpdate() //runs after update?
+    void LateUpdate() //runs after update
     {
         float speed = agent.velocity.magnitude; //grabs the current agent vector's magnitude
         animator.SetFloat("Speed", speed); //set the animator parameter to match
@@ -58,7 +71,7 @@ public class NPCController : MonoBehaviour
                     agent.CalculatePath(destination, path); //recalculate the path            
                 }
                 agent.SetDestination(destination); //set new destination
-                countdownToNewDestination = timeToNewDestination; //reset the countdown
+                countdownToNewDestination = Random.Range(newDestTimeMin, newDestTimeMax); //reset the countdown
             }
             else
             {
