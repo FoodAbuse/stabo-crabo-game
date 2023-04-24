@@ -12,15 +12,21 @@ public class NPCController : MonoBehaviour
     public Collider destinationBounds; //area for random position to be generated in
     private NavMeshPath path; //create an empty navmesh path
     public Animator animator;
+    private Rigidbody[] ragdollRigidbodies; //stores all the ragdoll RB components
 
     public float newDestTimeMin = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination'
     public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
 
     //NPC behaviour variable
-    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Chasing = 200, Fleeing = 300, Roaming = 400}
+    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
     public Behaviours behaviour; //The Current behaviour of the NPC
 
+    void Awake()
+    {
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>(); //get all the RB in the child limbs and joints
+        DisableRagdoll(); //the ragdoll should start disabled
+    }
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
@@ -87,5 +93,24 @@ public class NPCController : MonoBehaviour
         0.0f,
         Random.Range(bounds.min.z, bounds.max.z)
     );
-}
+    }
+
+    private void DisableRagdoll() //disables ragdoll should be accompanied by a line to set behaviour to idle / roaming etc.
+    {
+        foreach (var rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = true; //set all the RB to be kinematic
+        }
+        animator.enabled = true;
+    }
+
+    private void EnableRagdoll()
+    {
+        foreach (var rb in ragdollRigidbodies)
+        {
+            rb.isKinematic = false; //set all the RB to be affected by physics
+        }
+        animator.enabled = false; //turn off the animator
+        behaviour = Behaviours.Ragdoll; //set behaviour to ragdoll
+    }
 }

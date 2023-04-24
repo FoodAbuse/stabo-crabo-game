@@ -28,7 +28,6 @@ public class PuzzleController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         //trigger type
         switch(myTrigger)
         {
