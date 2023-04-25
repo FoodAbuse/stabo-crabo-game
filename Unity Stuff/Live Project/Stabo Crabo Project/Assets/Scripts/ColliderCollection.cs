@@ -13,7 +13,7 @@ public class ColliderCollection : MonoBehaviour
         if(tagList.Contains(other.tag))
         {
             colList.Add(other); //adds the collider to the list
-            other.GetComponent<Interactable>().ToggleHighlight(true); //toggle the object's highlight
+            //other.GetComponent<Interactable>().ToggleHighlight(true); //toggle the object's highlight
         }        
         
     }
@@ -23,7 +23,7 @@ public class ColliderCollection : MonoBehaviour
         if(tagList.Contains(other.tag))
         {
             colList.Remove(other); //removes the collider from the list
-            other.GetComponent<Interactable>().ToggleHighlight(false); //toggle the object's highlight
+            //other.GetComponent<Interactable>().ToggleHighlight(false); //toggle the object's highlight
         }
     }
 }

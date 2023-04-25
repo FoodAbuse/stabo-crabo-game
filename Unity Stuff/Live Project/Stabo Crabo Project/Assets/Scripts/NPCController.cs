@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI; //needed for navmesh
+using UnityEngine.Animations.Rigging; //needed to aim the head
 
 public class NPCController : MonoBehaviour
 {
@@ -22,6 +23,16 @@ public class NPCController : MonoBehaviour
     public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
     public Behaviours behaviour; //The Current behaviour of the NPC
 
+    //head aiming
+    [SerializeField]
+    private Collider fieldOfVision;
+    [SerializeField]
+    private Transform headTarget;
+    [SerializeField]
+    private Rig headRig;
+    [SerializeField]
+    private ColliderCollection sightCollection;
+
     void Awake()
     {
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>(); //get all the RB in the child limbs and joints
@@ -30,9 +41,9 @@ public class NPCController : MonoBehaviour
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
-        switch(behaviour) //initial switches based on behaviour
+        switch(behaviour)
         {
-            case Behaviours.Sitting:
+            case Behaviours.Sitting: //initial animations based on behaviour
                 animator.Play("NPC_SitIdle");
                 break;
             case Behaviours.Lying:
@@ -42,6 +53,10 @@ public class NPCController : MonoBehaviour
                 animator.Play("NPC_Idle3");
                 break;
         }
+
+        headRig.weight = 0.0f; //initial rig weighting is 0
+
+
     }
 
     void Update()
@@ -54,6 +69,17 @@ public class NPCController : MonoBehaviour
             default:
                 break;
         }
+
+        if(sightCollection.colList.Count > 0) //checks that there is an object to look at
+        {
+            headRig.weight = Mathf.Lerp(headRig.weight, 1.0f, 3 * Time.deltaTime); //increase the weight of the rig
+            HeadAim(sightCollection.colList[0].gameObject.transform); //aim the head
+        }
+        else if (headRig.weight > 0.01)
+        {
+            headRig.weight = Mathf.Lerp(headRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig
+        }
+
 
     }
 
@@ -112,5 +138,10 @@ public class NPCController : MonoBehaviour
         }
         animator.enabled = false; //turn off the animator
         behaviour = Behaviours.Ragdoll; //set behaviour to ragdoll
+    }
+
+    void HeadAim(Transform lookAt) //tells the head to turn towards the lookAt target
+    {
+        headTarget.position = Vector3.Lerp(headTarget.position, lookAt.position, 5 * Time.deltaTime); //moves the head towards the target position
     }
 }

@@ -41,10 +41,13 @@ public class PuzzleController : MonoBehaviour
                 if(other.tag == "Player") //checks for player
                 {
                     Debug.Log("player found");
-                    if(other.GetComponent<PlayerController>().grabObject.gameObject == lookForObject) //player is holding target object
+                    if(other.GetComponent<PlayerController>().grabObject) //if the grab object has been assigned
                     {
-                        Debug.Log("Object Found");
-                        Outcome();
+                        if(other.GetComponent<PlayerController>().grabObject.gameObject == lookForObject) //player is holding target object
+                        {
+                            Debug.Log("Object Found");
+                            Outcome();
+                        }
                     }
                 }
                 break;
