@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI; //needed for navmesh
 using UnityEngine.Animations.Rigging; //needed to aim the head
 
-public class NPCController : MonoBehaviour
+public class NPCController : Stabbable
 {
     //temporary script to move NPCs around randomly
     //for now I want to set a random desitnation within navmesh bounds, and then start counting down a timer once I reach it
@@ -128,6 +128,7 @@ public class NPCController : MonoBehaviour
             rb.isKinematic = true; //set all the RB to be kinematic
         }
         animator.enabled = true;
+        agent.enabled = true; //enable navmesh
     }
 
     private void EnableRagdoll()
@@ -138,10 +139,30 @@ public class NPCController : MonoBehaviour
         }
         animator.enabled = false; //turn off the animator
         behaviour = Behaviours.Ragdoll; //set behaviour to ragdoll
+        agent.enabled = false; //enable navmesh
     }
 
     void HeadAim(Transform lookAt) //tells the head to turn towards the lookAt target
     {
         headTarget.position = Vector3.Lerp(headTarget.position, lookAt.position, 5 * Time.deltaTime); //moves the head towards the target position
+    }
+
+    public override void Stabbed()
+    {
+        if(this.tag == "Killable")
+        {
+            Debug.Log("killable");
+            EnableRagdoll();
+            //also probably need to disable various tags and methods and things
+            if(transform.parent.name == "NPC Targets") //if this is a target
+            {
+                GameManager.TargetKilled(gameObject); //remove this from the targets list and trigger level phases etc
+            }
+        }
+        else
+        {
+            //spin around Mii style
+        }
+        
     }
 }

@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object
                 armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
-                stabObject.GetComponent<StabbableController>().Stabbed(); //call the object's stabbed function
+                stabObject.GetComponent<Stabbable>().Stabbed(); //call the object's stabbed function
                 Invoke("FinishStab",0.5f);
             }
             else
