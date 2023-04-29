@@ -147,16 +147,22 @@ public class PlayerController : MonoBehaviour
             grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
             grabParent = grabObject.parent; //save the prop's parent
             armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
-            grabObject.GetComponent<Rigidbody>().isKinematic = true;
             grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
             //this is a temporary solution, I will need to refine this method as I expect it will cause issues
 
             if(grabObject.tag == "GrabLight")//if the object is light
             {
                 armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
+                grabObject.GetComponent<Rigidbody>().isKinematic = true;
             }
             else if(grabObject.tag == "GrabHeavy") //if the object is heavy
             {
+                CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
+                joint.enableCollision = false; //don't let the held object collide with the player
+                Debug.Log(armTargetL.position);
+                Debug.Log(joint.anchor);
+                joint.anchor = armTargetL.position; //set the joint anchor to where the target is, which is the closest point on the held object
+                joint.connectedBody = grabObject.GetComponent<Rigidbody>();
                 isDragging = true; //turn on dragging
                 isSprinting = false; //disable sprinting
                 moveSpeed = baseMoveSpeed; //set movespeed
@@ -185,6 +191,8 @@ public class PlayerController : MonoBehaviour
             if(grabObject.tag == "GrabHeavy") //if the object was heavy
             {
                 isDragging = false; //turn of dragging
+                CharacterJoint joint = GetComponent<CharacterJoint>();
+                Destroy(joint); //destroy the joint we created
 
             }
 
