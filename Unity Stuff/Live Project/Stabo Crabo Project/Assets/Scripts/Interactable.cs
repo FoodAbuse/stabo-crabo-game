@@ -9,6 +9,9 @@ public class Interactable : MonoBehaviour
 
     //variables for highlighting
     private new Renderer renderer; //this object's renderer.
+
+    [HideInInspector]
+    public bool isDoomed = false; //is being destroyed
     
     void Start()
     {
@@ -17,7 +20,7 @@ public class Interactable : MonoBehaviour
 
 
     //doesnt seem to work right now because unlit material has no emission
-    public void ToggleHighlight(bool toggle) //called to turn the highlight on or off
+    /*public void ToggleHighlight(bool toggle) //called to turn the highlight on or off
     {
         if(toggle) //if toggle parameter is true
         {
@@ -27,6 +30,16 @@ public class Interactable : MonoBehaviour
         else
         {
             renderer.material.DisableKeyword("_EMISSION"); //Disable emission on the object
+        }
+    }*/
+
+    void OnDestroy() //is called when this object is destroyed
+    {
+        isDoomed = true;
+        if(transform.root.tag == "Player") // if this object is currently a child of the player i.e. is being grabbed
+        {
+            Debug.Log("Calling Drop object");
+            transform.root.GetComponent<PlayerController>().DropObject(); //get the player to drop this object as its destroyed
         }
     }
 

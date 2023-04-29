@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private float turnSpeed;
     private bool isSprinting = false;
     private bool isGrabbing = false;
+    private bool isDragging = false;
+
 
     private Transform grabParent;
     [HideInInspector]
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
         //movement input
         moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
         //sprint input
-        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1) //sprint button on
+        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
         {
             isSprinting = true;
             moveSpeed = sprintMoveSpeed; //increase movement
@@ -103,6 +105,10 @@ public class PlayerController : MonoBehaviour
                     targetRotation *= Quaternion.Euler(0,90,0);//change in the other direction by 90deg
                     crabAnimator.SetBool("reverseRun", false);
                 }
+            }
+            else if (isDragging)
+            {
+                targetRotation *= Quaternion.Euler(0,180,0);//change target rotation to backwards
             }
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
             
@@ -149,15 +155,40 @@ public class PlayerController : MonoBehaviour
             {
                 armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
             }
+            else if(grabObject.tag == "GrabHeavy") //if the object is heavy
+            {
+                isDragging = true; //turn on dragging
+                isSprinting = false; //disable sprinting
+                moveSpeed = baseMoveSpeed; //set movespeed
+            }
         }
         if(Input.GetMouseButtonUp(0) && isGrabbing)
         {
-            isGrabbing = false;
-            grabObject.parent = grabParent; //return the original parent  
-            grabObject.GetComponent<Rigidbody>().isKinematic = false;
-            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton  
-            grabObject = null; //reset grabObject      
+            DropObject(); //drop the currently held object  
         }
+    }
+
+    public void DropObject()
+    {
+            isGrabbing = false;
+            if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
+            {
+                grabObject.parent = grabParent; //return the original parent  
+                grabObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
+            else //the object is set to be destroyed
+            {
+                grabCollider.colList.Remove(grabCollider.colList[0]); //remove the held object from the collider collection
+            }
+            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
+
+            if(grabObject.tag == "GrabHeavy") //if the object was heavy
+            {
+                isDragging = false; //turn of dragging
+
+            }
+
+            grabObject = null; //reset grabObject
     }
 
     private void StabCheck()

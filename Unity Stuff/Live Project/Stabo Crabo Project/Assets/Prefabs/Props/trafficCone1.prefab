@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 895554401648539245}
   - component: {fileID: 9132732096931634034}
   - component: {fileID: 218715697778720676}
+  - component: {fileID: 6066950001565362767}
   m_Layer: 0
   m_Name: trafficCone1
   m_TagString: GrabHeavy
@@ -119,3 +120,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4985635270463183746, guid: 44c30ff509d38db4d88f65c9b9bd1548, type: 3}
+--- !u!114 &6066950001565362767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8737677209971249245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2494f1cc30423343894ac28c7ded92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoomed: 0
