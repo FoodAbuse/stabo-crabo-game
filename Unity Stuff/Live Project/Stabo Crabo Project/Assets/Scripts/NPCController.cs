@@ -128,7 +128,7 @@ public class NPCController : Stabbable
             rb.isKinematic = true; //set all the RB to be kinematic
         }
         animator.enabled = true;
-        agent.enabled = true; //enable navmesh
+        //agent.enabled = true; //enable navmesh - I don't want the target's navmesh to be reenabled atm
     }
 
     private void EnableRagdoll()
@@ -151,7 +151,6 @@ public class NPCController : Stabbable
     {
         if(this.tag == "Killable")
         {
-            Debug.Log("killable");
             EnableRagdoll();
             //also probably need to disable various tags and methods and things
             if(transform.parent.name == "NPC Targets") //if this is a target
