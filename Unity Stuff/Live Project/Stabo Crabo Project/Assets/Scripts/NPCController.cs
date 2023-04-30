@@ -20,7 +20,7 @@ public class NPCController : Stabbable
     private float countdownToNewDestination = 0.0f;
 
     //NPC behaviour variable
-    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
+    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Doorman = 140, CarryingEsky = 150, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
     public Behaviours behaviour; //The Current behaviour of the NPC
 
     //head aiming
@@ -41,18 +41,7 @@ public class NPCController : Stabbable
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
-        switch(behaviour)
-        {
-            case Behaviours.Sitting: //initial animations based on behaviour
-                animator.Play("NPC_SitIdle");
-                break;
-            case Behaviours.Lying:
-                animator.Play("NPC_LyingDown");
-                break;
-            case Behaviours.Searching:
-                animator.Play("NPC_Idle3");
-                break;
-        }
+        ResumeIdle(); //return to an idle animation based on the current behaviour
 
         headRig.weight = 0.0f; //initial rig weighting is 0
 
@@ -160,8 +149,38 @@ public class NPCController : Stabbable
         }
         else
         {
-            //spin around Mii style
+            animator.Play("NPC_EmoteHurt"); //play the hurt animation
+            if(agent.enabled) //if the navmesh is active
+            {
+                agent.isStopped = true; //pause navmesh movement
+            }
         }
         
+    }
+
+    public void ResumeIdle()
+    {
+        switch(behaviour)
+        {
+            case Behaviours.Sitting: //initial animations based on behaviour
+                animator.SetFloat("IdleBehaviour",4.0f);
+                break;
+            case Behaviours.Lying:
+                animator.SetFloat("IdleBehaviour",2.0f);
+                break;
+            case Behaviours.Searching:
+                animator.SetFloat("IdleBehaviour",1.0f);
+                break;
+            case Behaviours.Doorman:
+                animator.SetFloat("IdleBehaviour",3.0f);
+                break;
+            case Behaviours.CarryingEsky:
+                animator.SetFloat("IdleBehaviour",5.0f);
+                break;
+        }
+            if(agent.enabled) //if the navmesh is active
+            {
+                agent.isStopped = false; //pause navmesh movement
+            }
     }
 }
