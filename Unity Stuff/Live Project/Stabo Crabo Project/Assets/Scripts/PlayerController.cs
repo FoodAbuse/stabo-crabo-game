@@ -62,34 +62,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //movement input
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
-        //sprint input
-        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
+        if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
         {
-            isSprinting = true;
-            moveSpeed = sprintMoveSpeed; //increase movement
-            turnSpeed = sprintTurnSpeed;
-        }
-        if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
-        {
-            isSprinting = false;
-            moveSpeed = baseMoveSpeed; //reset movement
-            turnSpeed = baseTurnSpeed;
-        }
-
-        GrabCheck(); //put the grab inputs and code into a function
-        if(stabTimer <= 0) //if the cool down has been exhausted
-        {
-            StabCheck(); //function for checking and executing stabs
-        }
-        else
-        {
-            stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
+            Movement(); //move the player
+            GrabCheck(); //check for grab input and execute it
+            if(stabTimer <= 0) //if the cool down has been exhausted
+            {
+                StabCheck(); //check for stab input and execute it
+            }
+            else
+            {
+                stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
+            }
         }
         
-
-        //apply rotation
+        //apply rotation - this is not based on player input. This is based on current movement vector - which is based on player input
         if(moveDirection != Vector3.zero) //if there is some amount of movement
         {
             targetRotation = Quaternion.LookRotation(moveDirection); //set target rotation to match the move direction;
@@ -114,6 +101,23 @@ public class PlayerController : MonoBehaviour
             
         }
         
+    }
+
+    void Movement() //takes player input to move the player character
+    {
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
+        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
+        {
+            isSprinting = true;
+            moveSpeed = sprintMoveSpeed; //increase movement
+            turnSpeed = sprintTurnSpeed;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
+        {
+            isSprinting = false;
+            moveSpeed = baseMoveSpeed; //reset movement
+            turnSpeed = baseTurnSpeed;
+        }
     }
 
     void FixedUpdate()

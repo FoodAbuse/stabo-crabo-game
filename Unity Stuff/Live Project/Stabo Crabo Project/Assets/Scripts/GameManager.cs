@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     //private static GameManager _instance; //the static holder for this script
 
     private static UIManager ui;
+
+    [SerializeField]
+    private CameraController cam;
     
     //objective tracking
     private static List<GameObject> targetList; //holds all of the targets
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
     public static float timerCurrent;
     public static string timerString;
     public static int levelPhase; //0 - intro, 1 - puzzles, 2-escape, 3 - end
+    
+    public static bool acceptPlayerInput = true;
 
     //level variables
     //private List<Level> levelList = new List<Level>();
@@ -56,7 +61,9 @@ public class GameManager : MonoBehaviour
         timerCurrent = 0.0f; //this should move to a level load/start method
 
         InitialiseTargets();//initialise target list
-        levelPhase = 1; //at the moment skipping straight to 1 as there is no intro set up
+        levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
+
+        StartCoroutine(IntroCutScene()); //play the intro cut-scene
 
 
     }
@@ -64,10 +71,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //testing purposes area
-        if(Input.GetKey("e")) //e for [E]scape
-        {
-            levelPhase = 2;
-        }
         if(Input.GetKey("m")) //m for [M]ove
         {
             ui.ShowHint("Move");
@@ -99,6 +102,17 @@ public class GameManager : MonoBehaviour
         {
             timerCurrent += 1 * Time.deltaTime; //tick up the timer
         }
+    }
+
+    private IEnumerator IntroCutScene() //called when the level is loaded. At the end it should set level phase to 1.
+    {
+        acceptPlayerInput = false;
+        yield return new WaitForSeconds(3.0f);
+        cam.SwitchCamera(1);
+        yield return new WaitForSeconds(3.0f);
+        cam.SwitchCamera(2);
+        yield return new WaitForSeconds(1.0f);
+        acceptPlayerInput = true;
     }
 
     public static void LevelWon() //called by escape zones to trigger the end of the level
