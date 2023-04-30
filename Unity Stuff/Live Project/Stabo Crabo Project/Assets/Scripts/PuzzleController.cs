@@ -24,7 +24,9 @@ public class PuzzleController : MonoBehaviour
     public Transform targetPoint; //used for spawning objects, or setting NPC destinations
     public NPCController NPC;
     public GameObject spawnPrefab;
-    public string calledMethod;
+    [SerializeField]
+    private string calledMethod;
+    
     public List<GameObject> destroyObjects;
     
 

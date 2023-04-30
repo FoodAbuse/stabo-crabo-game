@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             }
             else if(grabObject.tag == "GrabHeavy") //if the object is heavy
             {
-                CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
+                HingeJoint joint = gameObject.AddComponent<HingeJoint>(); //adds a joint to the player object
                 joint.enableCollision = false; //don't let the held object collide with the player
                 Debug.Log(armTargetL.position);
                 Debug.Log(joint.anchor);
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
             if(grabObject.tag == "GrabHeavy") //if the object was heavy
             {
                 isDragging = false; //turn of dragging
-                CharacterJoint joint = GetComponent<CharacterJoint>();
+                HingeJoint joint = GetComponent<HingeJoint>();
                 Destroy(joint); //destroy the joint we created
 
             }

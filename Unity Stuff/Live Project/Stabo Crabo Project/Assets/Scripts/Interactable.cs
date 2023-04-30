@@ -12,10 +12,12 @@ public class Interactable : MonoBehaviour
 
     [HideInInspector]
     public bool isDoomed = false; //is being destroyed
+    private Rigidbody rb;
     
     void Start()
     {
         renderer = GetComponent<Renderer>(); //initialise the renderer
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -41,6 +43,20 @@ public class Interactable : MonoBehaviour
             Debug.Log("Calling Drop object");
             transform.root.GetComponent<PlayerController>().DropObject(); //get the player to drop this object as its destroyed
         }
+    }
+
+    public void ToggleKinematic() //called to change an interactable obj to kinematic or not
+    {
+        if(rb.isKinematic)
+        {
+            rb.isKinematic = false;
+        }
+        else
+        {
+            rb.isKinematic = true;
+        }
+
+        
     }
 
 
