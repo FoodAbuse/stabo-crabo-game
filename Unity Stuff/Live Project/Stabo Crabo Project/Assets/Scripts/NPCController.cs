@@ -19,6 +19,10 @@ public class NPCController : Stabbable
     public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
 
+    //carried object
+    [SerializeField]
+    private GameObject heldObject; //for now held object doesn't move with the NPC. I am focussing on code to drop it from an idle pose
+
     //NPC behaviour variable
     public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Doorman = 140, CarryingEsky = 150, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
     public Behaviours behaviour; //The Current behaviour of the NPC
@@ -154,6 +158,11 @@ public class NPCController : Stabbable
             {
                 agent.isStopped = true; //pause navmesh movement
             }
+        }
+
+        if(heldObject) //if there is a held object
+        {
+            heldObject.GetComponent<Rigidbody>().isKinematic = false; //drop the object
         }
         
     }
