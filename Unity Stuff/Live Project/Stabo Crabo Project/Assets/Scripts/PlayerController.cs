@@ -128,8 +128,10 @@ public class PlayerController : MonoBehaviour
     {
         if(moveDirection.magnitude > 0.1) //if there is some movement:
         {
+            GameManager.NextHint("Move"); //disable hint
             if(isSprinting)
             {
+                GameManager.NextHint("Sprint"); //disable hint
                 crabAnimator.SetBool("isRunning", true); //set sprinting animation
                 crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
             }
@@ -151,6 +153,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
         {
+            GameManager.NextHint("Grab"); //disable hint
             isGrabbing = true;
             grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
             grabParent = grabObject.parent; //save the prop's parent
@@ -211,6 +214,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1)) //if rmb pressed
         {
+            GameManager.NextHint("Stab"); //disable hint
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object

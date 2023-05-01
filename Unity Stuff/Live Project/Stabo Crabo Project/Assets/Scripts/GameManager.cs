@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     
     public static bool acceptPlayerInput = true;
 
+    //hint tracking
+    private static List<string> hintList;
+
     //level variables
     //private List<Level> levelList = new List<Level>();
     //Level firstLevel = new Level();
@@ -63,44 +66,38 @@ public class GameManager : MonoBehaviour
 
         InitialiseTargets();//initialise target list
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
-
+        hintList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the hintList
         StartCoroutine(IntroCutScene()); //play the intro cut-scene
+
+
 
 
     }
 
     void Update()
     {
-        //testing purposes area
-        if(Input.GetKey("m")) //m for [M]ove
-        {
-            ui.ShowHint("Move");
-        }
-        if(Input.GetKey("g"))//g for [G]rab
-        {
-            ui.ShowHint("Grab");
-        }
-        if(Input.GetKey("p"))//r for s[P]rint
-        {
-            ui.ShowHint("Sprint");
-        }
-        if(Input.GetKey("t"))//t for s[T]ab
-        {
-            ui.ShowHint("Stab");
-        }
-        if(Input.GetKey("h"))//h for [H]ide
-        {
-            ui.HideHint();
-        }
-
-        //reset button
         if(Input.GetKeyUp(KeyCode.Escape))
         {
             TogglePause(); //pause the game
         }
 
-        //actual area
-        KeepTime();
+        KeepTime(); //tracks up time in level
+    }
+
+    public static void NextHint(string hint) //called by other objects
+    {
+        if(hintList.Count != 0)
+        {
+            if(hintList[0] == hint)
+            {
+                ui.HideHint();
+                hintList.Remove(hint);
+                if(hintList.Count != 0) //if there is anything left in the hint array
+                {
+                    ui.ShowHint(hintList[0]); //show the next hint
+                }
+            }
+        }
     }
 
     private void KeepTime()//keeps track of the timer
@@ -128,6 +125,7 @@ public class GameManager : MonoBehaviour
         {
             target.GetComponent<NPCController>().ToggleIdentify();
         }
+        ui.ShowHint(hintList[0]); //show first hint
     }
 
     public static void TogglePause() //at the moment NPCs and animations etc will not bne paused, just crab will
