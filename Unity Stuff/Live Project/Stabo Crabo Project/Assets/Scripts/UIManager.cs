@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     //reference to different menu panels
     public GameObject panelTitle;
     public GameObject panelMain;
+    public GameObject panelPause;
     [SerializeField]
     private GameObject panelEndScreen;
     [SerializeField]

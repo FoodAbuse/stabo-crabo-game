@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public static float timerCurrent;
     public static string timerString;
     public static int levelPhase; //0 - intro, 1 - puzzles, 2-escape, 3 - end
+    public string levelName; //level naame specigic to this game manager
     
     public static bool acceptPlayerInput = true;
 
@@ -92,13 +93,19 @@ public class GameManager : MonoBehaviour
             ui.HideHint();
         }
 
+        //reset button
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            TogglePause(); //pause the game
+        }
+
         //actual area
         KeepTime();
     }
 
     private void KeepTime()//keeps track of the timer
     {
-        if(levelPhase == 1 || levelPhase == 2)//during the gameplay part of the level
+        if(acceptPlayerInput)//during the parts of the game where player can actually do things
         {
             timerCurrent += 1 * Time.deltaTime; //tick up the timer
         }
@@ -115,6 +122,20 @@ public class GameManager : MonoBehaviour
         acceptPlayerInput = true;
     }
 
+    public static void TogglePause() //at the moment NPCs and animations etc will not bne paused, just crab will
+    {
+        if(acceptPlayerInput) //if game is not paused
+        {
+            ui.MenuScreen(ui.panelPause); //bring up the pause screen
+            acceptPlayerInput = false;
+        }
+        else
+        {
+            ui.ExitMenu(); //bring up the pause screen
+            acceptPlayerInput = true;
+        }            
+    }
+
     public static void LevelWon() //called by escape zones to trigger the end of the level
     {
         Debug.Log("Level Won!");
@@ -124,6 +145,7 @@ public class GameManager : MonoBehaviour
         timerString = tMinutes.ToString("00") + ":" + tSeconds.ToString("00"); //set the formatting of the time
         
         levelPhase = 3; //enter the end phase
+        acceptPlayerInput = false;
         //levelCurrent.completed = true; //the player has now completed this level
         //levelCurrent.timerLast = timerCurrent; //store the time
         /*if(timerCurrent < levelCurrent.timerHighScore)//if the current time is better than the previous one

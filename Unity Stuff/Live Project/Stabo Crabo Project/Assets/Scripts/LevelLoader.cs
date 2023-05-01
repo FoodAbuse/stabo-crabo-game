@@ -39,7 +39,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel(string levelName) //function accessible to other scripts
     { //might eventually change level name to level index??
         StartCoroutine(LoadLevel(levelName, transitionSpeed));
+    }
 
+    public void ReloadLevel() //loads the current level
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name, transitionSpeed));
     }
 
     IEnumerator LoadLevel(string levelName, float transitionSpeed)
