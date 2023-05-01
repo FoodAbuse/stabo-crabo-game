@@ -75,6 +75,10 @@ public class PlayerController : MonoBehaviour
                 stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
             }
         }
+        else
+        {
+            moveDirection = Vector3.zero;
+        }
         
         //apply rotation - this is not based on player input. This is based on current movement vector - which is based on player input
         if(moveDirection != Vector3.zero) //if there is some amount of movement

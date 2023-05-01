@@ -114,12 +114,20 @@ public class GameManager : MonoBehaviour
     private IEnumerator IntroCutScene() //called when the level is loaded. At the end it should set level phase to 1.
     {
         acceptPlayerInput = false;
+        foreach(GameObject target in targetList) //turn on all identifiers
+        {
+            target.GetComponent<NPCController>().ToggleIdentify();
+        }
         yield return new WaitForSeconds(3.0f);
         cam.SwitchCamera(1);
         yield return new WaitForSeconds(3.0f);
         cam.SwitchCamera(2);
         yield return new WaitForSeconds(1.0f);
         acceptPlayerInput = true;
+        foreach(GameObject target in targetList) //turn off all identifiers
+        {
+            target.GetComponent<NPCController>().ToggleIdentify();
+        }
     }
 
     public static void TogglePause() //at the moment NPCs and animations etc will not bne paused, just crab will

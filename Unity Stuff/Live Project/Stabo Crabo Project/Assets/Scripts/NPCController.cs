@@ -22,6 +22,11 @@ public class NPCController : Stabbable
     //carried object
     [SerializeField]
     private GameObject heldObject; //for now held object doesn't move with the NPC. I am focussing on code to drop it from an idle pose
+    [SerializeField]
+    private GameObject identifier; //object to spawn over head to identify NPC
+    private GameObject myIdentifier;
+    [SerializeField]
+    private Transform pointAboveHead; //point for spawning speechbubbles, identifiers etc
 
     //NPC behaviour variable
     public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Doorman = 140, CarryingEsky = 150, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
@@ -191,5 +196,19 @@ public class NPCController : Stabbable
             {
                 agent.isStopped = false; //pause navmesh movement
             }
+    }
+
+    public void ToggleIdentify() //spawns a identifier object above the NPC
+    {
+        if(myIdentifier)
+        {
+            Destroy(myIdentifier);
+        }
+        else
+        {
+            myIdentifier = Instantiate(identifier, pointAboveHead.position, Quaternion.identity, transform); //spawn the identifier prefab
+            //myIdentifier.transform.parent = transform; //make it a child
+        }
+
     }
 }
