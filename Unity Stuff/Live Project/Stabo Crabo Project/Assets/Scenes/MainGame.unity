@@ -5621,8 +5621,18 @@ PrefabInstance:
       objectReference: {fileID: 498283082}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: calledMethods.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: destroyObjects.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: calledMethods.Array.data[0]
+      value: EnableRagdoll
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -8417,7 +8427,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054546073}
-  m_LocalRotation: {x: 0.39352375, y: -0.000000027397705, z: 0.000000011727922, w: 0.91931444}
+  m_LocalRotation: {x: 0.39352378, y: 3.266061e-15, z: -2.2862556e-15, w: 0.91931444}
   m_LocalPosition: {x: -9.5, y: 3.48, z: -24.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
