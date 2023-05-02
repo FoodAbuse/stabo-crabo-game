@@ -12,7 +12,10 @@ public class Interactable : MonoBehaviour
 
     [HideInInspector]
     public bool isDoomed = false; //is being destroyed
+    public GameObject heldBy; //which object is holding this one
     private Rigidbody rb;
+
+    public string storedTag; //tag that can be swapped in with a function. I don't like this and would prefer a method that takes a string paramet SetTag() but that doesnt work with my puzzle controllers atm
     
     void Start()
     {
@@ -38,10 +41,10 @@ public class Interactable : MonoBehaviour
     void OnDestroy() //is called when this object is destroyed
     {
         isDoomed = true;
-        if(transform.root.tag == "Player") // if this object is currently a child of the player i.e. is being grabbed
+        if(heldBy) //if this object is being held
         {
             Debug.Log("Calling Drop object");
-            transform.root.GetComponent<PlayerController>().DropObject(); //get the player to drop this object as its destroyed
+            heldBy.SendMessage("DropObject"); //get the player to drop this object as its destroyed. USING SEND MESSAGE INCASE WE GET NPCS TO PICK THINGS UP
         }
     }
 
@@ -55,8 +58,13 @@ public class Interactable : MonoBehaviour
         {
             rb.isKinematic = true;
         }
+    }
 
-        
+    public void SwapTag()
+    {
+        string tempTag = tag;
+        tag = storedTag;
+        storedTag = tempTag;
     }
 
 

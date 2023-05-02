@@ -25,7 +25,7 @@ public class PuzzleController : MonoBehaviour
     public NPCController NPC;
     public GameObject spawnPrefab;
     [SerializeField]
-    private string calledMethod;
+    private List<string> calledMethods;
     
     public List<GameObject> destroyObjects;
     
@@ -79,7 +79,10 @@ public class PuzzleController : MonoBehaviour
                 Instantiate(spawnPrefab, targetPoint.position, targetPoint.rotation);//spawn a prefab
                 break;
             case Result.CallMethod:
-                targetPoint.gameObject.SendMessage(calledMethod); //call desired function on the gameobject defined by the target point transform
+                foreach(string method in calledMethods)
+                {
+                    targetPoint.gameObject.SendMessage(method); //call desired function on the gameobject defined by the target point transform
+                }                
                 break;
         }
         foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it

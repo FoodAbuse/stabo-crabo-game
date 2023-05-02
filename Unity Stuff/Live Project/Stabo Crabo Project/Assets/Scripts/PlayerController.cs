@@ -128,10 +128,10 @@ public class PlayerController : MonoBehaviour
     {
         if(moveDirection.magnitude > 0.1) //if there is some movement:
         {
-            GameManager.NextHint("Move"); //disable hint
+            StartCoroutine(GameManager.NextHint("Move")); //disable hint
             if(isSprinting)
             {
-                GameManager.NextHint("Sprint"); //disable hint
+                StartCoroutine(GameManager.NextHint("Sprint")); //disable hint
                 crabAnimator.SetBool("isRunning", true); //set sprinting animation
                 crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
             }
@@ -153,26 +153,24 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
         {
-            GameManager.NextHint("Grab"); //disable hint
+            StartCoroutine(GameManager.NextHint("Grab")); //disable hint
             isGrabbing = true;
             grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
+            grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
             grabParent = grabObject.parent; //save the prop's parent
             armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
-            grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
-            //this is a temporary solution, I will need to refine this method as I expect it will cause issues
 
             if(grabObject.tag == "GrabLight")//if the object is light
             {
+                grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
                 armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
                 grabObject.GetComponent<Rigidbody>().isKinematic = true;
             }
             else if(grabObject.tag == "GrabHeavy") //if the object is heavy
             {
-                HingeJoint joint = gameObject.AddComponent<HingeJoint>(); //adds a joint to the player object
+                CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
                 joint.enableCollision = false; //don't let the held object collide with the player
-                Debug.Log(armTargetL.position);
-                Debug.Log(joint.anchor);
-                joint.anchor = armTargetL.position; //set the joint anchor to where the target is, which is the closest point on the held object
+                joint.anchor = armTargetL.localPosition; //set the joint anchor to where the target is, which is the closest point on the held object
                 joint.connectedBody = grabObject.GetComponent<Rigidbody>();
                 isDragging = true; //turn on dragging
                 isSprinting = false; //disable sprinting
@@ -192,6 +190,7 @@ public class PlayerController : MonoBehaviour
             {
                 grabObject.parent = grabParent; //return the original parent  
                 grabObject.GetComponent<Rigidbody>().isKinematic = false;
+                grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
             }
             else //the object is set to be destroyed
             {
@@ -202,7 +201,7 @@ public class PlayerController : MonoBehaviour
             if(grabObject.tag == "GrabHeavy") //if the object was heavy
             {
                 isDragging = false; //turn of dragging
-                HingeJoint joint = GetComponent<HingeJoint>();
+                CharacterJoint joint = GetComponent<CharacterJoint>();
                 Destroy(joint); //destroy the joint we created
 
             }
@@ -214,7 +213,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1)) //if rmb pressed
         {
-            GameManager.NextHint("Stab"); //disable hint
+            StartCoroutine(GameManager.NextHint("Stab")); //disable hint
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object

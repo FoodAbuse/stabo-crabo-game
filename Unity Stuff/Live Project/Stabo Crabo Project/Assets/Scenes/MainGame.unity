@@ -1752,6 +1752,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
+  heldBy: {fileID: 0}
+  storedTag: 
 --- !u!65 &290754679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5897,8 +5899,23 @@ PrefabInstance:
       objectReference: {fileID: 498283082}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: calledMethods.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: destroyObjects.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: calledMethods.Array.data[0]
+      value: ToggleKinematic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: calledMethods.Array.data[1]
+      value: SwapTag
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -8400,7 +8417,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054546073}
-  m_LocalRotation: {x: 0.39352378, y: 3.266061e-15, z: -2.2862556e-15, w: 0.91931444}
+  m_LocalRotation: {x: 0.39352375, y: -0.000000027397705, z: 0.000000011727922, w: 0.91931444}
   m_LocalPosition: {x: -9.5, y: 3.48, z: -24.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9676,35 +9693,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!114 &9163393684231378735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7585526295036126135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2494f1cc30423343894ac28c7ded92c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDoomed: 0
---- !u!114 &9163393684231378736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7585526295036126135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1001 &9201626398594780774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9726,18 +9714,8 @@ PrefabInstance:
     - target: {fileID: 1654947023572053457, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
         type: 3}
       propertyPath: m_TagString
-      value: GrabHeavy
+      value: Untagged
       objectReference: {fileID: 0}
-    - target: {fileID: 1839418193199169517, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9b123741e3a3b4548b261c354cefbbef, type: 2}
-    - target: {fileID: 1839418193199169517, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8c8b909b432f0c64ea68eb25ca35a852, type: 2}
     - target: {fileID: 7170297078421138020, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
         type: 3}
       propertyPath: m_RootOrder
@@ -9807,6 +9785,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163393684231378735, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163393684231378735, guid: 7ace8d55e2232ca448c1a66c3efbaae3,
+        type: 3}
+      propertyPath: storedTag
+      value: GrabHeavy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

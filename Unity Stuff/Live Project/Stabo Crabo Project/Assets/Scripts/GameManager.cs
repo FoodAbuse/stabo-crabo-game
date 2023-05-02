@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     //hint tracking
     private static List<string> hintList;
+    private static string currentHint;
 
     //level variables
     //private List<Level> levelList = new List<Level>();
@@ -68,10 +69,6 @@ public class GameManager : MonoBehaviour
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
         hintList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the hintList
         StartCoroutine(IntroCutScene()); //play the intro cut-scene
-
-
-
-
     }
 
     void Update()
@@ -84,19 +81,22 @@ public class GameManager : MonoBehaviour
         KeepTime(); //tracks up time in level
     }
 
-    public static void NextHint(string hint) //called by other objects
+    public static IEnumerator NextHint(string hint) //called by other objects
     {
-        if(hintList.Count != 0)
+        if(currentHint == hint) //if called hint is being shown
         {
-            if(hintList[0] == hint)
-            {
+            //if(hintList[0] == hint) //if my hint is at the start of the list
+            //{
                 ui.HideHint();
                 hintList.Remove(hint);
+                currentHint = null;
                 if(hintList.Count != 0) //if there is anything left in the hint array
                 {
+                    yield return new WaitForSeconds(1.0f);
                     ui.ShowHint(hintList[0]); //show the next hint
+                    currentHint = hintList[0];
                 }
-            }
+            //}
         }
     }
 
@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
             target.GetComponent<NPCController>().ToggleIdentify();
         }
         ui.ShowHint(hintList[0]); //show first hint
+        currentHint = hintList[0];
     }
 
     public static void TogglePause() //at the moment NPCs and animations etc will not bne paused, just crab will
