@@ -26,6 +26,9 @@ public class NPCController : Stabbable
     private GameObject identifier; //object to spawn over head to identify NPC
     private GameObject myIdentifier;
     [SerializeField]
+    private GameObject speechBubble; //object to spawn over head to as speech bubble
+    private GameObject mySpeechBubble;
+    [SerializeField]
     private Transform pointAboveHead; //point for spawning speechbubbles, identifiers etc
 
     //NPC behaviour variable
@@ -207,7 +210,20 @@ public class NPCController : Stabbable
         else
         {
             myIdentifier = Instantiate(identifier, pointAboveHead.position, Quaternion.identity, transform); //spawn the identifier prefab
-            //myIdentifier.transform.parent = transform; //make it a child
+        }
+
+    }
+
+    public void ToggleSpeechBubble() //spawns a identifier object above the NPC
+    {
+        if(mySpeechBubble)
+        {
+            Destroy(mySpeechBubble);
+        }
+        else
+        {
+            //Position needs to face camera THIS HAS NOT BEEN IMPLEMENTED
+            mySpeechBubble = Instantiate(speechBubble, pointAboveHead.position, Quaternion.identity, transform); //spawn the identifier prefab
         }
 
     }
