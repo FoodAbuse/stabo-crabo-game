@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isDragging = false;
 
 
-    private Transform grabParent;
+    //private Transform grabParent; //commented out because so far everything dropped should go under _prop afterwards
     [HideInInspector]
     public Transform grabObject;
     [HideInInspector]
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             isGrabbing = true;
             grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
             grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
-            grabParent = grabObject.parent; //save the prop's parent
+            //grabParent = grabObject.parent; //save the prop's parent //commented out because so far everything dropped should go under _prop afterwards
             armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
             if(grabObject.tag == "GrabLight")//if the object is light
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
             isGrabbing = false;
             if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
             {
-                grabObject.parent = grabParent; //return the original parent  
+                grabObject.parent = GameObject.Find("_Props").transform; //return the original parent  
                 grabObject.GetComponent<Rigidbody>().isKinematic = false;
                 grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
             }
