@@ -223,7 +223,7 @@ public class NPCController : Stabbable
         else
         {
             //Position needs to face camera THIS HAS NOT BEEN IMPLEMENTED
-            mySpeechBubble = Instantiate(speechBubble, pointAboveHead.position, Quaternion.identity, transform); //spawn the identifier prefab
+            mySpeechBubble = Instantiate(speechBubble, pointAboveHead.position, Quaternion.Euler(0,0,0), transform); //spawn the identifier prefab
         }
 
     }

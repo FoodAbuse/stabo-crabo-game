@@ -7,7 +7,7 @@ public class PuzzleController : MonoBehaviour
     //this script will be applied to empty game objects in order to make puzzles work
 
     //type of trigger
-    public enum Trigger {ObjectTag = 100, HeldObject = 200, Object = 300}
+    public enum Trigger {ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, Object = 300}
     public Trigger myTrigger;
 
     //required gameobject
@@ -44,14 +44,28 @@ public class PuzzleController : MonoBehaviour
             case Trigger.HeldObject:
                 if(other.tag == "Player") //checks for player
                 {
-                    Debug.Log("player found");
                     if(other.GetComponent<PlayerController>().grabObject) //if the grab object has been assigned
                     {
                         if(other.GetComponent<PlayerController>().grabObject.gameObject == lookForObject) //player is holding target object
                         {
-                            Debug.Log("Object Found");
                             Outcome();
                         }
+                    }
+                }
+                break;
+            case Trigger.NotHeldObject:
+                if(other.tag == "Player") //checks for player
+                {
+                    if(other.GetComponent<PlayerController>().grabObject) //if the grab object has been assigned
+                    {
+                        if(other.GetComponent<PlayerController>().grabObject.gameObject != lookForObject) //player is not holding target object
+                        {
+                            Outcome();
+                        }
+                    }
+                    else
+                    {
+                        Outcome(); //if it has not been assigned, still execute 
                     }
                 }
                 break;
@@ -69,7 +83,11 @@ public class PuzzleController : MonoBehaviour
         switch(myResult)
         {
             case Result.Animation:
-                animator.SetTrigger(animTrigger); //play animation
+                if(!animator.GetBool(animTrigger)) //if the trigger has not already been triggered
+                {
+                    Debug.Log("Calling Anim" + animTrigger);
+                    animator.SetTrigger(animTrigger); //play animation
+                }
                 break;
             case Result.NPCDestination:
             Debug.Log("Setting Destination");
