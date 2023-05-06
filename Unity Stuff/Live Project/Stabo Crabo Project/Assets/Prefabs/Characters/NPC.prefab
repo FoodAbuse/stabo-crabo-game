@@ -1557,7 +1557,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 87e4e8642f174624ab8320f3b23f2dea, type: 2}
+  - {fileID: 2100000, guid: 10130588088b5024bb1a709dc14221c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1899,6 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ed4b920f9a74740ad1e6f323b8252d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  force: 10
   agent: {fileID: 4687277393703010393}
   destinationBounds: {fileID: 0}
   animator: {fileID: 8261584251403724950}
@@ -1907,6 +1908,7 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   identifier: {fileID: 3378929534082043842, guid: a3ec60a924d45e94cbfe6cc59abdab7c,
     type: 3}
+  speechBubble: {fileID: 0}
   pointAboveHead: {fileID: 1337805103816415268}
   behaviour: 400
   fieldOfVision: {fileID: 7654047155093087382}
