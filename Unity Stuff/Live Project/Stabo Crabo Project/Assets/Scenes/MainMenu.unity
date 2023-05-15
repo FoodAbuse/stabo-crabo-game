@@ -27587,6 +27587,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -89.255
       objectReference: {fileID: 0}
+    - target: {fileID: 1382043286068867617, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 179f9a76b9e30bc4ca6194de9ec23ab8, type: 2}
     - target: {fileID: 2572470591171190332, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
         type: 3}
       propertyPath: m_Convex
@@ -30096,7 +30101,7 @@ Transform:
   m_GameObject: {fileID: 1664805888}
   m_LocalRotation: {x: -0, y: 0.8433915, z: -0, w: 0.53729963}
   m_LocalPosition: {x: 0, y: -0.04948193, z: 0}
-  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1954809084}
@@ -30267,7 +30272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697315580}
   m_LocalRotation: {x: -0, y: 0.8433915, z: -0, w: 0.53729963}
-  m_LocalPosition: {x: 0, y: -0.04948193, z: 0}
+  m_LocalPosition: {x: 0, y: -13.51, z: 0}
   m_LocalScale: {x: 500, y: 500, z: 500}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -30294,7 +30299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 214ade18cb565d2449adce440a3e4ad3, type: 2}
+  - {fileID: 2100000, guid: 750fa8ec7696b094c9b4dcead57af8c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
