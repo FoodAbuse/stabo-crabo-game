@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerBackup : MonoBehaviour
 {
 
     //Defining variables
@@ -109,27 +109,18 @@ public class PlayerController : MonoBehaviour
 
     void Movement() //takes player input to move the player character
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
-        //rigidbody sweeping
-        RaycastHit hit;
-        if (true)//(!rb.SweepTest(moveDirection, out hit, moveDirection.magnitude*moveSpeed*Time.deltaTime)) //if the sweep test reutrned false
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized;
+        if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
         {
-            if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
-            {
-                isSprinting = true;
-                moveSpeed = sprintMoveSpeed; //increase movement
-                turnSpeed = sprintTurnSpeed;
-            }
-            if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
-            {
-                isSprinting = false;
-                moveSpeed = baseMoveSpeed; //reset movement
-                turnSpeed = baseTurnSpeed;
-            }
+            isSprinting = true;
+            moveSpeed = sprintMoveSpeed; //increase movement
+            turnSpeed = sprintTurnSpeed;
         }
-        else //temp script to nullify move vector
+        if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
         {
-            moveDirection = Vector3.zero;
+            isSprinting = false;
+            moveSpeed = baseMoveSpeed; //reset movement
+            turnSpeed = baseTurnSpeed;
         }
     }
 
