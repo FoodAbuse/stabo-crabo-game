@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
     {
         if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
         {
-            Movement(); //move the player
             GrabCheck(); //check for grab input and execute it
             if(stabTimer <= 0) //if the cool down has been exhausted
             {
@@ -75,11 +74,66 @@ public class PlayerController : MonoBehaviour
                 stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
             }
         }
+        
+    }
+
+    void Movement() //takes player input to move the player character
+    {
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
+            if(Input.GetKey(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
+            {
+                isSprinting = true;
+                moveSpeed = sprintMoveSpeed; //increase movement
+                turnSpeed = sprintTurnSpeed;
+            }
+            else
+            {
+                isSprinting = false;
+                moveSpeed = baseMoveSpeed; //reset movement
+                turnSpeed = baseTurnSpeed;                
+            }
+            /*if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
+            {
+                isSprinting = false;
+                moveSpeed = baseMoveSpeed; //reset movement
+                turnSpeed = baseTurnSpeed;
+            }*/
+    }
+
+    void FixedUpdate()
+    {
+        if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
+        {
+            Movement(); //move the player
+        }
         else
         {
             moveDirection = Vector3.zero;
         }
-        
+        if(moveDirection.magnitude > 0.1) //if there is some movement:
+        {
+            StartCoroutine(GameManager.NextHint("Move")); //disable hint
+            if(isSprinting)
+            {
+                StartCoroutine(GameManager.NextHint("Sprint")); //disable hint
+                crabAnimator.SetBool("isRunning", true); //set sprinting animation
+                crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
+            }
+            else
+            {
+                crabAnimator.SetBool("isWalking", true); //set walking animation
+                crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
+            }
+            //rb.MovePosition((rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime)); //move the player
+            //rb.AddForce(moveDirection*moveSpeed * 10f, ForceMode.Force);
+            rb.velocity = moveDirection * moveSpeed;
+        }
+        else
+        {
+            crabAnimator.SetBool("isWalking", false); //un-set walking animation
+            crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
+        }
+
         //apply rotation - this is not based on player input. This is based on current movement vector - which is based on player input
         if(moveDirection != Vector3.zero) //if there is some amount of movement
         {
@@ -103,58 +157,6 @@ public class PlayerController : MonoBehaviour
             }
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
             
-        }
-        
-    }
-
-    void Movement() //takes player input to move the player character
-    {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
-        //rigidbody sweeping
-        RaycastHit hit;
-        if (true)//(!rb.SweepTest(moveDirection, out hit, moveDirection.magnitude*moveSpeed*Time.deltaTime)) //if the sweep test reutrned false
-        {
-            if(Input.GetKeyDown(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
-            {
-                isSprinting = true;
-                moveSpeed = sprintMoveSpeed; //increase movement
-                turnSpeed = sprintTurnSpeed;
-            }
-            if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
-            {
-                isSprinting = false;
-                moveSpeed = baseMoveSpeed; //reset movement
-                turnSpeed = baseTurnSpeed;
-            }
-        }
-        else //temp script to nullify move vector
-        {
-            moveDirection = Vector3.zero;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if(moveDirection.magnitude > 0.1) //if there is some movement:
-        {
-            StartCoroutine(GameManager.NextHint("Move")); //disable hint
-            if(isSprinting)
-            {
-                StartCoroutine(GameManager.NextHint("Sprint")); //disable hint
-                crabAnimator.SetBool("isRunning", true); //set sprinting animation
-                crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
-            }
-            else
-            {
-                crabAnimator.SetBool("isWalking", true); //set walking animation
-                crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
-            }
-            rb.MovePosition((rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime)); //move the player
-        }
-        else
-        {
-            crabAnimator.SetBool("isWalking", false); //un-set walking animation
-            crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
         }
     }
 

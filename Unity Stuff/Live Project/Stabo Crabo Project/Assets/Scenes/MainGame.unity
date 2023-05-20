@@ -2481,6 +2481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601964921691323711, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601964921691323711, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 750fa8ec7696b094c9b4dcead57af8c4, type: 2}
@@ -41862,8 +41867,28 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f6888668cfb201542abac1980f7baa1d, type: 2}
     - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
         type: 3}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
       propertyPath: m_Mass
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5689504836546537831, guid: cf8e0a689da5bc14a918bb77347405c1,
         type: 3}
@@ -41920,6 +41945,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 87e4e8642f174624ab8320f3b23f2dea, type: 2}
+    - target: {fileID: 6230234162629878372, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230234162629878372, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230234162629878372, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230234162629878372, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6963034969363526966, guid: cf8e0a689da5bc14a918bb77347405c1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -42030,6 +42075,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: f6888668cfb201542abac1980f7baa1d, type: 2}
+    - target: {fileID: 8960616665693407829, guid: cf8e0a689da5bc14a918bb77347405c1,
+        type: 3}
+      propertyPath: stabCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8960616665693407829, guid: cf8e0a689da5bc14a918bb77347405c1,
         type: 3}
       propertyPath: baseTurnSpeed
