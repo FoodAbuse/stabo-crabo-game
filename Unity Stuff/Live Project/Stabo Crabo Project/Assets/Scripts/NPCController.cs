@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI; //needed for navmesh
 using UnityEngine.Animations.Rigging; //needed to aim the head
 
-public class NPCController : Stabbable
+public class NPCController : Interactable
 {
     //temporary script to move NPCs around randomly
     //for now I want to set a random desitnation within navmesh bounds, and then start counting down a timer once I reach it
@@ -148,7 +148,7 @@ public class NPCController : Stabbable
         headTarget.position = Vector3.Lerp(headTarget.position, lookAt.position, 5 * Time.deltaTime); //moves the head towards the target position
     }
 
-    public override void Stabbed()
+    public override void Stabbed(Transform stabOrigin)
     {
         if(this.tag == "Killable")
         {

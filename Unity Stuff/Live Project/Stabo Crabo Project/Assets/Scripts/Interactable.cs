@@ -5,38 +5,30 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     //for controlling common functions of grabbable and stabbable objects
-    //grabbable and stabbable scipts can inherit from this script potentially
 
-    //variables for highlighting
-    private new Renderer renderer; //this object's renderer.
 
     [HideInInspector]
     public bool isDoomed = false; //is being destroyed
-    public GameObject heldBy; //which object is holding this one
     private Rigidbody rb;
 
     public string storedTag; //tag that can be swapped in with a function. I don't like this and would prefer a method that takes a string paramet SetTag() but that doesnt work with my puzzle controllers atm
+
+    public bool canBeStabbed = true;
+    [SerializeField]
+    private float stabForce = 1f;
+
+    public bool canBeGrabbed = true;
+    public GameObject heldBy; //which object is holding this one
+    public bool isHeavy;
+
+    //temp
+    public GameObject indicator;
     
     void Start()
     {
-        renderer = GetComponent<Renderer>(); //initialise the renderer
         rb = GetComponent<Rigidbody>();
     }
 
-
-    //doesnt seem to work right now because unlit material has no emission
-    /*public void ToggleHighlight(bool toggle) //called to turn the highlight on or off
-    {
-        if(toggle) //if toggle parameter is true
-        {
-            renderer.material.EnableKeyword("_EMISSION"); //enable emission on the object
-            renderer.material.SetColor("EmissionColor", Color.white); //set the emission color to white
-        }
-        else
-        {
-            renderer.material.DisableKeyword("_EMISSION"); //Disable emission on the object
-        }
-    }*/
 
     void OnDestroy() //is called when this object is destroyed
     {
@@ -65,6 +57,22 @@ public class Interactable : MonoBehaviour
         string tempTag = tag;
         tag = storedTag;
         storedTag = tempTag;
+    }
+
+    public virtual void Stabbed(Transform stabOrigin) //the base stab control send the object backwards
+    {
+        if(indicator) //if this has been assigned
+        {
+            Instantiate(indicator, stabOrigin.position, stabOrigin.rotation);
+            Instantiate(indicator, transform.position, transform.rotation);
+        }
+        rb.isKinematic = false;
+        if(heldBy && !isHeavy) //if the object is being held and is not heavy (so wont have a character join created)
+        {
+            transform.parent = GameObject.Find("_Props").transform; //reset parent
+            heldBy = null; //is no longer being held
+        }
+        rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force. Later it would be nice to have this be affected by the direction of the stab.
     }
 
 

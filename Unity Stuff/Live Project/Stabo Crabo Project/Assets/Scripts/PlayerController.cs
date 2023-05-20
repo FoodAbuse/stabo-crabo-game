@@ -171,13 +171,13 @@ public class PlayerController : MonoBehaviour
             //grabParent = grabObject.parent; //save the prop's parent //commented out because so far everything dropped should go under _prop afterwards
             armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
-            if(grabObject.tag == "GrabLight")//if the object is light
+            if(!grabObject.GetComponent<Interactable>().isHeavy)//if the object is light
             {
                 grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
                 armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
                 grabObject.GetComponent<Rigidbody>().isKinematic = true;
             }
-            else if(grabObject.tag == "GrabHeavy") //if the object is heavy
+            else //if the object is heavy
             {
                 CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
                 joint.enableCollision = false; //don't let the held object collide with the player
@@ -206,10 +206,13 @@ public class PlayerController : MonoBehaviour
             else //the object is set to be destroyed
             {
                 grabCollider.colList.Remove(grabCollider.colList[0]); //remove the held object from the collider collection
+                stabCollider.colList.Remove(stabCollider.colList[0]); //in the situation that a different object is the [0], problems amy arise
+                //i think might be good to combine both collection colliders into one, and/or have a method that can be called on the collector to remove objects from it by name
+                
             }
             armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
 
-            if(grabObject.tag == "GrabHeavy") //if the object was heavy
+            if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
             {
                 isDragging = false; //turn of dragging
                 CharacterJoint joint = GetComponent<CharacterJoint>();
@@ -229,7 +232,7 @@ public class PlayerController : MonoBehaviour
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object
                 armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
-                stabObject.GetComponent<Stabbable>().Stabbed(); //call the object's stabbed function
+                stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
                 Invoke("FinishStab",0.5f);
             }
             else
