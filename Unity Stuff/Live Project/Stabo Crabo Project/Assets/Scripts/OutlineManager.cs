@@ -9,10 +9,13 @@ public class OutlineManager : MonoBehaviour
 
     public bool isGrabbable;
     public bool isStabbable;
+    public bool isOutlined;
+    public bool isHeld = false;
 
     private GameObject crabRef;
     private Interactable interactableRef;
     private PlayerController playerScriptRef;
+    private GameObject outlineRef;
 
     public float playerDistance;
     public float interactRange = 1.8f;
@@ -20,9 +23,7 @@ public class OutlineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interactableRef = gameObject.GetComponent<Interactable>();
-        crabRef = GameObject.FindGameObjectWithTag("Player");
-        playerScriptRef = crabRef.GetComponent<PlayerController>();
+        WarmUp();
     }
 
     // Update is called once per frame
@@ -31,5 +32,33 @@ public class OutlineManager : MonoBehaviour
         // Constantly checks the distance between player and the object
         playerDistance = Vector3.Distance(transform.position, crabRef.GetComponent<Transform>().position);
 
+        // Enables and Disables outline based on player distance
+        if (playerDistance <= interactRange && !isHeld)
+        {
+            isOutlined = true;
+        }
+        else
+        isOutlined = false;
+
+        if (isOutlined)
+        {
+            outlineRef.SetActive(true);
+        }
+        else
+        {
+            outlineRef.SetActive(false);
+        }
+
+
+    }
+
+    void WarmUp()
+    {
+        interactableRef = gameObject.GetComponent<Interactable>();
+        crabRef = GameObject.FindGameObjectWithTag("Player");
+        playerScriptRef = crabRef.GetComponent<PlayerController>();
+
+        // Sets the child object that enables/disables the outline
+        outlineRef = gameObject.transform.GetChild(0).gameObject;
     }
 }

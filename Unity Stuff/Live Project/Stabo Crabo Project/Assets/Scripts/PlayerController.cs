@@ -187,9 +187,15 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false; //disable sprinting
                 moveSpeed = baseMoveSpeed; //set movespeed
             }
+            
+            if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Disables the outline while the object is held
+                grabObject.GetComponent<OutlineManager>().isHeld = true; 
         }
         if(Input.GetMouseButtonUp(0) && isGrabbing)
         {
+            if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Reenables the outline after the object is dropped 
+                grabObject.GetComponent<OutlineManager>().isHeld = false; 
+            
             DropObject(); //drop the currently held object  
         }
     }
