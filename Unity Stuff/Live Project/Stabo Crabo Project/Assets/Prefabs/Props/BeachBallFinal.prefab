@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 851608711256977168}
   - component: {fileID: 4359024882694398133}
   - component: {fileID: 1989088281237017727}
-  - component: {fileID: 1542761818151894220}
   - component: {fileID: 6312911497139358890}
   - component: {fileID: 3459202229699604254}
   - component: {fileID: 3991919480212502111}
@@ -29,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43440815232120234}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.31, y: 0.52, z: -16.61}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5102052571474886242}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4359024882694398133
 MeshFilter:
@@ -88,26 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1542761818151894220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43440815232120234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c0aff4ef744db448b83440c5d48806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stabbableOutlineColor: {r: 0, g: 0, b: 0, a: 0}
-  GrabbableOutlineColor: {r: 0, g: 0, b: 0, a: 0}
-  isGrabbable: 0
-  isStabbable: 0
-  isOutlined: 0
-  isHeld: 0
-  playerDistance: 0
-  interactRange: 1.8
 --- !u!54 &6312911497139358890
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,7 +155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5102052571474886242
 Transform:
   m_ObjectHideFlags: 0

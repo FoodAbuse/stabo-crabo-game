@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             isGrabbing = true;
             grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
             grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
-            //grabParent = grabObject.parent; //save the prop's parent //commented out because so far everything dropped should go under _prop afterwards
+            //armTargetL.transform.LookAt(grabObject);
             armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
             if(!grabObject.GetComponent<Interactable>().isHeavy)//if the object is light
@@ -209,6 +209,7 @@ public class PlayerController : MonoBehaviour
                 
             }
             armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
+            armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
 
             if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
             {
@@ -229,6 +230,7 @@ public class PlayerController : MonoBehaviour
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object
+                armTargetR.transform.LookAt(stabObject);
                 armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
                 stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
                 Invoke("FinishStab",0.5f);
@@ -236,6 +238,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 armTargetR.position = stabAirTarget.position; //stab the air
+
                 Invoke("FinishStab",0.5f);
             }
         stabTimer = stabCoolDown; //reset the timer to the cooldown amount

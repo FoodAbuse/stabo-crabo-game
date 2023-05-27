@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public bool isDoomed = false; //is being destroyed
     private Rigidbody rb;
+    private GameObject outlineRef;
 
     public string storedTag; //tag that can be swapped in with a function. I don't like this and would prefer a method that takes a string paramet SetTag() but that doesnt work with my puzzle controllers atm
 
@@ -27,8 +28,8 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        GetOutlineRef();
     }
-
 
     void OnDestroy() //is called when this object is destroyed
     {
@@ -72,6 +73,27 @@ public class Interactable : MonoBehaviour
             heldBy = null; //is no longer being held
         }
         rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force. Later it would be nice to have this be affected by the direction of the stab.
+    }
+
+    void GetOutlineRef()
+    {
+         foreach (Transform child in transform)
+         {
+             if (child.tag == "Outline")
+             {
+                outlineRef = child.gameObject;
+                return; //stops this loop so at the moment this will only fetch one outline
+                //in future if we need, we can add all children with tag to a list and toggle outline on all of them
+             }
+         }
+    }
+
+    public void ToggleOutline(bool state) //it is theoretically possible to disable the outline by exiting grab collider, despite still being in stab collider. Havent been able to replciate this though
+    {
+        if(outlineRef) //if outline ref was successfully grabbed
+        {
+            outlineRef.SetActive(state); //sets the outline to be whatever was requested
+        }
     }
 
 
