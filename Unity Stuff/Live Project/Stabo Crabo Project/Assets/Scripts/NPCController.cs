@@ -150,6 +150,11 @@ public class NPCController : Interactable
 
     public override void Stabbed(Transform stabOrigin)
     {
+        if(!canBeStabbed) //leave this function if the NPC cant be stabbed - would like to move this to a collider collection condition.
+        {
+            return;
+        }
+        canBeStabbed = false;
         if(this.tag == "Killable")
         {
             EnableRagdoll();
@@ -161,7 +166,15 @@ public class NPCController : Interactable
         }
         else
         {
-            animator.Play("NPC_EmoteHurt"); //play the hurt animation
+            animator.SetTrigger("Stabbed"); //play the hurt animation
+            if(stabOrigin.position.x >= transform.position.x)
+            {
+                animator.SetFloat("PlayerDirection", -1.0f); //get this to be determined by if the player is on the right or left
+            }
+            else
+            {
+                animator.SetFloat("PlayerDirection", 1.0f); //get this to be determined by if the player is on the right or left
+            }
             if(agent.enabled) //if the navmesh is active
             {
                 agent.isStopped = true; //pause navmesh movement
@@ -171,6 +184,8 @@ public class NPCController : Interactable
         if(heldObject) //if there is a held object
         {
             heldObject.GetComponent<Rigidbody>().isKinematic = false; //drop the object
+            heldObject.transform.parent = GameObject.Find("_Props").transform; //return the original parent
+            heldObject = null;
         }
         
     }
@@ -180,25 +195,26 @@ public class NPCController : Interactable
         switch(behaviour)
         {
             case Behaviours.Sitting: //initial animations based on behaviour
-                animator.SetFloat("IdleBehaviour",4.0f);
+                animator.SetFloat("IdleBehaviour",3.0f);
                 break;
             case Behaviours.Lying:
-                animator.SetFloat("IdleBehaviour",2.0f);
+                animator.Play("NPC_LyingDown");
                 break;
             case Behaviours.Searching:
                 animator.SetFloat("IdleBehaviour",1.0f);
                 break;
             case Behaviours.Doorman:
-                animator.SetFloat("IdleBehaviour",3.0f);
+                animator.SetFloat("IdleBehaviour",2.0f);
                 break;
             case Behaviours.CarryingEsky:
-                animator.SetFloat("IdleBehaviour",5.0f);
+                animator.SetFloat("IdleBehaviour",4.0f);
                 break;
         }
             if(agent.enabled) //if the navmesh is active
             {
                 agent.isStopped = false; //pause navmesh movement
             }
+        canBeStabbed = true;
     }
 
     public void ToggleIdentify() //spawns a identifier object above the NPC
