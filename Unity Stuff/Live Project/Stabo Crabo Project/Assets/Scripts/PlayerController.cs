@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public Transform stabObject;
     [SerializeField]
     private Transform stabAirTarget; //where the stab will go if there is no other target
+     [SerializeField]
+    private Transform grabAirTarget; //where the stab will go if there is no other target
     [SerializeField]
     private Transform grabLightTarget; //where the arm will go when holding a light object
 
@@ -154,41 +156,55 @@ public class PlayerController : MonoBehaviour
 
     private void GrabCheck()
     {
-        if(Input.GetMouseButtonDown(0) && grabCollider.colList.Count > 0) //checks that there are actually objects to grab
+        if(Input.GetMouseButtonDown(0)) 
         {
-            StartCoroutine(GameManager.NextHint("Grab")); //disable hint
-            isGrabbing = true;
-            grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
-            grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
-            //armTargetL.transform.LookAt(grabObject);
-            armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
+            if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
+            {
+                StartCoroutine(GameManager.NextHint("Grab")); //disable hint
+                isGrabbing = true;
+                grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
+                grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
+                //armTargetL.transform.LookAt(grabObject);
+                armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
-            if(!grabObject.GetComponent<Interactable>().isHeavy)//if the object is light
-            {
-                grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
-                armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
-                grabObject.GetComponent<Rigidbody>().isKinematic = true;
+                if(!grabObject.GetComponent<Interactable>().isHeavy)//if the object is light
+                {
+                    grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
+                    armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
+                    grabObject.GetComponent<Rigidbody>().isKinematic = true;
+                }
+                else //if the object is heavy
+                {
+                    CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
+                    joint.enableCollision = false; //don't let the held object collide with the player
+                    joint.anchor = armTargetL.localPosition; //set the joint anchor to where the target is, which is the closest point on the held object
+                    joint.connectedBody = grabObject.GetComponent<Rigidbody>();
+                    isDragging = true; //turn on dragging
+                    isSprinting = false; //disable sprinting
+                    moveSpeed = baseMoveSpeed; //set movespeed
+                }
+                
+                /*if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Disables the outline while the object is held
+                    grabObject.GetComponent<OutlineManager>().isHeld = true; */
             }
-            else //if the object is heavy
+            else
             {
-                CharacterJoint joint = gameObject.AddComponent<CharacterJoint>(); //adds a joint to the player object
-                joint.enableCollision = false; //don't let the held object collide with the player
-                joint.anchor = armTargetL.localPosition; //set the joint anchor to where the target is, which is the closest point on the held object
-                joint.connectedBody = grabObject.GetComponent<Rigidbody>();
-                isDragging = true; //turn on dragging
-                isSprinting = false; //disable sprinting
-                moveSpeed = baseMoveSpeed; //set movespeed
+                armTargetL.position = grabAirTarget.position; //grab the air
             }
-            
-            if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Disables the outline while the object is held
-                grabObject.GetComponent<OutlineManager>().isHeld = true; 
         }
-        if(Input.GetMouseButtonUp(0) && isGrabbing)
+        if(Input.GetMouseButtonUp(0))
         {
-            if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Reenables the outline after the object is dropped 
-                grabObject.GetComponent<OutlineManager>().isHeld = false; 
-            
-            DropObject(); //drop the currently held object  
+            if(isGrabbing)
+            {
+                /*if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Reenables the outline after the object is dropped 
+                    grabObject.GetComponent<OutlineManager>().isHeld = false; */
+                
+                DropObject(); //drop the currently held object  
+            }
+            else
+            {
+                armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
+            }
         }
     }
 
@@ -216,7 +232,6 @@ public class PlayerController : MonoBehaviour
                 isDragging = false; //turn of dragging
                 CharacterJoint joint = GetComponent<CharacterJoint>();
                 Destroy(joint); //destroy the joint we created
-
             }
 
             grabObject = null; //reset grabObject
@@ -238,7 +253,6 @@ public class PlayerController : MonoBehaviour
             else
             {
                 armTargetR.position = stabAirTarget.position; //stab the air
-
                 Invoke("FinishStab",0.5f);
             }
         stabTimer = stabCoolDown; //reset the timer to the cooldown amount

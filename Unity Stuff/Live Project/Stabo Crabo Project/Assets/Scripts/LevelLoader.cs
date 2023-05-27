@@ -32,8 +32,10 @@ public class LevelLoader : MonoBehaviour
     {
         //when the game first starts, it will play a fade-in animation
         transition.SetFloat("TransitionSpeed", 1/openingFade);
-        StartCoroutine(InitialiseTitle()); //after the animation, set the title to be active
-
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            StartCoroutine(InitialiseTitle()); //after the animation, set the title to be active
+        }
     }
 
     public void LoadNextLevel(string levelName) //function accessible to other scripts

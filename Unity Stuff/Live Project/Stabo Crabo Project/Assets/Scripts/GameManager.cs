@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     private static List<string> hintList;
     private static string currentHint;
 
+    private Coroutine currentRoutine;
+
 
     void Start()
     {
@@ -39,14 +41,26 @@ public class GameManager : MonoBehaviour
         InitialiseTargets();//initialise target list
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
         hintList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the hintList
-        StartCoroutine(IntroCutScene()); //play the intro cut-scene
+        currentRoutine = StartCoroutine(IntroCutScene()); //play the intro cut-scene
     }
 
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            TogglePause(); //pause the game
+            if(levelPhase == 0) //if in intro phase
+            {
+                StopCoroutine(currentRoutine);
+                acceptPlayerInput = true;
+                levelPhase = 1;
+                cam.SwitchCamera(2);
+                ui.ShowHint(hintList[0]); //show first hint
+                currentHint = hintList[0];
+            }
+            else
+            {
+                TogglePause(); //pause the game
+            }
         }
 
         KeepTime(); //tracks up time in level
@@ -92,6 +106,7 @@ public class GameManager : MonoBehaviour
         cam.SwitchCamera(2);
         yield return new WaitForSeconds(1.0f);
         acceptPlayerInput = true;
+        levelPhase = 1;
         foreach(GameObject target in targetList) //turn off all identifiers
         {
             target.GetComponent<NPCController>().ToggleIdentify();

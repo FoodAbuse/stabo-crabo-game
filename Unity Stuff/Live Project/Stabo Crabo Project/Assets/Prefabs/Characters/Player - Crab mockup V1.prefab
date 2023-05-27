@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &801451937659272451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4314094154429213100}
+  m_Layer: 6
+  m_Name: GrabAirTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4314094154429213100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801451937659272451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.441, y: 0.204, z: 1.111}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7232664758786803714}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989616146170233752
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +65,7 @@ Transform:
   - {fileID: 8756758932848233350}
   - {fileID: 1179968417876202992}
   - {fileID: 5231416061976954442}
+  - {fileID: 4314094154429213100}
   - {fileID: 6015723781177939147}
   - {fileID: 2088729659083437605}
   - {fileID: 525825106085995596}
@@ -90,6 +122,7 @@ MonoBehaviour:
   grabObject: {fileID: 0}
   stabObject: {fileID: 0}
   stabAirTarget: {fileID: 5231416061976954442}
+  grabAirTarget: {fileID: 4314094154429213100}
   grabLightTarget: {fileID: 6015723781177939147}
   armTargetL: {fileID: 8044916713715889704}
   armTargetR: {fileID: 2669963829084219199}
