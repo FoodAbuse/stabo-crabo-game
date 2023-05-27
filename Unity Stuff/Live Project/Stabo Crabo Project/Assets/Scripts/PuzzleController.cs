@@ -15,7 +15,7 @@ public class PuzzleController : MonoBehaviour
     public GameObject lookForObject;
 
     //resulting action
-    public enum Result {Animation = 100, NPCDestination = 200, CreateObject = 300, CallMethod = 400}
+    public enum Result {Animation = 100, NPCDestination = 200, CreateObject = 300, CallMethod = 400, ToggleActive = 500}
     public Result myResult;
 
     //result variables
@@ -101,6 +101,16 @@ public class PuzzleController : MonoBehaviour
                 {
                     targetPoint.gameObject.SendMessage(method); //call desired function on the gameobject defined by the target point transform
                 }                
+                break;
+            case Result.ToggleActive:
+                if(targetPoint.gameObject.activeSelf)
+                {
+                    targetPoint.gameObject.SetActive(false);
+                }
+                else
+                {
+                    targetPoint.gameObject.SetActive(true);
+                }
                 break;
         }
         foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it

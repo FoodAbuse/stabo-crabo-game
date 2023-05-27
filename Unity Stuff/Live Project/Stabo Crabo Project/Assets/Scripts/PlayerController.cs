@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
                 
             }
             armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
-            armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
+            //armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
 
             if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
             {
@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
                 stabObject = stabCollider.colList[0].gameObject.transform; //save the object
-                armTargetR.transform.LookAt(stabObject);
+                //armTargetR.transform.LookAt(stabObject);
                 armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
                 stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
                 Invoke("FinishStab",0.5f);
