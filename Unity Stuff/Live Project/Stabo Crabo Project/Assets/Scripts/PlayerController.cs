@@ -92,12 +92,6 @@ public class PlayerController : MonoBehaviour
                 moveSpeed = baseMoveSpeed; //reset movement
                 turnSpeed = baseTurnSpeed;                
             }
-            /*if(Input.GetKeyUp(KeyCode.LeftShift)) //sprint button off
-            {
-                isSprinting = false;
-                moveSpeed = baseMoveSpeed; //reset movement
-                turnSpeed = baseTurnSpeed;
-            }*/
     }
 
     void FixedUpdate()
@@ -124,8 +118,6 @@ public class PlayerController : MonoBehaviour
                 crabAnimator.SetBool("isWalking", true); //set walking animation
                 crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
             }
-            //rb.MovePosition((rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime)); //move the player
-            //rb.AddForce(moveDirection*moveSpeed * 10f, ForceMode.Force);
             rb.velocity = moveDirection * moveSpeed;
         }
         else
@@ -253,6 +245,5 @@ public class PlayerController : MonoBehaviour
     private void FinishStab() //in lieu of an animation or timed co-routine, invoking this function at a delay
     {
         armTargetR.localPosition = startPosArmTargetR; //return the arm to its start posiiton
-
     }
 }

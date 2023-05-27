@@ -2,16 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public class Level //used for level attributes
-{
-    public string name;
-    public int sceneIndex;
-    public bool completed; //has the level ever been completed in this save file
-    public bool locked;
-    public float timerHighScore;
-    public float timerLast; //the last time that was recorded
-}*/
-
 public class GameManager : MonoBehaviour
 {
     //purpose of this is to manage the levels and the game itself
@@ -39,31 +29,12 @@ public class GameManager : MonoBehaviour
     private static List<string> hintList;
     private static string currentHint;
 
-    //level variables
-    //private List<Level> levelList = new List<Level>();
-    //Level firstLevel = new Level();
-
-    /*void Awake()
-	{
-		if (_instance == null) //if no instance already exists
-		{
-			_instance = this; //store this level loader
-			DontDestroyOnLoad(gameObject); //And protect it across scene loads
-		}
-		else
-		{
-			if (_instance != this) //Otherwise if there is a different level loader
-				Destroy(gameObject); //Destroy this object, because it is a duplicate
-		}
-    }*/
 
     void Start()
     {
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
 
-        //InitialiseLevels(); //load in level data and set all the variables
-        //levelCurrent = firstLevel;
-        timerCurrent = 0.0f; //this should move to a level load/start method
+        timerCurrent = 0.0f;
 
         InitialiseTargets();//initialise target list
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
@@ -153,13 +124,7 @@ public class GameManager : MonoBehaviour
         
         levelPhase = 3; //enter the end phase
         acceptPlayerInput = false;
-        //levelCurrent.completed = true; //the player has now completed this level
-        //levelCurrent.timerLast = timerCurrent; //store the time
-        /*if(timerCurrent < levelCurrent.timerHighScore)//if the current time is better than the previous one
-        {
-            Debug.Log("new highscore!");
-            levelCurrent.timerHighScore = timerCurrent; //override the highscore
-        }*/
+
         //save the game
 
         //check if there is a next level, and unlock it
@@ -170,10 +135,6 @@ public class GameManager : MonoBehaviour
         //zoom out camera and play crab animation or something
 
         //trigger any end animation or transition
-
-        //tell level loader to return to the menu
-
-
     }
 
     public static void TargetKilled(GameObject target) //called from the target as it dies
@@ -186,17 +147,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    /*private void InitialiseLevels() //load in level data and set all the variables
-    {
-        levelList.Add(firstLevel); //add this level to the array
-        firstLevel.name = "Crabo's revenge";
-        firstLevel.sceneIndex = 1;
-        firstLevel.completed = false; //in future load this from save data
-        firstLevel.locked = false; //same as above
-        firstLevel.timerHighScore = 999999.0f; //above
-        firstLevel.timerLast = 999999.0f; //above
-    }*/
 
     private void InitialiseTargets() //fetch all the target gameobjects
     {
@@ -213,9 +163,6 @@ public class GameManager : MonoBehaviour
         ui.EscapeScreen(); //handles whatever Ui elements are necessary for the escape sequence
         //also include any needed changes to NPC AI here.
         //and changes to audio etc.
-
-        //zoom in camera - look at how to call cinemachine commands for this
-        //will also need it for managing intro pan from crab to target and back to crab
     }
 
 }

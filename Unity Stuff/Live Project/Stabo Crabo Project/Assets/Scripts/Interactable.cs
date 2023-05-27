@@ -35,8 +35,7 @@ public class Interactable : MonoBehaviour
         isDoomed = true;
         if(heldBy) //if this object is being held
         {
-            Debug.Log("Calling Drop object");
-            heldBy.SendMessage("DropObject"); //get the player to drop this object as its destroyed. USING SEND MESSAGE INCASE WE GET NPCS TO PICK THINGS UP
+            heldBy.SendMessage("DropObject", SendMessageOptions.DontRequireReceiver); //get the player to drop this object as its destroyed. USING SEND MESSAGE INCASE WE GET NPCS TO PICK THINGS UP
         }
     }
 
