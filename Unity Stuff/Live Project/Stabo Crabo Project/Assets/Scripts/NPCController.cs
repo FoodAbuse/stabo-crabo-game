@@ -19,6 +19,10 @@ public class NPCController : Interactable
     public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
 
+    // Hugo's Chaos Injection - Murderous Traffic Cones
+    public bool WHAMMY = false;
+    private float timerKO;
+
     //carried object
     [SerializeField]
     private GameObject heldObject; //for now held object doesn't move with the NPC. I am focussing on code to drop it from an idle pose
@@ -81,7 +85,18 @@ public class NPCController : Interactable
             headRig.weight = Mathf.Lerp(headRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig
         }
 
+        if (WHAMMY)
+        {
+            EnableRagdoll();
+            timerKO += Time.deltaTime;
 
+            if (timerKO >= 2f)
+            {
+                DisableRagdoll();
+                timerKO = 0;
+                WHAMMY = false;
+            }
+        }
     }
 
     void LateUpdate() //runs after update
