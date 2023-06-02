@@ -244,10 +244,13 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GameManager.NextHint("Stab")); //disable hint
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
-                stabObject = stabCollider.colList[0].gameObject.transform; //save the object
-                //armTargetR.transform.LookAt(stabObject);
-                armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object 
-                stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
+                armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object
+                foreach(Collider col in stabCollider.colList) //stab now applies to everything in range all at once
+                {
+                    stabObject = col.gameObject.transform; //save the object
+                    //armTargetR.transform.LookAt(stabObject);
+                    stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
+                }
                 Invoke("FinishStab",0.5f);
             }
             else
