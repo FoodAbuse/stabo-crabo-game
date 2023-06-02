@@ -38,6 +38,7 @@ public class NPCController : Interactable
     //NPC behaviour variable
     public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Doorman = 140, CarryingEsky = 150, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
     public Behaviours behaviour; //The Current behaviour of the NPC
+    public bool initialSpeechBubble;
 
     //head aiming
     [SerializeField]
@@ -60,6 +61,8 @@ public class NPCController : Interactable
         ResumeIdle(); //return to an idle animation based on the current behaviour
 
         headRig.weight = 0.0f; //initial rig weighting is 0
+
+        if(initialSpeechBubble) Invoke("ToggleSpeechBubble",1.0f); //if initial speech bubble is set to true, toggle it upon starting
 
 
     }
@@ -173,7 +176,10 @@ public class NPCController : Interactable
         if(this.tag == "Killable")
         {
             EnableRagdoll();
-            //also probably need to disable various tags and methods and things
+            if(mySpeechBubble)
+            {
+                ToggleSpeechBubble();
+            }
             if(transform.parent.name == "NPC Targets") //if this is a target
             {
                 GameManager.TargetKilled(gameObject); //remove this from the targets list and trigger level phases etc
@@ -193,6 +199,16 @@ public class NPCController : Interactable
             if(agent.enabled) //if the navmesh is active
             {
                 agent.isStopped = true; //pause navmesh movement
+            }
+
+            //super specific case at the moment -  Ideally changing NPC behaviour off of stabs can be wrapped into the puzzle controllers
+            if(behaviour == Behaviours.CarryingEsky)
+            {
+                behaviour = Behaviours.Roaming;
+                agent.enabled = true;
+                animator.SetFloat("IdleBehaviour",0.0f);
+                countdownToNewDestination = newDestTimeMin; //reset the countdown
+                ToggleSpeechBubble();
             }
         }
 
@@ -240,7 +256,7 @@ public class NPCController : Interactable
         }
         else
         {
-            myIdentifier = Instantiate(identifier, pointAboveHead.position, Quaternion.identity, transform); //spawn the identifier prefab
+            myIdentifier = Instantiate(identifier, pointAboveHead.position, Quaternion.identity, pointAboveHead); //spawn the identifier prefab
         }
 
     }

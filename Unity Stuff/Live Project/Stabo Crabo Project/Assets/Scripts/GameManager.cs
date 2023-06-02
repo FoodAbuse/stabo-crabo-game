@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         acceptPlayerInput = false;
         foreach(GameObject target in targetList) //turn on all identifiers
         {
-            target.GetComponent<NPCController>().ToggleIdentify();
+            //target.GetComponent<NPCController>().ToggleIdentify(); disabled for now becuase it clashes with speech bubble
         }
         yield return new WaitForSeconds(3.0f);
         cam.SwitchCamera(1);
