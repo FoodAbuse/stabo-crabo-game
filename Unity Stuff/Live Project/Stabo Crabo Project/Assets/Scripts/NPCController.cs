@@ -190,11 +190,11 @@ public class NPCController : Interactable
             animator.SetTrigger("Stabbed"); //play the hurt animation
             if(stabOrigin.position.x >= transform.position.x)
             {
-                animator.SetFloat("PlayerDirection", -1.0f); //get this to be determined by if the player is on the right or left
+                animator.SetFloat("PlayerDirection", 1.0f); //get this to be determined by if the player is on the right or left
             }
             else
             {
-                animator.SetFloat("PlayerDirection", 1.0f); //get this to be determined by if the player is on the right or left
+                animator.SetFloat("PlayerDirection", -1.0f); //get this to be determined by if the player is on the right or left
             }
             if(agent.enabled) //if the navmesh is active
             {

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5764433428705775512}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -154,7 +154,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402855471749278531}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -189,8 +189,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &1070988399181066745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3992426c0af99d4694a580e2f7f08cf,
@@ -288,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -313,7 +318,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2299573816319589129}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -348,8 +353,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &1412243129657002206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,7 +451,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -466,7 +476,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2258593100035011983}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -501,8 +511,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &3061057932575353577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,7 +609,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -613,7 +628,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790655246731745208}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -648,8 +663,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &3310627886841908482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ebd39795a777d941994e62e8cb00f5c,
@@ -752,7 +772,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -771,7 +791,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3997169766541610461}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -806,8 +826,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &4337841742927927143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
@@ -910,7 +935,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -929,7 +954,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3729616758183074875}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -964,8 +989,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &4073947879405307521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
@@ -1063,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1088,7 +1118,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5758158819351290022}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1123,8 +1153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &5853206975090116991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1216,7 +1251,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1241,7 +1276,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6772197137994806318}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1276,8 +1311,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &7562895342109689887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1388,7 +1428,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7220858926242903374}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1423,8 +1463,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &8033986616879673332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3992426c0af99d4694a580e2f7f08cf,
@@ -1522,7 +1567,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1547,7 +1592,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9169092166631127098}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1582,8 +1627,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &8564027980924424113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1675,7 +1725,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1700,7 +1750,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8798032298551063264}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1735,8 +1785,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!1001 &8628865869183891842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1859,6 +1914,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8628865869183891842}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1475586558895648445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965655924104723651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 97.3, y: 89.05, z: 8.1}
+  m_Center: {x: 0, y: -47.3, z: 0}
 --- !u!64 &3525813822504548654
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1885,19 +1953,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 8, y: 89.05, z: 97}
-  m_Center: {x: 0, y: -47.3, z: 0}
---- !u!65 &1475586558895648445
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7965655924104723651}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 97.3, y: 89.05, z: 8.1}
   m_Center: {x: 0, y: -47.3, z: 0}
 --- !u!4 &8085468448803511913 stripped
 Transform:
@@ -2018,7 +2073,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_TagString
-      value: GrabLight
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2037,7 +2092,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8160322174398406349}
   serializedVersion: 2
-  m_Mass: 0.3
+  m_Mass: 0.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2072,8 +2127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDoomed: 0
-  heldBy: {fileID: 0}
   storedTag: 
+  canBeStabbed: 1
+  stabForce: 50
+  canBeGrabbed: 1
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  indicator: {fileID: 0}
 --- !u!4 &8823846228248937591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b3992426c0af99d4694a580e2f7f08cf,
