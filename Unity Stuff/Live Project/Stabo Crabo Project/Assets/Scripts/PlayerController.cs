@@ -120,7 +120,10 @@ public class PlayerController : MonoBehaviour
                 crabAnimator.SetBool("isWalking", true); //set walking animation
                 crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
             }
-            rb.velocity = moveDirection * moveSpeed;
+            Vector3 netMovement = moveDirection * moveSpeed; //this is just horizontal movement in 3D space
+            netMovement.y = rb.velocity.y; //adds in the y movement of the current rigidbody (so physics calculations etc)
+            if(netMovement.y >= moveSpeed) netMovement.y = moveSpeed; //caps the upward velocity, but hopefully not the downward velocity, because I am not grabbing magnitude
+            rb.velocity = netMovement;
         }
         else
         {
@@ -219,10 +222,8 @@ public class PlayerController : MonoBehaviour
             }
             else //the object is set to be destroyed
             {
-                grabCollider.colList.Remove(grabCollider.colList[0]); //remove the held object from the collider collection
-                stabCollider.colList.Remove(stabCollider.colList[0]); //in the situation that a different object is the [0], problems amy arise
-                //i think might be good to combine both collection colliders into one, and/or have a method that can be called on the collector to remove objects from it by name
-                
+                if(grabCollider.colList.Contains(grabObject.GetComponent<Collider>())) grabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //remove the held object from the collider collection
+                if(stabCollider.colList.Contains(grabObject.GetComponent<Collider>())) stabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //in the situation that a different object is the [0], problems amy arise
             }
             armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
             //armTargetL.localRotation = Quaternion.Euler(Vector3.zero);

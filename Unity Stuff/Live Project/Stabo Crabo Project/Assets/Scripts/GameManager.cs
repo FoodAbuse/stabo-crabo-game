@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         levelPhase = 1;
         foreach(GameObject target in targetList) //turn off all identifiers
         {
-            target.GetComponent<NPCController>().ToggleIdentify();
+           // target.GetComponent<NPCController>().ToggleIdentify();
         }
         ui.ShowHint(hintList[0]); //show first hint
         currentHint = hintList[0];
