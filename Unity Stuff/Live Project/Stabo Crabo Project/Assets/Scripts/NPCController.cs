@@ -20,8 +20,8 @@ public class NPCController : Interactable
     private float countdownToNewDestination = 0.0f;
 
     // Hugo's Chaos Injection - Murderous Traffic Cones
-    public bool WHAMMY = false;
-    private float timerKO;
+    //public bool WHAMMY = false;
+    //private float timerKO;
 
     //carried object
     [SerializeField]
@@ -85,7 +85,7 @@ public class NPCController : Interactable
             headRig.weight = Mathf.Lerp(headRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig
         }
 
-        if (WHAMMY)
+        /*if (WHAMMY)
         {
             EnableRagdoll();
             timerKO += Time.deltaTime;
@@ -96,7 +96,7 @@ public class NPCController : Interactable
                 timerKO = 0;
                 WHAMMY = false;
             }
-        }
+        }*/
     }
 
     void LateUpdate() //runs after update

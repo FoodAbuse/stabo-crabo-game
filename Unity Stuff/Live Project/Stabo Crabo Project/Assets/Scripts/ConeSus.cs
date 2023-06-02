@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConeSus : MonoBehaviour
 {
-    public float killingSpeed = 1.39f;
+   /* public float killingSpeed = 1.39f;
     public float activeMomentum;
     public float timer;
 
@@ -76,5 +76,5 @@ public class ConeSus : MonoBehaviour
             else
                 return;
         }
-    }
+    }*/
 }
