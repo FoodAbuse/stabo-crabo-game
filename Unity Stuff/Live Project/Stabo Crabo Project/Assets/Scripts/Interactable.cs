@@ -22,6 +22,8 @@ public class Interactable : MonoBehaviour
     public GameObject heldBy; //which object is holding this one
     public bool isHeavy;
 
+    public Vector3 preferredPos; //where the object likes to be
+
     //temp
     public GameObject indicator;
     
@@ -29,6 +31,7 @@ public class Interactable : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         GetOutlineRef();
+        preferredPos = transform.position; //objects initially prefer to be in their starting position. This can be changed later.
     }
 
     void OnDestroy() //is called when this object is destroyed

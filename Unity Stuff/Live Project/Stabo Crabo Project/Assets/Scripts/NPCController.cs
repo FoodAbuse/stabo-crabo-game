@@ -34,10 +34,14 @@ public class NPCController : Interactable
     private GameObject mySpeechBubble;
     [SerializeField]
     private Transform pointAboveHead; //point for spawning speechbubbles, identifiers etc
+    [SerializeField]
+    private FieldOfView FOV; //FOV script reference
 
     //NPC behaviour variable
-    public enum Behaviours {Idle = 100, Sitting = 110, Lying = 120, Searching = 130, Doorman = 140, CarryingEsky = 150, Chasing = 200, Fleeing = 300, Roaming = 400, Ragdoll = 900}
-    public Behaviours behaviour; //The Current behaviour of the NPC
+    public enum Behaviours {Idle, Roaming, Sleeping, Defending, Dead}
+    public enum States {Standing, Sitting, Laying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking} //these are things that an NPC can do based on what the behaviour dictates
+    public Behaviours myBehaviour; //The Current behaviour of the NPC
+    private States myState;
     public bool initialSpeechBubble;
 
     //head aiming
@@ -55,6 +59,7 @@ public class NPCController : Interactable
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>(); //get all the RB in the child limbs and joints
         DisableRagdoll(); //the ragdoll should start disabled
     }
+
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
@@ -63,13 +68,12 @@ public class NPCController : Interactable
         headRig.weight = 0.0f; //initial rig weighting is 0
 
         if(initialSpeechBubble) Invoke("ToggleSpeechBubble",1.0f); //if initial speech bubble is set to true, toggle it upon starting
-
-
     }
 
     void Update()
     {
-        switch (behaviour)
+        //movement
+        switch (myBehaviour)
         {
             case Behaviours.Roaming:
                 Roaming();//wanders at a set interval
@@ -78,6 +82,7 @@ public class NPCController : Interactable
                 break;
         }
 
+        //head tilting and aiming
         if(sightCollection.colList.Count > 0) //checks that there is an object to look at
         {
             headRig.weight = Mathf.Lerp(headRig.weight, 1.0f, 3 * Time.deltaTime); //increase the weight of the rig
@@ -87,6 +92,7 @@ public class NPCController : Interactable
         {
             headRig.weight = Mathf.Lerp(headRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig
         }
+
 
         /*if (WHAMMY)
         {
@@ -100,6 +106,56 @@ public class NPCController : Interactable
                 WHAMMY = false;
             }
         }*/
+
+        if(myBehaviour != Behaviours.Dead) //if we are not dead
+        {
+            if(FOV.canSeeTarget) //and the FOV script has triggered on a target that we can see
+            {
+                if(FOV.distanceToTarget <= 0.5f) //if we have reached our target
+                {
+                    if(FOV.target.tag == "Player") //if we were chasing the player
+                    {
+                        ShovePlayer();
+                    }
+                    else if(FOV.target.GetComponent<Interactable>().heldBy.tag == "Player") //else if it was an object held by the player
+                    {
+                        //player.drop object - but player does not get shoved
+                        Pickup(FOV.target);
+                    }
+                    else
+                    {
+                        Pickup(FOV.target);
+                    }
+                }
+                else //else if we have not yet reached our target
+                {
+                    agent.SetDestination(FOV.target.position); //set navmesh destination to the target's position
+                    myState = States.Chasing;
+                }
+
+            }
+
+            
+        }
+    }
+
+    private void Pickup(Transform pTarget)
+    {
+        myState = States.Pickup;
+        //rotate the NPC to face the object? - might not be necessary
+        //trigger bend over animation / crouch??
+        //maniuplate hand using IK rig to be on object
+        //set target's held by status and make it a child of our hand
+
+    }
+
+    private void ShovePlayer()
+    {
+        myState = States.Attacking;
+        Debug.Log("Shoving Player");
+        //Set the player velocity away from the NPC
+        //Cause the palyer to drop any items
+        //disable player movement for a split second so that the player cannot override the velocity
     }
 
     void LateUpdate() //runs after update
@@ -110,10 +166,11 @@ public class NPCController : Interactable
 
     private void Roaming() //waits, then sets a random destination and moves there - run during update
     {
-        if(agent.velocity.magnitude == 0.0f) //if we are stationary
+        if(myState == States.Standing || myState == States.Sitting || myState == States.Laying) //if we are stationary
         {
             if(countdownToNewDestination <= 0.0f) //if countdown is finished
             {
+                myState = States.Walking; //we are now walking
                 Vector3 destination = RandomPointInBounds(destinationBounds.bounds); //generate a random position within the bounds
                 agent.CalculatePath(destination, path); //calculates the path
                 while(path.status != NavMeshPathStatus.PathComplete) //calculates the path and then checks if it can reach the destination
@@ -129,6 +186,16 @@ public class NPCController : Interactable
                 countdownToNewDestination -= 1 * Time.deltaTime; //tick down countdown
             }
         }
+        else if(myState == States.Walking && agent.velocity.magnitude == 0.0f) //if we were walking, but we reached our destination and stopped
+        {
+            //insert a random chance to lay down or sit down
+            myState = States.Standing; //for now just go direct to standing
+        }
+    }
+
+    public void ChangeBehaviour(Behaviours newBehaviour)
+    {
+        myBehaviour = newBehaviour; //change to the new behaviour
     }
 
     private Vector3 RandomPointInBounds(Bounds bounds) //picks a random location within a bounds
@@ -157,7 +224,7 @@ public class NPCController : Interactable
             rb.isKinematic = false; //set all the RB to be affected by physics
         }
         animator.enabled = false; //turn off the animator
-        behaviour = Behaviours.Ragdoll; //set behaviour to ragdoll
+        myState = States.Ragdoll; //set behaviour to ragdoll
         agent.enabled = false; //enable navmesh
     }
 
@@ -202,14 +269,14 @@ public class NPCController : Interactable
             }
 
             //super specific case at the moment -  Ideally changing NPC behaviour off of stabs can be wrapped into the puzzle controllers
-            if(behaviour == Behaviours.CarryingEsky)
+            /*if(myBehaviour == Behaviours.CarryingEsky)
             {
-                behaviour = Behaviours.Roaming;
+                myBehaviour = Behaviours.Roaming;
                 agent.enabled = true;
                 animator.SetFloat("IdleBehaviour",0.0f);
                 countdownToNewDestination = newDestTimeMin; //reset the countdown
                 ToggleSpeechBubble();
-            }
+            }*/
         }
 
         if(heldObject) //if there is a held object
@@ -223,9 +290,9 @@ public class NPCController : Interactable
 
     public void ResumeIdle()
     {
-        switch(behaviour)
+        switch(myBehaviour)
         {
-            case Behaviours.Sitting: //initial animations based on behaviour
+            /*case Behaviours.Sitting: //initial animations based on behaviour
                 animator.SetFloat("IdleBehaviour",3.0f);
                 break;
             case Behaviours.Lying:
@@ -239,7 +306,7 @@ public class NPCController : Interactable
                 break;
             case Behaviours.CarryingEsky:
                 animator.SetFloat("IdleBehaviour",4.0f);
-                break;
+                break;*/
         }
             if(agent.enabled) //if the navmesh is active
             {

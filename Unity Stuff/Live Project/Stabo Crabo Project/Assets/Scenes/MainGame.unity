@@ -2139,6 +2139,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!65 &57491276
 BoxCollider:
@@ -9443,6 +9444,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &231863348
 GameObject:
@@ -10765,6 +10767,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &288482090
 Rigidbody:
@@ -12432,6 +12435,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &344782815
 Rigidbody:
@@ -16781,6 +16785,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &523721680 stripped
 Transform:
@@ -17202,6 +17207,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &540313183 stripped
 Transform:
@@ -19914,6 +19920,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &699702728
 Rigidbody:
@@ -23888,6 +23895,7 @@ MonoBehaviour:
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &841998821
 Rigidbody:
@@ -31181,6 +31189,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
+      propertyPath: angle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
+      propertyPath: obstructionMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 3028908482324708245, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -31255,6 +31283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stabForce
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
+      propertyPath: myBehaviour
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
@@ -36596,6 +36629,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1258658931
 GameObject:
@@ -36806,6 +36840,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1264312138
 Rigidbody:
@@ -37251,6 +37286,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &1295745617
 PrefabInstance:
@@ -39516,6 +39552,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 41181364}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1354395268
 Rigidbody:
@@ -40368,6 +40405,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1373854780
 Rigidbody:
@@ -42127,6 +42165,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &1445786135
 PrefabInstance:
@@ -43604,6 +43643,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &1497464037 stripped
 Transform:
@@ -43864,6 +43904,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1519261024 stripped
 GameObject:
@@ -43890,6 +43931,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1535829743
 GameObject:
@@ -44409,6 +44451,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &1567914159
 PrefabInstance:
@@ -50100,6 +50143,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1788232924
 Rigidbody:
@@ -53146,6 +53190,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1912569129
 GameObject:
@@ -60843,7 +60888,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054546073}
-  m_LocalRotation: {x: 0.39353058, y: -3e-45, z: 1e-45, w: 0.9193116}
+  m_LocalRotation: {x: 0.39353058, y: 1e-45, z: -1e-45, w: 0.9193116}
   m_LocalPosition: {x: -9.5, y: 4.13, z: -25.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -67423,6 +67468,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!23 &2338498550442425236
 MeshRenderer:
@@ -72339,6 +72385,7 @@ MonoBehaviour:
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &6071246565615448528
 Transform:
