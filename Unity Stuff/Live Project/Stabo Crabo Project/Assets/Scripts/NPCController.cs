@@ -39,7 +39,7 @@ public class NPCController : Interactable
 
     //NPC behaviour variable
     public enum Behaviours {Idle, Roaming, Sleeping, Defending, Dead}
-    public enum States {Standing, Sitting, Laying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking} //these are things that an NPC can do based on what the behaviour dictates
+    public enum States {Standing, Sitting, Laying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj} //these are things that an NPC can do based on what the behaviour dictates
     public Behaviours myBehaviour; //The Current behaviour of the NPC
     private States myState;
     public bool initialSpeechBubble;
@@ -117,14 +117,17 @@ public class NPCController : Interactable
                     {
                         ShovePlayer();
                     }
-                    else if(FOV.target.GetComponent<Interactable>().heldBy.tag == "Player") //else if it was an object held by the player
+                    else if(FOV.target.GetComponent<Interactable>().heldBy) //else if it was an object held by the player
                     {
-                        //player.drop object - but player does not get shoved
-                        Pickup(FOV.target);
+                        if(FOV.target.GetComponent<Interactable>().heldBy.tag == "Player")
+                        {
+                            //player.drop object - but player does not get shoved
+                            PickupStart(FOV.target);
+                        }
                     }
                     else
                     {
-                        Pickup(FOV.target);
+                        PickupStart(FOV.target);
                     }
                 }
                 else //else if we have not yet reached our target
@@ -137,16 +140,39 @@ public class NPCController : Interactable
 
             
         }
+
+        switch(myState)
+        {
+            case States.ReturningObj:
+                agent.SetDestination(heldObject.GetComponent<Interactable>().preferredPos); //set our destination to the objects preferred position
+                if(Vector3.Distance(transform.position, heldObject.GetComponent<Interactable>().preferredPos) < 0.5f) //if we are near the position
+                {
+                    DropObject(); //drop it
+                    myState = States.Standing;
+                }
+                break;
+        }
     }
 
-    private void Pickup(Transform pTarget)
+    private void PickupStart(Transform pTarget)
     {
         myState = States.Pickup;
+        animator.Play("NPC_Pickup1"); //play the pickup animation
+        heldObject = pTarget.gameObject;
         //rotate the NPC to face the object? - might not be necessary
         //trigger bend over animation / crouch??
         //maniuplate hand using IK rig to be on object
         //set target's held by status and make it a child of our hand
 
+    }
+
+    public void PickupEnd()
+    {
+        heldObject.transform.parent = transform;
+        heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
+        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        myState = States.ReturningObj;
+        FOV.WipeTarget();
     }
 
     private void ShovePlayer()
@@ -239,6 +265,9 @@ public class NPCController : Interactable
         {
             return;
         }
+
+        DropObject(); //drop anything we are holding
+
         canBeStabbed = false;
         if(this.tag == "Killable")
         {
@@ -277,15 +306,7 @@ public class NPCController : Interactable
                 countdownToNewDestination = newDestTimeMin; //reset the countdown
                 ToggleSpeechBubble();
             }*/
-        }
-
-        if(heldObject) //if there is a held object
-        {
-            heldObject.GetComponent<Rigidbody>().isKinematic = false; //drop the object
-            heldObject.transform.parent = GameObject.Find("_Props").transform; //return the original parent
-            heldObject = null;
-        }
-        
+        }        
     }
 
     public void ResumeIdle()
@@ -340,5 +361,17 @@ public class NPCController : Interactable
             mySpeechBubble = Instantiate(speechBubble, pointAboveHead.position, Quaternion.Euler(0,0,0), transform); //spawn the identifier prefab
         }
 
+    }
+
+    public void DropObject()
+    {
+        if(!heldObject) //if we are not holding anything
+        {
+            return;
+        }
+        heldObject.GetComponent<Rigidbody>().isKinematic = false;
+        heldObject.GetComponent<Interactable>().heldBy = null;
+        heldObject.transform.parent = GameObject.Find("_Props").transform;
+        heldObject = null;
     }
 }

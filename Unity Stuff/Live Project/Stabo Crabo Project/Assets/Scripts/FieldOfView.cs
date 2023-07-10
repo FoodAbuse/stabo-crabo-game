@@ -63,7 +63,6 @@ public class FieldOfView : MonoBehaviour
     private void FieldOfViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask); //creates an array of all objects in a radius around this transform
-
         if(rangeChecks.Length != 0) //if there are any objects in range
         {
             foreach(Collider col in rangeChecks) //iterrate through each of those objects
@@ -77,12 +76,19 @@ public class FieldOfView : MonoBehaviour
                     Interactable found = col.GetComponent<Interactable>();//fetch the interactable script on the found object
                     if(targetRef.Contains(found)) //if this is actually a target we care about
                     {
-                        if(found.GetComponent<Interactable>().heldBy.tag == "Player")  //if the object is currently held by the player it is a priority
+                        Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
+                        Debug.Log(target);
+                        if(found.GetComponent<Interactable>().heldBy)  //if the object is being held
                         {
-                            SightCheck(found.transform);
+                            if(found.GetComponent<Interactable>().heldBy.tag == "Player") //if the object is currently held by the player it is a priority
+                            {
+                                Debug.Log("Found held by player");
+                                SightCheck(found.transform);
+                            }  //if it is held by another NPC we ignore it
                         }
-                        else if(!target && Vector3.Distance(found.transform.position, found.preferredPos) > 5.0f) //if target has not yet been assigned, fill with any object that is not in its preferred position
+                        else if(!target && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0f) //if target has not yet been assigned, fill with any object that is not in its preferred position
                         {
+                            Debug.Log("Found out of position");
                             SightCheck(found.transform);
                         }
                     }
@@ -122,6 +128,13 @@ public class FieldOfView : MonoBehaviour
             }
 
 
+    }
+
+    public void WipeTarget()
+    {
+
+        target = null;
+        canSeeTarget = false;
     }
 
 }
