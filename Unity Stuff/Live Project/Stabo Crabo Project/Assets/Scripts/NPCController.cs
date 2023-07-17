@@ -15,17 +15,29 @@ public class NPCController : Interactable
     public Animator animator;
     private Rigidbody[] ragdollRigidbodies; //stores all the ragdoll RB components
 
+    //movement stats
+    [SerializeField]
+    private float speedWalk;
+    [SerializeField]
+    private float speedRun;
     public float newDestTimeMin = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination'
     public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
+    //attacking stats
+    [SerializeField]
+    private float shoveCDBase; //what the atack cooldown resets to
+    private float shoveCD; //the current attack cooldown
+    [SerializeField]
+    private float shoveForce = 5.0f; //how hard the player is shoved
+    
+
 
     // Hugo's Chaos Injection - Murderous Traffic Cones
     //public bool WHAMMY = false;
     //private float timerKO;
 
     //carried object
-    [SerializeField]
-    private GameObject heldObject; //for now held object doesn't move with the NPC. I am focussing on code to drop it from an idle pose
+    public GameObject heldObject; //for now held object doesn't move with the NPC. I am focussing on code to drop it from an idle pose
     [SerializeField]
     private GameObject identifier; //object to spawn over head to identify NPC
     private GameObject myIdentifier;
@@ -38,9 +50,10 @@ public class NPCController : Interactable
     private FieldOfView FOV; //FOV script reference
 
     //NPC behaviour variable
-    public enum Behaviours {Idle, Roaming, Sleeping, Defending, Dead}
+    public enum Behaviours {Idle, Roaming, Sleeping, Defending, Guarding, Dead}
     public enum States {Standing, Sitting, Laying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj} //these are things that an NPC can do based on what the behaviour dictates
     public Behaviours myBehaviour; //The Current behaviour of the NPC
+    [SerializeField]
     private States myState;
     public bool initialSpeechBubble;
 
@@ -48,11 +61,18 @@ public class NPCController : Interactable
     [SerializeField]
     private Collider fieldOfVision;
     [SerializeField]
-    private Transform headTarget;
+    private Transform headTarget; //where the head looks at
     [SerializeField]
     private Rig headRig;
     [SerializeField]
     private ColliderCollection sightCollection;
+    //hand aiming
+    [SerializeField]
+    private Transform handTarget; //where the hand moves to]
+    [SerializeField]
+    private Rig handRig;
+    [SerializeField]
+    private Transform handR; //the right hand
 
     void Awake()
     {
@@ -75,6 +95,12 @@ public class NPCController : Interactable
         //movement
         switch (myBehaviour)
         {
+            case Behaviours.Defending:
+                if(myState == States.Standing) //if we are just standing ie we have finished our defence action
+                {
+                    //Roaming(); //wander around
+                }
+            break;
             case Behaviours.Roaming:
                 Roaming();//wanders at a set interval
                 break;
@@ -91,6 +117,11 @@ public class NPCController : Interactable
         else if (headRig.weight > 0.01)
         {
             headRig.weight = Mathf.Lerp(headRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig
+        }
+
+        if(shoveCD > 0.0f) //control Attack cooldown timer
+        {
+            shoveCD -= 1 * Time.deltaTime;
         }
 
 
@@ -115,7 +146,7 @@ public class NPCController : Interactable
                 {
                     if(FOV.target.tag == "Player") //if we were chasing the player
                     {
-                        ShovePlayer();
+                        ShovePlayerStart();
                     }
                     else if(FOV.target.GetComponent<Interactable>().heldBy) //else if it was an object held by the player
                     {
@@ -132,25 +163,42 @@ public class NPCController : Interactable
                 }
                 else //else if we have not yet reached our target
                 {
-                    agent.SetDestination(FOV.target.position); //set navmesh destination to the target's position
+                    agent.SetDestination(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position)); //set navmesh destination to closts point in the target's collider
                     myState = States.Chasing;
+                    Debug.Log(FOV.distanceToTarget);
                 }
 
             }
 
             
         }
-
+        //behaviours based on current State
         switch(myState)
         {
+            case States.Walking:
+                agent.speed = speedWalk;
+            break;
+            case States.Chasing:
+                agent.speed = speedRun;
+            break;
+            case States.Fleeing:
+                agent.speed = speedRun;
+            break;
+            case States.Pickup:
+                handTarget.position = FOV.target.GetComponent<Collider>().ClosestPoint(handR.position); //instantly move the hand target to the target's position
+                handRig.weight = Mathf.Lerp(handRig.weight, 1.0f, 3 * Time.deltaTime); //increase the weight of the rig over time
+            break;
             case States.ReturningObj:
                 agent.SetDestination(heldObject.GetComponent<Interactable>().preferredPos); //set our destination to the objects preferred position
+                handRig.weight = Mathf.Lerp(handRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig over time
                 if(Vector3.Distance(transform.position, heldObject.GetComponent<Interactable>().preferredPos) < 0.5f) //if we are near the position
                 {
                     DropObject(); //drop it
                     myState = States.Standing;
+                    handRig.weight = 0.0f; //completely remove the rig incase it hasnt decreased to 0 yet
                 }
-                break;
+                agent.speed = speedWalk;
+            break;
         }
     }
 
@@ -159,29 +207,37 @@ public class NPCController : Interactable
         myState = States.Pickup;
         animator.Play("NPC_Pickup1"); //play the pickup animation
         heldObject = pTarget.gameObject;
-        //rotate the NPC to face the object? - might not be necessary
-        //trigger bend over animation / crouch??
-        //maniuplate hand using IK rig to be on object
-        //set target's held by status and make it a child of our hand
-
     }
 
     public void PickupEnd()
     {
-        heldObject.transform.parent = transform;
+        heldObject.transform.parent = handR; //set the target as a child of our right hand
         heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         myState = States.ReturningObj;
         FOV.WipeTarget();
     }
 
-    private void ShovePlayer()
+    private void ShovePlayerStart()
     {
+        Debug.Log("ShoveCD: " + shoveCD);
+        if(myState == States.Attacking || shoveCD > 0.0f){return;} //cancel attack if we are not already attacking or attack is on cooldown
         myState = States.Attacking;
         Debug.Log("Shoving Player");
-        //Set the player velocity away from the NPC
-        //Cause the palyer to drop any items
-        //disable player movement for a split second so that the player cannot override the velocity
+        //play an animation
+        //during the animation trigger the next function:
+        ShovePlayerEnd();
+    }
+
+    private void ShovePlayerEnd()
+    {
+        myState = States.Standing; //return to standing state
+        if(FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
+        Debug.Log("still targeting player"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
+        FOV.target.GetComponent<Rigidbody>().AddForce((FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce); //set the player's velocity towards undefended area
+        FOV.target.GetComponent<PlayerController>().stunned = 0.5f; //stun the plyer for a split second
+        FOV.target.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
+        shoveCD = shoveCDBase; //reset our attack cooldown
     }
 
     void LateUpdate() //runs after update

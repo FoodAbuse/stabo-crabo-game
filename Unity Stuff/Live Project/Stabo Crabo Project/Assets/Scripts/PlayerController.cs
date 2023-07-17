@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float baseTurnSpeed = 2.0f;
     public float sprintTurnSpeed = 4.0f;
     public float stabCoolDown = 1.0f; //how fast can stab be spammed
+    public float stunned = 0.0f; //how long the player is stunned for
+    private bool isStunned = false;
     private float stabTimer; //variable used to time stabs
 
     private float moveSpeed;
@@ -76,10 +78,20 @@ public class PlayerController : MonoBehaviour
                 stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
             }
         }
+
+        if(stunned > 0.0f) //if the player is stunned
+        {
+            isStunned = true; //player cannot input
+            stunned -= 1 * Time.deltaTime; //reduce stun timer
+        }
+        else
+        {
+            isStunned = false;
+        }
         
     }
 
-    void Movement() //takes player input to move the player character
+    void MovementInput() //takes player input to move the player character
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
             if(Input.GetKey(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
@@ -98,14 +110,23 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
+        if(!isStunned) //being stunned stops normal movment calculations
         {
-            Movement(); //move the player
+            if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
+            {
+                MovementInput(); //create a vector based on key presses
+            }
+            else if(!isStunned) //if we ARE stunned, our direction has been written by a shove script
+            {
+                moveDirection = Vector3.zero;
+            }
+            ApplyMovement();
+            ApplyRotation();
         }
-        else
-        {
-            moveDirection = Vector3.zero;
-        }
+    }
+
+    void ApplyMovement() //takes our current move direction and applys speed and force
+    {
         if(moveDirection.magnitude > 0.1) //if there is some movement:
         {
             StartCoroutine(GameManager.NextHint("Move")); //disable hint
@@ -130,7 +151,10 @@ public class PlayerController : MonoBehaviour
             crabAnimator.SetBool("isWalking", false); //un-set walking animation
             crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
         }
+    }
 
+    void ApplyRotation() //rotates the player to match the movement direction and move style
+    {
         //apply rotation - this is not based on player input. This is based on current movement vector - which is based on player input
         if(moveDirection != Vector3.zero) //if there is some amount of movement
         {
@@ -213,29 +237,30 @@ public class PlayerController : MonoBehaviour
 
     public void DropObject()
     {
-            isGrabbing = false;
-            if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
-            {
-                grabObject.parent = GameObject.Find("_Props").transform; //return the original parent  
-                grabObject.GetComponent<Rigidbody>().isKinematic = false;
-                grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
-            }
-            else //the object is set to be destroyed
-            {
-                if(grabCollider.colList.Contains(grabObject.GetComponent<Collider>())) grabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //remove the held object from the collider collection
-                if(stabCollider.colList.Contains(grabObject.GetComponent<Collider>())) stabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //in the situation that a different object is the [0], problems amy arise
-            }
-            armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
-            //armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
+        if(!isGrabbing){return;} //if we are not grabbing anything, return
+        isGrabbing = false;
+        if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
+        {
+            grabObject.parent = GameObject.Find("_Props").transform; //return the original parent  
+            grabObject.GetComponent<Rigidbody>().isKinematic = false;
+            grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
+        }
+        else //the object is set to be destroyed
+        {
+            if(grabCollider.colList.Contains(grabObject.GetComponent<Collider>())) grabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //remove the held object from the collider collection
+            if(stabCollider.colList.Contains(grabObject.GetComponent<Collider>())) stabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //in the situation that a different object is the [0], problems amy arise
+        }
+        armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
+        //armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
 
-            if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
-            {
-                isDragging = false; //turn of dragging
-                CharacterJoint joint = GetComponent<CharacterJoint>();
-                Destroy(joint); //destroy the joint we created
-            }
+        if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
+        {
+            isDragging = false; //turn of dragging
+            CharacterJoint joint = GetComponent<CharacterJoint>();
+            Destroy(joint); //destroy the joint we created
+        }
 
-            grabObject = null; //reset grabObject
+        grabObject = null; //reset grabObject
     }
 
     private void StabCheck()

@@ -42,7 +42,7 @@ public class FieldOfView : MonoBehaviour
     {
         if(canSeeTarget)
         {
-            distanceToTarget = Vector3.Distance(transform.position, target.position);
+            distanceToTarget = Vector3.Distance(transform.position, target.GetComponent<Collider>().ClosestPoint(transform.position)); //distance to closest point on the target
         }
     }
 
@@ -69,15 +69,22 @@ public class FieldOfView : MonoBehaviour
             {
                 if(npc.myBehaviour == NPCController.Behaviours.Defending && col.tag == "Player") //if we are defending against the player and this obj is the player
                 {
-                    SightCheck(col.transform);
+                    if(npc.destinationBounds.bounds.Contains(col.transform.position)) //if the player is within defended area
+                    {
+                        SightCheck(col.transform);
+                    }
+                    else if(target) //if the Player is not within the defended area, but they are our current target
+                    {
+                        if(target.tag == "Player"){WipeTarget();} //wipe the target, if it doesnt catch a new target in the current loop, it will find a new one in the next loop
+                    }
                 }
                 else //otherwise we are just looking for objects
                 {
                     Interactable found = col.GetComponent<Interactable>();//fetch the interactable script on the found object
                     if(targetRef.Contains(found)) //if this is actually a target we care about
                     {
-                        Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
-                        Debug.Log(target);
+                        //Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
+                        //Debug.Log(target);
                         if(found.GetComponent<Interactable>().heldBy)  //if the object is being held
                         {
                             if(found.GetComponent<Interactable>().heldBy.tag == "Player") //if the object is currently held by the player it is a priority
@@ -86,9 +93,11 @@ public class FieldOfView : MonoBehaviour
                                 SightCheck(found.transform);
                             }  //if it is held by another NPC we ignore it
                         }
-                        else if(!target && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0f) //if target has not yet been assigned, fill with any object that is not in its preferred position
+                        else if(!target //if target has not yet been assigned
+                        && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0 //and this object is not in its preferred position
+                        && !npc.heldObject) //and we are not holding an object currently
                         {
-                            Debug.Log("Found out of position");
+                            //fill with the first object that this loops through
                             SightCheck(found.transform);
                         }
                     }
@@ -111,7 +120,7 @@ public class FieldOfView : MonoBehaviour
                 float distanceToFound = Vector3.Distance(transform.position, found.position); //gets distance between us and the found obj
                 if(!Physics.Raycast(transform.position, directionToFound, distanceToFound, obstructionMask)) //raycast from us in the direction, at the distance, stopped by obstructions
                 {
-                    target = found; //our target is now this found object
+                    NewTarget(found); //our target is now this found object
                     canSeeTarget = true; //if the raycast doesnt hit anything then there is no obstruction
                 }
                 else if(target == found) //if we cant see it, but this was our current target...
@@ -132,9 +141,14 @@ public class FieldOfView : MonoBehaviour
 
     public void WipeTarget()
     {
-
         target = null;
         canSeeTarget = false;
+    }
+
+    public void NewTarget(Transform t) //call to change the target to this transform
+    {
+        target = t;
+        npc.DropObject(); //ensures the NPC doesnt double up on objects they are trying to carry
     }
 
 }
