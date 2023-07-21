@@ -98,7 +98,7 @@ public class NPCController : Interactable
             case Behaviours.Defending:
                 if(myState == States.Standing) //if we are just standing ie we have finished our defence action
                 {
-                    //Roaming(); //wander around
+                    Roaming(); //wander around
                 }
             break;
             case Behaviours.Roaming:
@@ -169,6 +169,10 @@ public class NPCController : Interactable
                 }
 
             }
+            else if(myState == States.Chasing) //if we can't see our target anymore but for some reason we are still chasing
+            {
+                myState = States.Standing; //return to standing
+            }
 
             
         }
@@ -234,7 +238,9 @@ public class NPCController : Interactable
         myState = States.Standing; //return to standing state
         if(FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
         Debug.Log("still targeting player"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
-        FOV.target.GetComponent<Rigidbody>().AddForce((FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce); //set the player's velocity towards undefended area
+        Vector3 shoveVector = (FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce;
+        shoveVector.y = 0.2f * shoveForce; //give some vertical velocity
+        FOV.target.GetComponent<Rigidbody>().AddForce(shoveVector); //set the player's velocity towards undefended area
         FOV.target.GetComponent<PlayerController>().stunned = 0.5f; //stun the plyer for a split second
         FOV.target.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
         shoveCD = shoveCDBase; //reset our attack cooldown

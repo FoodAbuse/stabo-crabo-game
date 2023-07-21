@@ -2103,7 +2103,7 @@ MonoBehaviour:
   newDestTimeMin: 5
   newDestTimeMax: 15
   shoveCDBase: 0.5
-  shoveForce: 5
+  shoveForce: 300
   heldObject: {fileID: 0}
   identifier: {fileID: 3378929534082043842, guid: a3ec60a924d45e94cbfe6cc59abdab7c,
     type: 3}
@@ -2155,14 +2155,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 10
-  angle: 145
+  angle: 190
   targetRef: []
   targetMask:
     serializedVersion: 2
     m_Bits: 576
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3072
   target: {fileID: 0}
   canSeeTarget: 0
   distanceToTarget: 0
