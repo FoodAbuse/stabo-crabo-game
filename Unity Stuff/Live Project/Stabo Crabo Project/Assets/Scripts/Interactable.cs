@@ -25,7 +25,7 @@ public class Interactable : MonoBehaviour
     public Vector3 preferredPos; //where the object likes to be
 
     //temp
-    public GameObject indicator;
+    public GameObject indicator; //debugging vectors of stabbing the objects
     
     void Start()
     {

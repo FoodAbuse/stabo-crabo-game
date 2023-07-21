@@ -42,10 +42,10 @@ public class NPCController : Interactable
     private GameObject identifier; //object to spawn over head to identify NPC
     private GameObject myIdentifier;
     [SerializeField]
-    private GameObject speechBubble; //object to spawn over head to as speech bubble
-    private GameObject mySpeechBubble;
+    private GameObject bubble; //prefab to spawn over head to as speech bubble
+    private GameObject myBubble; //the instance that was created from the above prefab
     [SerializeField]
-    private Transform pointAboveHead; //point for spawning speechbubbles, identifiers etc
+    private Transform pointAboveHead; //point for spawning hint bubbles, identifiers etc
     [SerializeField]
     private FieldOfView FOV; //FOV script reference
 
@@ -165,6 +165,7 @@ public class NPCController : Interactable
                 {
                     agent.SetDestination(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position)); //set navmesh destination to closts point in the target's collider
                     myState = States.Chasing;
+                    BubbleOn(FOV.target.GetComponent<BubbleReference>().bubbleSprite); //activate a bubble above this NPC's head
                     Debug.Log(FOV.distanceToTarget);
                 }
 
@@ -172,6 +173,7 @@ public class NPCController : Interactable
             else if(myState == States.Chasing) //if we can't see our target anymore but for some reason we are still chasing
             {
                 myState = States.Standing; //return to standing
+                BubbleOff();
             }
 
             
@@ -220,6 +222,7 @@ public class NPCController : Interactable
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         myState = States.ReturningObj;
         FOV.WipeTarget();
+        BubbleOff();
     }
 
     private void ShovePlayerStart()
@@ -244,6 +247,7 @@ public class NPCController : Interactable
         FOV.target.GetComponent<PlayerController>().stunned = 0.5f; //stun the plyer for a split second
         FOV.target.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
         shoveCD = shoveCDBase; //reset our attack cooldown
+        BubbleOff();
     }
 
     void LateUpdate() //runs after update
@@ -334,10 +338,7 @@ public class NPCController : Interactable
         if(this.tag == "Killable")
         {
             EnableRagdoll();
-            if(mySpeechBubble)
-            {
-                ToggleSpeechBubble();
-            }
+            BubbleOff();
             if(transform.parent.name == "NPC Targets") //if this is a target
             {
                 GameManager.TargetKilled(gameObject); //remove this from the targets list and trigger level phases etc
@@ -411,18 +412,19 @@ public class NPCController : Interactable
 
     }
 
-    public void ToggleSpeechBubble() //spawns a identifier object above the NPC
+    public void BubbleOn(Sprite bubbleSprite) //creates a bubble above the NPC that shows an image
     {
-        if(mySpeechBubble)
+        if(!myBubble) //if we don't yet have a bubble, make one
         {
-            Destroy(mySpeechBubble);
+            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0), pointAboveHead); //spawn the bubble prefab
         }
-        else
-        {
-            //Position needs to face camera THIS HAS NOT BEEN IMPLEMENTED
-            mySpeechBubble = Instantiate(speechBubble, pointAboveHead.position, Quaternion.Euler(0,0,0), transform); //spawn the identifier prefab
-        }
+        myBubble.GetComponent<SpriteRenderer>().sprite = bubbleSprite; //set the image on the bubble
+    }
 
+    public void BubbleOff()
+    {
+        if(!myBubble){return;} //return if this was called when we don't have a bubble
+        Destroy(myBubble);
     }
 
     public void DropObject()
