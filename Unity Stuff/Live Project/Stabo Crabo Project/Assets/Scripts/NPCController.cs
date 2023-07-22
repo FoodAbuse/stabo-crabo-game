@@ -152,8 +152,9 @@ public class NPCController : Interactable
                     {
                         if(FOV.target.GetComponent<Interactable>().heldBy.tag == "Player")
                         {
-                            //player.drop object - but player does not get shoved
-                            PickupStart(FOV.target);
+                            FOV.target.GetComponent<Interactable>().heldBy.GetComponent<PlayerController>().DropObject(); //cause the player to drop what they are holding
+                            ShovePlayerStart(); //also shove the player
+                            //assuming the NPC does not want to chase the player, their target should remain the same, and they should move to pick it up like normal
                         }
                     }
                     else
@@ -183,6 +184,11 @@ public class NPCController : Interactable
         {
             case States.Walking:
                 agent.speed = speedWalk;
+
+                if(Vector3.Distance(transform.position, agent.destination) <= 0.1f) //if we are ever walking, and we reach our destination and stop walking...
+                {
+                    myState = States.Standing; //we are now standing
+                }
             break;
             case States.Chasing:
                 agent.speed = speedRun;
@@ -213,6 +219,8 @@ public class NPCController : Interactable
         myState = States.Pickup;
         animator.Play("NPC_Pickup1"); //play the pickup animation
         heldObject = pTarget.gameObject;
+
+        //need to turn off objects 'can be grabbed' and 'can be stabbed' and still have a way to re-enable them to their previous settings
     }
 
     public void PickupEnd()
@@ -262,7 +270,6 @@ public class NPCController : Interactable
         {
             if(countdownToNewDestination <= 0.0f) //if countdown is finished
             {
-                myState = States.Walking; //we are now walking
                 Vector3 destination = RandomPointInBounds(destinationBounds.bounds); //generate a random position within the bounds
                 agent.CalculatePath(destination, path); //calculates the path
                 while(path.status != NavMeshPathStatus.PathComplete) //calculates the path and then checks if it can reach the destination
@@ -272,16 +279,12 @@ public class NPCController : Interactable
                 }
                 agent.SetDestination(destination); //set new destination
                 countdownToNewDestination = Random.Range(newDestTimeMin, newDestTimeMax); //reset the countdown
+                myState = States.Walking; //we are now walking
             }
             else
             {
                 countdownToNewDestination -= 1 * Time.deltaTime; //tick down countdown
             }
-        }
-        else if(myState == States.Walking && agent.velocity.magnitude == 0.0f) //if we were walking, but we reached our destination and stopped
-        {
-            //insert a random chance to lay down or sit down
-            myState = States.Standing; //for now just go direct to standing
         }
     }
 
@@ -437,5 +440,10 @@ public class NPCController : Interactable
         heldObject.GetComponent<Interactable>().heldBy = null;
         heldObject.transform.parent = GameObject.Find("_Props").transform;
         heldObject = null;
+
+        if(myState == States.ReturningObj) //if we were returning an object at the time...
+        {
+            myState = States.Standing; //now we are just standing (can change this to fleeing if needed)
+        }
     }
 }
