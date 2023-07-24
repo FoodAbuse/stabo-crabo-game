@@ -24,7 +24,6 @@ public class FieldOfView : MonoBehaviour
 
     public LayerMask targetMask; //so we are not checking over all objects in a scene
     public LayerMask obstructionMask;
-
     public Transform target; //the current target within our FOV
     public bool canSeeTarget;
     [HideInInspector]
@@ -32,6 +31,9 @@ public class FieldOfView : MonoBehaviour
 
     [SerializeField]
     private NPCController npc;
+    public Transform eyes; //origin of all sight checks
+
+    private bool seekingPlayer; //whether we care about the player or not (turned on for defending and guarding)
 
     private void Start()
     {
@@ -40,6 +42,15 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
+        if(npc.myBehaviour == NPCController.Behaviours.Defending || npc.myBehaviour == NPCController.Behaviours.Guarding) //set seeking player bool
+        {
+            seekingPlayer = true;
+        }
+        else
+        {
+            seekingPlayer = false;
+        }
+
         if(canSeeTarget)
         {
             distanceToTarget = Vector3.Distance(transform.position, target.GetComponent<Collider>().ClosestPoint(transform.position)); //distance to closest point on the target
@@ -53,8 +64,9 @@ public class FieldOfView : MonoBehaviour
         while (true) //infinite loop
         {
             yield return wait;
-            if(targetRef.Count != 0 || npc.myBehaviour == NPCController.Behaviours.Defending) //if there are targets to look for or we are defensive against the player
+            if(targetRef.Count != 0 || seekingPlayer) //if there are targets to look for or we are seeking the player
             {
+                WipeTarget(); //wipe target every time we check
                 FieldOfViewCheck(); //look for objects and or player
             }
         }
@@ -62,18 +74,22 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask); //creates an array of all objects in a radius around this transform
+        Collider[] rangeChecks = Physics.OverlapSphere(eyes.position, radius, targetMask); //creates an array of all objects in a radius around this transform
         if(rangeChecks.Length != 0) //if there are any objects in range
         {
             foreach(Collider col in rangeChecks) //iterrate through each of those objects
             {
-                if(npc.myBehaviour == NPCController.Behaviours.Defending && col.tag == "Player") //if we are defending against the player and this obj is the player
+                if(seekingPlayer && col.tag == "Player") //if we are seeking the player and this obj is the player
                 {
                     if(npc.destinationBounds.bounds.Contains(col.transform.position)) //if the player is within defended area
                     {
                         SightCheck(col.transform);
                     }
-                    else if(target) //if the Player is not within the defended area, but they are our current target
+                    else if(npc.myBehaviour == NPCController.Behaviours.Guarding) //if we are guarding we still care even if they are not in the zone
+                    {
+                        SightCheck(col.transform);
+                    }
+                    else if(target) //if the we are defending, but they are our current target we no longer target them
                     {
                         if(target.tag == "Player"){WipeTarget();} //wipe the target, if it doesnt catch a new target in the current loop, it will find a new one in the next loop
                     }
@@ -106,19 +122,18 @@ public class FieldOfView : MonoBehaviour
         }
         else if(canSeeTarget) //if there is nothing in range, but when we last checked we could see the target...
         {
-            canSeeTarget = false; //we can no longer see the target
-            target = null;
+            WipeTarget(); //we can no longer see the target
         }
     }
 
     private void SightCheck(Transform found) //checks line of sight for the found object
     {
-        Vector3 directionToFound = (found.position - transform.position).normalized; //gets direction to the found object
+        Vector3 directionToFound = (found.position - eyes.position).normalized; //gets direction to the found object
 
-            if(Vector3.Angle(transform.forward, directionToFound) < angle / 2) //if the angle to our found obj exceeds our FOV angle
+            if(Vector3.Angle(transform.forward, directionToFound) < angle / 2) //if the angle to our found obj does not exceed our FOV angle
             {
-                float distanceToFound = Vector3.Distance(transform.position, found.position); //gets distance between us and the found obj
-                if(!Physics.Raycast(transform.position, directionToFound, distanceToFound, obstructionMask)) //raycast from us in the direction, at the distance, stopped by obstructions
+                float distanceToFound = Vector3.Distance(eyes.position, found.position); //gets distance between us and the found obj
+                if(!Physics.Raycast(eyes.position, directionToFound, distanceToFound, obstructionMask)) //raycast from us in the direction, at the distance, stopped by obstructions
                 {
                     NewTarget(found); //our target is now this found object
                     canSeeTarget = true; //if the raycast doesnt hit anything then there is no obstruction

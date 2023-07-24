@@ -164,10 +164,20 @@ public class NPCController : Interactable
                 }
                 else //else if we have not yet reached our target
                 {
-                    agent.SetDestination(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position)); //set navmesh destination to closts point in the target's collider
+                    if(myBehaviour == Behaviours.Guarding && FOV.target.tag == "Player") //if we are guarding, and this is the player
+                    {
+                        Vector3 guardDest = destinationBounds.ClosestPoint(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position));
+                        agent.SetDestination(guardDest); //head to the closest point we can in our bounds                                              
+                        Debug.DrawRay(transform.position, guardDest - transform.position, Color.green, 0.0f, false);
+                        transform.rotation = Quaternion.LookRotation(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position) - transform.position, Vector3.up); //always look in the direction of the drab as well
+                    }
+                    else
+                    {
+                        agent.SetDestination(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position)); //go to closest point in the target's collider
+                        
+                    }
                     myState = States.Chasing;
                     BubbleOn(FOV.target.GetComponent<BubbleReference>().bubbleSprite); //activate a bubble above this NPC's head
-                    Debug.Log(FOV.distanceToTarget);
                 }
 
             }
@@ -219,14 +229,14 @@ public class NPCController : Interactable
         myState = States.Pickup;
         animator.Play("NPC_Pickup1"); //play the pickup animation
         heldObject = pTarget.gameObject;
-
-        //need to turn off objects 'can be grabbed' and 'can be stabbed' and still have a way to re-enable them to their previous settings
     }
 
     public void PickupEnd()
     {
         heldObject.transform.parent = handR; //set the target as a child of our right hand
         heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
+        heldObject.GetComponent<Interactable>().canBeStabbed = false; //player cannot interact with these an object held by an NPC
+        heldObject.GetComponent<Interactable>().canBeGrabbed = false;
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         myState = States.ReturningObj;
         FOV.WipeTarget();
@@ -349,19 +359,23 @@ public class NPCController : Interactable
         }
         else
         {
-            animator.SetTrigger("Stabbed"); //play the hurt animation
-            if(stabOrigin.position.x >= transform.position.x)
+            float dir = Vector3.Dot(transform.right, stabOrigin.position - transform.position); //returns 1 if the vectors are the same direction, -1 if opposite, 0 if perpendicular
+            //Debug.DrawRay(transform.position, transform.right * 10, Color.green, 15.0f, false);
+            //Debug.DrawRay(transform.position, (stabOrigin.position- transform.position )*10, Color.red, 15.0f, false);
+            if(dir >= 0.0f) //if Dot is the same direction, the player is on the left
             {
-                animator.SetFloat("PlayerDirection", 1.0f); //get this to be determined by if the player is on the right or left
+                animator.SetFloat("PlayerDirection", 1.0f); //right
             }
             else
             {
-                animator.SetFloat("PlayerDirection", -1.0f); //get this to be determined by if the player is on the right or left
+                animator.SetFloat("PlayerDirection", -1.0f); //left
             }
             if(agent.enabled) //if the navmesh is active
             {
                 agent.isStopped = true; //pause navmesh movement
             }
+
+            animator.SetTrigger("Stabbed"); //play the hurt animation
 
             //super specific case at the moment -  Ideally changing NPC behaviour off of stabs can be wrapped into the puzzle controllers
             /*if(myBehaviour == Behaviours.CarryingEsky)
@@ -438,6 +452,8 @@ public class NPCController : Interactable
         }
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.GetComponent<Interactable>().heldBy = null;
+        heldObject.GetComponent<Interactable>().canBeStabbed = true; //re-enable player interaction with this object
+        heldObject.GetComponent<Interactable>().canBeGrabbed = true;
         heldObject.transform.parent = GameObject.Find("_Props").transform;
         heldObject = null;
 

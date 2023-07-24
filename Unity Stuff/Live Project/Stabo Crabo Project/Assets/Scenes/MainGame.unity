@@ -1249,13 +1249,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35606593}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 523721680}
-  m_Father: {fileID: 768796765}
+  m_Children: []
+  m_Father: {fileID: 93800031}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &35606595
@@ -4026,6 +4025,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 92736226}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &93800030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93800031}
+  m_Layer: 7
+  m_Name: NPC Zones
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93800031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93800030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 35606594}
+  - {fileID: 1515932245}
+  m_Father: {fileID: 768796765}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &94545764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12703,6 +12735,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PuzzleTrigger - TieBlocked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936320, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -24580,9 +24617,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 93800031}
   - {fileID: 1805053623}
   - {fileID: 524048894}
-  - {fileID: 35606594}
+  - {fileID: 523721680}
   - {fileID: 585411811}
   - {fileID: 827726403}
   - {fileID: 1097488833}
@@ -35236,7 +35274,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 35606594}
+    m_TransformParent: {fileID: 768796765}
     m_Modifications:
     - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
@@ -35246,7 +35284,7 @@ PrefabInstance:
     - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
       propertyPath: radius
-      value: 10
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2878144397171368211, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
@@ -35306,7 +35344,7 @@ PrefabInstance:
     - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
       propertyPath: myBehaviour
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
@@ -37164,6 +37202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PuzzleTrigger - TieEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936320, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -49037,6 +49080,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1513930386}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1515932243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515932245}
+  - component: {fileID: 1515932244}
+  m_Layer: 7
+  m_Name: Restaurant Defense Bounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1515932244
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515932243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.57, y: 5, z: 2.07}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1515932245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515932243}
+  m_LocalRotation: {x: -0, y: -0.42138267, z: -0, w: 0.906883}
+  m_LocalPosition: {x: -6.39, y: 2.37, z: -3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93800031}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: -49.844, z: 0}
 --- !u!1 &1519261024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 604531045848411542, guid: 11d6db0e75baa5345803589613c4fbea,
@@ -62802,6 +62890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
+      propertyPath: myBehaviour
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687277393703018406, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
+        type: 3}
       propertyPath: speechBubble
       value: 
       objectReference: {fileID: 1412569206713082073, guid: 257fcd72cec612644b91f95b00852572,
@@ -62810,7 +62903,7 @@ PrefabInstance:
         type: 3}
       propertyPath: destinationBounds
       value: 
-      objectReference: {fileID: 740205215}
+      objectReference: {fileID: 1515932244}
     - target: {fileID: 4687277393703018407, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
         type: 3}
       propertyPath: m_Name
