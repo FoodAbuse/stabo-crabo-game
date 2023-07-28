@@ -50,12 +50,11 @@ public class NPCController : Interactable
     private FieldOfView FOV; //FOV script reference
 
     //NPC behaviour variable
-    public enum Behaviours {Idle, Roaming, Sleeping, Defending, Guarding, Dead}
-    public enum States {Standing, Sitting, Laying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj} //these are things that an NPC can do based on what the behaviour dictates
+    public enum Behaviours {Idle = 100, Roaming = 200, Sleeping = 300, Defending = 400, Guarding = 500, Dead = 900}
+    public enum States {Standing, Sitting, Lying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj} //these are things that an NPC can do based on what the behaviour dictates
     public Behaviours myBehaviour; //The Current behaviour of the NPC
     [SerializeField]
     private States myState;
-    public bool initialSpeechBubble;
 
     //head aiming
     [SerializeField]
@@ -83,11 +82,24 @@ public class NPCController : Interactable
     void Start()
     {
         path = new NavMeshPath(); //initialize the path
-        ResumeIdle(); //return to an idle animation based on the current behaviour
 
         headRig.weight = 0.0f; //initial rig weighting is 0
 
-        if(initialSpeechBubble) Invoke("ToggleSpeechBubble",1.0f); //if initial speech bubble is set to true, toggle it upon starting
+        //enter initial animation
+        switch (myState)
+        {
+            case States.Standing:
+                animator.Play("NPC_Idle");
+                break;
+            case States.Sitting:
+                animator.SetFloat("IdleBehaviour", 3.0f);
+                animator.Play("NPC_Idle");
+                break;
+            case States.Lying:
+                animator.Play("NPC_LyingDown");
+                break;
+        }
+
     }
 
     void Update()
@@ -276,7 +288,7 @@ public class NPCController : Interactable
 
     private void Roaming() //waits, then sets a random destination and moves there - run during update
     {
-        if(myState == States.Standing || myState == States.Sitting || myState == States.Laying) //if we are stationary
+        if(myState == States.Standing || myState == States.Sitting || myState == States.Lying) //if we are stationary
         {
             if(countdownToNewDestination <= 0.0f) //if countdown is finished
             {
@@ -298,9 +310,15 @@ public class NPCController : Interactable
         }
     }
 
-    public void ChangeBehaviour(Behaviours newBehaviour)
+    public void SetBehaviour(int behaviourNumber)
     {
-        myBehaviour = newBehaviour; //change to the new behaviour
+        myBehaviour = (Behaviours)behaviourNumber; //change to the new behaviour
+        FOV.WipeTarget();
+    }
+
+    public void SetZone(Collider col)
+    {
+        destinationBounds = col; //assign a new zone wheer this NPC is allowed to roam
     }
 
     private Vector3 RandomPointInBounds(Bounds bounds) //picks a random location within a bounds
@@ -322,7 +340,7 @@ public class NPCController : Interactable
         //agent.enabled = true; //enable navmesh - I don't want the target's navmesh to be reenabled atm
     }
 
-    private void EnableRagdoll()
+    public void EnableRagdoll()
     {
         foreach (var rb in ragdollRigidbodies)
         {
@@ -389,30 +407,13 @@ public class NPCController : Interactable
         }        
     }
 
-    public void ResumeIdle()
+    public void ResumeBehaviour()
     {
-        switch(myBehaviour)
+
+        if(agent.enabled) //if the navmesh is active
         {
-            /*case Behaviours.Sitting: //initial animations based on behaviour
-                animator.SetFloat("IdleBehaviour",3.0f);
-                break;
-            case Behaviours.Lying:
-                animator.Play("NPC_LyingDown");
-                break;
-            case Behaviours.Searching:
-                animator.SetFloat("IdleBehaviour",1.0f);
-                break;
-            case Behaviours.Doorman:
-                animator.SetFloat("IdleBehaviour",2.0f);
-                break;
-            case Behaviours.CarryingEsky:
-                animator.SetFloat("IdleBehaviour",4.0f);
-                break;*/
+            agent.isStopped = false; //resume navmesh movement
         }
-            if(agent.enabled) //if the navmesh is active
-            {
-                agent.isStopped = false; //pause navmesh movement
-            }
         canBeStabbed = true;
     }
 

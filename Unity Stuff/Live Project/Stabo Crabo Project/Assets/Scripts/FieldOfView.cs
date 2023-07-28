@@ -34,6 +34,7 @@ public class FieldOfView : MonoBehaviour
     public Transform eyes; //origin of all sight checks
 
     private bool seekingPlayer; //whether we care about the player or not (turned on for defending and guarding)
+    private bool returnedTarget; //whether we succesfully returned a target in this iteration of the FOC check
 
     private void Start()
     {
@@ -66,7 +67,7 @@ public class FieldOfView : MonoBehaviour
             yield return wait;
             if(targetRef.Count != 0 || seekingPlayer) //if there are targets to look for or we are seeking the player
             {
-                WipeTarget(); //wipe target every time we check
+                returnedTarget = false;; //reset this tracker every iteration
                 FieldOfViewCheck(); //look for objects and or player
             }
         }
@@ -120,9 +121,14 @@ public class FieldOfView : MonoBehaviour
                 }
             }
         }
-        else if(canSeeTarget) //if there is nothing in range, but when we last checked we could see the target...
+        else if(canSeeTarget) //if there are not targets in range, but when we last checked, we had a target we could see (very unlikley to trigger)
         {
             WipeTarget(); //we can no longer see the target
+        }
+
+        if(canSeeTarget && !returnedTarget) //if this iteration did not return a target, but we had a target when we last checked,
+        {
+            WipeTarget();
         }
     }
 
@@ -137,6 +143,7 @@ public class FieldOfView : MonoBehaviour
                 {
                     NewTarget(found); //our target is now this found object
                     canSeeTarget = true; //if the raycast doesnt hit anything then there is no obstruction
+                    returnedTarget = true;
                 }
                 else if(target == found) //if we cant see it, but this was our current target...
                 {

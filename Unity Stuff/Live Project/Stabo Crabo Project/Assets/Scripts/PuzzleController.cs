@@ -1,39 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+/*ublic class PuzzleOutput
+{
+    public enum OutputType {CallFunction, Destroy, Instantiate, ToggleActive}
+    public OutputType myOutputType;
+    public string functionName;
+    //public var functionVariable; //the variable to pass through the function
+    public GameObject targetObject; //the object to be destroyed, created, toggled, or function called
+    public Transform instantiatePosition; //where an instantiated object will spawn
+
+
+}
+*/
+
+
 
 public class PuzzleController : MonoBehaviour
 {
-    //this script will be applied to empty game objects in order to make puzzles work
-
-    //type of trigger
-    public enum Trigger {ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, Object = 300}
+    //triggers and inputs
+    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400}
     public Trigger myTrigger;
-
-    //required gameobject
     public string lookForTag;
-    public GameObject lookForObject;
+    public List<GameObject> lookForObjects;
 
-    //resulting action
-    public enum Result {Animation = 100, NPCDestination = 200, CreateObject = 300, CallMethod = 400, ToggleActive = 500}
-    public Result myResult;
-
-    //result variables
-    public Animator animator;
-    public string animTrigger;
-    public Transform targetPoint; //used for spawning objects, or setting NPC destinations
-    public NPCController NPC;
-    public GameObject spawnPrefab;
+    private List<GameObject> heldObjects; //used for keeping track of any target objects that are within bounds
+    private GameObject triggerObject; //used to track which object in particular set this off
+    //results and outputs
+    public UnityEvent myOutput;
     [SerializeField]
-    private List<string> calledMethods;
-    
-    public List<GameObject> destroyObjects;
-    
+    private List<GameObject> destroyObjects; //these objects will be destroyed as part of the output
+    [SerializeField]
+    private bool destroyTrigger; //add in whichever object triggered this script to be destroyed
 
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
-        //trigger type
-        switch(myTrigger)
+        if(myTrigger == Trigger.OnStart) //immediately trigger this outcome 
+        {
+            Outcome();
+        }
+    }
+
+
+    void OnTriggerEnter(Collider other) //triggering the input
+    {
+        triggerObject = other.gameObject;
+        //selection based off trigger types
+        switch(myTrigger) 
         {
             case Trigger.ObjectTag:
                 if(other.tag == lookForTag) //if the tag matches
@@ -46,7 +61,7 @@ public class PuzzleController : MonoBehaviour
                 {
                     if(other.GetComponent<PlayerController>().grabObject) //if the grab object has been assigned
                     {
-                        if(other.GetComponent<PlayerController>().grabObject.gameObject == lookForObject) //player is holding target object
+                        if(lookForObjects.Contains(other.GetComponent<PlayerController>().grabObject.gameObject)) //player is holding any of the target objects
                         {
                             Outcome();
                         }
@@ -58,7 +73,7 @@ public class PuzzleController : MonoBehaviour
                 {
                     if(other.GetComponent<PlayerController>().grabObject) //if the grab object has been assigned
                     {
-                        if(other.GetComponent<PlayerController>().grabObject.gameObject != lookForObject) //player is not holding target object
+                        if(!lookForObjects.Contains(other.GetComponent<PlayerController>().grabObject.gameObject)) //player is not holding any of the target object
                         {
                             Outcome();
                         }
@@ -69,54 +84,56 @@ public class PuzzleController : MonoBehaviour
                     }
                 }
                 break;
-            case Trigger.Object:
-                if(other.gameObject == lookForObject) //if the game objects match
+            case Trigger.AnyObject:
+                if(lookForObjects.Contains(other.gameObject)) //if the game object matches the list of possible objects
                 {
                     Outcome();
+                }
+                break;
+            case Trigger.AllObjects:
+                if(lookForObjects.Contains(other.gameObject))
+                {
+                    heldObjects.Add(other.gameObject); //add this object to storage
+                    if(MatchLists(lookForObjects, heldObjects)) //if the storage lists contains all the required objects
+                    {
+                        Outcome();
+                    }
                 }
                 break;
         }
     }
 
+    private bool MatchLists(List<GameObject> L1, List<GameObject> L2) //check that all the elements of L1 are somewhere in L2
+    {
+        for(int i = 0; i < L1.Count; i++)
+        {
+            if(!L2.Contains(L1[i])) //if the L1 element is NOT anywhere in L2
+            {
+                return false; //the lists don't match
+            }
+        }
+        return true;
+
+    }
+
     void Outcome() //called when trigger is succesful
     {
-        switch(myResult)
-        {
-            case Result.Animation:
-                if(!animator.GetBool(animTrigger)) //if the trigger has not already been triggered
-                {
-                    Debug.Log("Calling Anim" + animTrigger);
-                    animator.SetTrigger(animTrigger); //play animation
-                }
-                break;
-            case Result.NPCDestination:
-            Debug.Log("Setting Destination");
-                NPC.agent.SetDestination(targetPoint.position); //set NPC navmesh destination
-                break;
-            case Result.CreateObject:
-                Instantiate(spawnPrefab, targetPoint.position, targetPoint.rotation);//spawn a prefab
-                break;
-            case Result.CallMethod:
-                foreach(string method in calledMethods)
-                {
-                    targetPoint.gameObject.SendMessage(method); //call desired function on the gameobject defined by the target point transform
-                }                
-                break;
-            case Result.ToggleActive:
-                if(targetPoint.gameObject.activeSelf)
-                {
-                    targetPoint.gameObject.SetActive(false);
-                }
-                else
-                {
-                    targetPoint.gameObject.SetActive(true);
-                }
-                break;
-        }
+        myOutput.Invoke(); //call all the output events
+
         foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it
         {
             Destroy(x);
         }
+        if(destroyTrigger)
+        {
+            Debug.Log("Destroying Trigger " + triggerObject);
+            Destroy(triggerObject);
+        }
+    }
+
+    public void CreateObject(GameObject obj) //specialised function that can be called from the event
+    {
+        Instantiate(obj, transform.position, transform.rotation); //create an object at the desired location
     }
 
 }
