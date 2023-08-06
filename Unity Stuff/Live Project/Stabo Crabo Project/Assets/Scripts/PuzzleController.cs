@@ -103,6 +103,20 @@ public class PuzzleController : MonoBehaviour
         }
     }
 
+    void OnTriggerExit (Collider other)
+    {
+        switch(myTrigger)
+        {
+            case Trigger.AllObjects:
+                if(heldObjects.Contains(other.gameObject)) //if the exiting object was one of our stored objects
+                {
+                    heldObjects.Remove(other.gameObject); //remove it from the held list
+                }
+            break;
+        }
+       
+    }
+
     private bool MatchLists(List<GameObject> L1, List<GameObject> L2) //check that all the elements of L1 are somewhere in L2
     {
         for(int i = 0; i < L1.Count; i++)
