@@ -21,10 +21,13 @@ using UnityEngine.Events;
 public class PuzzleController : MonoBehaviour
 {
     //triggers and inputs
-    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400}
+    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400, Timed = 500}
     public Trigger myTrigger;
     public string lookForTag;
     public List<GameObject> lookForObjects;
+    public float timerBase;
+    public float timerVariance;
+    private float currentTime = 0.0f;
 
     private List<GameObject> heldObjects; //used for keeping track of any target objects that are within bounds
     private GameObject triggerObject; //used to track which object in particular set this off
@@ -34,12 +37,32 @@ public class PuzzleController : MonoBehaviour
     private List<GameObject> destroyObjects; //these objects will be destroyed as part of the output
     [SerializeField]
     private bool destroyTrigger; //add in whichever object triggered this script to be destroyed
+    [SerializeField]
+    private List<GameObject> spawnProps; //these objects will be created at this puzzle object's positon and rotation
 
     void Start()
     {
         if(myTrigger == Trigger.OnStart) //immediately trigger this outcome 
         {
             Outcome();
+        }
+    }
+
+    void Update()
+    {
+        switch(myTrigger)
+        {
+            case Trigger.Timed:
+                if(currentTime <= 0) //if timer reachs 0
+                {
+                    Outcome();
+                    currentTime = Random.Range(timerBase - timerVariance, timerBase + timerVariance); //set new random time within range
+                }
+                else
+                {
+                    currentTime -= 1 * Time.deltaTime; //tick down the timer
+                }
+            break;
         }
     }
 
@@ -137,6 +160,16 @@ public class PuzzleController : MonoBehaviour
         foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it
         {
             Destroy(x);
+        }
+        if(destroyTrigger)
+        {
+            Debug.Log("Destroying Trigger " + triggerObject);
+            Destroy(triggerObject);
+        }
+
+        foreach(var x in spawnProps) //run through the spawn props list and spawn everything in it
+        {
+            Instantiate(x, transform.position, transform.rotation, GameObject.Find("_Props").transform);
         }
         if(destroyTrigger)
         {

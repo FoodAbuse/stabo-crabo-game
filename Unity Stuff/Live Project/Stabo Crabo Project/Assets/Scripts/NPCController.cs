@@ -23,6 +23,8 @@ public class NPCController : Interactable
     public float newDestTimeMin = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination'
     public float newDestTimeMax = 15.0f;
     private float countdownToNewDestination = 0.0f;
+    public float fleeTime = 5.0f; //how long NPC will flee for
+    private Transform fleeFrom; //where the NPC is fleeing from
     //attacking stats
     [SerializeField]
     private float shoveCDBase; //what the atack cooldown resets to
@@ -217,9 +219,14 @@ public class NPCController : Interactable
             break;
             case States.Fleeing:
                 agent.speed = speedRun;
+                agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f); //set destination away from point of fear
+                Debug.DrawRay(transform.position, agent.destination, Color.white, 0.0f, false);
             break;
             case States.Pickup:
-                handTarget.position = FOV.target.GetComponent<Collider>().ClosestPoint(handR.position); //instantly move the hand target to the target's position
+                if(FOV.target)
+                {
+                    handTarget.position = FOV.target.GetComponent<Collider>().ClosestPoint(handR.position); //instantly move the hand target to the target's position
+                } 
                 handRig.weight = Mathf.Lerp(handRig.weight, 1.0f, 3 * Time.deltaTime); //increase the weight of the rig over time
             break;
             case States.ReturningObj:
@@ -394,17 +401,27 @@ public class NPCController : Interactable
             }
 
             animator.SetTrigger("Stabbed"); //play the hurt animation
-
-            //super specific case at the moment -  Ideally changing NPC behaviour off of stabs can be wrapped into the puzzle controllers
-            /*if(myBehaviour == Behaviours.CarryingEsky)
-            {
-                myBehaviour = Behaviours.Roaming;
-                agent.enabled = true;
-                animator.SetFloat("IdleBehaviour",0.0f);
-                countdownToNewDestination = newDestTimeMin; //reset the countdown
-                ToggleSpeechBubble();
-            }*/
+            StartCoroutine("Flee", stabOrigin); //after the stab animation the NPC will flee
         }        
+    }
+
+    public IEnumerator Flee(Transform crabPos)
+    {
+        if(fleeTime == 0.0f)
+        {
+            yield return null;
+        }
+        fleeFrom = crabPos;
+        myState = States.Fleeing;
+        yield return new WaitForSeconds(fleeTime);
+        canBeStabbed = true;
+        agent.SetDestination(transform.position); //set destination to current pos stops movement
+        myState = States.Standing;
+        fleeFrom = null;
+
+        
+
+
     }
 
     public void ResumeBehaviour()
