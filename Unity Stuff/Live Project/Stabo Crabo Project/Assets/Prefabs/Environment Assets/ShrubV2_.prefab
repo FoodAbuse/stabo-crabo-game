@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1228530559117755359}
-  - component: {fileID: 8122399051626670767}
-  - component: {fileID: 4505103743501030116}
   - component: {fileID: 347564711804283700}
   m_Layer: 0
   m_Name: ShrubV2_
@@ -30,25 +28,73 @@ Transform:
   m_LocalPosition: {x: 5.31, y: 0, z: 6.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8687045895545337475}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &347564711804283700
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3768776310489063651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8468622
+  m_Height: 3.43
+  m_Direction: 1
+  m_Center: {x: -0.000056535006, y: 0.57, z: -0.0013045669}
+--- !u!1 &6759738293053035967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8687045895545337475}
+  - component: {fileID: 1817913664699555827}
+  - component: {fileID: 6271086300736710584}
+  m_Layer: 0
+  m_Name: Shrub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8687045895545337475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759738293053035967}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.007, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1228530559117755359}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8122399051626670767
+--- !u!33 &1817913664699555827
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3768776310489063651}
-  m_Mesh: {fileID: 7001282676187304790, guid: 28fb73dfdada4874683b0615060185ff, type: 3}
---- !u!23 &4505103743501030116
+  m_GameObject: {fileID: 6759738293053035967}
+  m_Mesh: {fileID: 7001282676187304790, guid: 21e771b08c0910642a64f83cb7b92e70, type: 3}
+--- !u!23 &6271086300736710584
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3768776310489063651}
+  m_GameObject: {fileID: 6759738293053035967}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,8 +108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44cba44037df96e4f91c63020f49eb4a, type: 2}
-  - {fileID: 2100000, guid: 7a9e76a5748aaca4e91d1a07e4675da4, type: 2}
+  - {fileID: 2100000, guid: 5880d3a44b106ce4d9f9111d5156f5cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,17 +130,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &347564711804283700
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3768776310489063651}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.8468622
-  m_Height: 3.43
-  m_Direction: 1
-  m_Center: {x: -0.000056535006, y: 0.57, z: -0.0013045669}
