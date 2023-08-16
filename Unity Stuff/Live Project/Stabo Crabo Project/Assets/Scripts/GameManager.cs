@@ -51,16 +51,30 @@ public class GameManager : MonoBehaviour
             if(levelPhase == 0) //if in intro phase
             {
                 StopCoroutine(currentRoutine);
-                acceptPlayerInput = true;
-                levelPhase = 1;
-                cam.SwitchCamera(2);
-                ui.ShowHint(hintList[0]); //show first hint
-                currentHint = hintList[0];
+                IntroCutSceneEnd(); //End the Intro CutScene
+
+            }
+            else if(ui.panelCurrent == ui.panelHints) //exit the hints menu
+            {
+                ui.ExitMenu();
             }
             else
             {
                 TogglePause(); //pause the game
             }
+        }
+
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            if(ui.panelCurrent == ui.panelHints)
+            {
+                ui.ExitMenu(); //if we are already in the hint menu, exit it
+            }
+            else if(!ui.panelCurrent) //only bring up hints if no other menus are open
+            {
+                ui.MenuScreen(ui.panelHints); //enable hints menu
+            }
+
         }
 
         KeepTime(); //tracks up time in level
@@ -105,14 +119,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         cam.SwitchCamera(2);
         yield return new WaitForSeconds(1.0f);
-        acceptPlayerInput = true;
-        levelPhase = 1;
+        IntroCutSceneEnd();
         foreach(GameObject target in targetList) //turn off all identifiers
         {
            // target.GetComponent<NPCController>().ToggleIdentify();
         }
+    }
+
+    private void IntroCutSceneEnd()
+    {
+        acceptPlayerInput = true;
+        levelPhase = 1;
+        cam.SwitchCamera(2);
         ui.ShowHint(hintList[0]); //show first hint
         currentHint = hintList[0];
+        ui.hintIcon.SetActive(true);
     }
 
     public static void TogglePause() //at the moment NPCs and animations etc will not bne paused, just crab will

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject panelTitle;
     public GameObject panelMain;
     public GameObject panelPause;
+    public GameObject panelHints;
+    public GameObject hintIcon;
     [SerializeField]
     private GameObject panelEndScreen;
     [SerializeField]
@@ -25,7 +27,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Animator escapePanel;
 
-    private GameObject panelCurrent; //the pannel that is currently active
+    public GameObject panelCurrent; //the pannel that is currently active
 
 
     void Awake()
@@ -45,7 +47,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         InitialisePanels();//initial set of UI variables
-        panelCurrent = panelTitle;
+        //panelCurrent = panelTitle;
         
     }
 
@@ -55,32 +57,27 @@ public class UIManager : MonoBehaviour
         {
             if(Input.anyKey) //checks for any input
             {
-                /*panelTitle.SetActive(false); //disables title screen
-                panelMain.SetActive(true); //enables main menu
-                panelCurrent = panelMain;*/
+                panelTitle.SetActive(false); //disables title screen
                 MenuScreen(panelMain);
             }
-
         }
 
-        if(Input.GetKey(KeyCode.Escape)) //when esc is pushed
-        {
-            //call menuscreen method passing pause panel
-            //pause the game
-        }
+        
         
     }
 
     public void MenuScreen(GameObject targetPanel) //changes the current menu panel
     {
-        panelCurrent.SetActive(false); //disable the currently active panel
+        ExitMenu(); //if there is an active panel, disable it
         targetPanel.SetActive(true); //activate the new panel
         panelCurrent = targetPanel;
     }
 
     public void ExitMenu()//closes current menu screen
     {
+        if(!panelCurrent){return;} //if we have no active panel, return
         panelCurrent.SetActive(false);
+        panelCurrent = null;
     }
 
     public void TitleAnimation() //starts an animation that ends with the title screen being visible

@@ -1513,6 +1513,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &31835093
 PrefabInstance:
@@ -3412,6 +3413,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &87332627
 Rigidbody:
@@ -7628,6 +7630,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!65 &171251832
 BoxCollider:
@@ -9089,6 +9092,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &201355728
 Rigidbody:
@@ -19670,6 +19674,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &466547859 stripped
 Transform:
@@ -23710,6 +23715,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &602391437
 GameObject:
@@ -24333,18 +24339,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc3931f7cd82a5488314694c0b728aa, type: 3}
---- !u!114 &629925583 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5371976132157888113, guid: 7b1d5d4698a708742a05b777e71fe5da,
-    type: 3}
-  m_PrefabInstance: {fileID: 5371976132743003276}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &632545919
 GameObject:
   m_ObjectHideFlags: 0
@@ -27091,6 +27085,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &709605217
 GameObject:
@@ -27726,6 +27721,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &724221463 stripped
 GameObject:
@@ -27752,6 +27748,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 762798808}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!64 &724221466
 MeshCollider:
@@ -30747,6 +30744,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 750fa8ec7696b094c9b4dcead57af8c4, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1392679052}
+    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1126237880}
+    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 888404354}
     - targetCorrespondingSourceObject: {fileID: 3130753726283643761, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
         type: 3}
       insertIndex: -1
@@ -30763,18 +30772,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 925865144}
-    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1392679052}
-    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1126237880}
-    - targetCorrespondingSourceObject: {fileID: 7957998539307578988, guid: 85aa8194b9dc9304cb82fbdc29d58d17,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 888404354}
   m_SourcePrefab: {fileID: 100100000, guid: 85aa8194b9dc9304cb82fbdc29d58d17, type: 3}
 --- !u!1001 &805877948
 PrefabInstance:
@@ -32138,6 +32135,7 @@ MonoBehaviour:
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!64 &835064319
 MeshCollider:
@@ -43958,6 +43956,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!65 &1230407520
 BoxCollider:
@@ -44698,6 +44697,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1253027401
 Rigidbody:
@@ -48777,6 +48777,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1341508735
 Rigidbody:
@@ -50172,6 +50173,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &1391758145
 PrefabInstance:
@@ -54185,6 +54187,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1513909507
 GameObject:
@@ -58197,6 +58200,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1665858563
 GameObject:
@@ -58437,6 +58441,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1667781784
 Rigidbody:
@@ -59040,6 +59045,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1694930038
 GameObject:
@@ -61187,6 +61193,7 @@ MonoBehaviour:
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1795347700
 Rigidbody:
@@ -61474,6 +61481,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!54 &1807915873
 Rigidbody:
@@ -63295,6 +63303,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &1863786601
 GameObject:
@@ -69449,6 +69458,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1 &2021299751
 GameObject:
@@ -69538,12 +69548,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6856548330693484626, guid: 6b8dcc574b88ba547aa9cc5d0f5fbb5c,
     type: 3}
   m_PrefabInstance: {fileID: 1951209661}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2025902311 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5371976132114924781, guid: 7b1d5d4698a708742a05b777e71fe5da,
-    type: 3}
-  m_PrefabInstance: {fileID: 5371976132743003276}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2027769385
 PrefabInstance:
@@ -74289,51 +74293,25 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1667152045, guid: 7b1d5d4698a708742a05b777e71fe5da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 780550876795127509, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 876282154}
-    - target: {fileID: 780550876795127509, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadNextLevel
-      objectReference: {fileID: 0}
     - target: {fileID: 2271985931538896621, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 876282154}
-    - target: {fileID: 2271985931538896621, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ReloadLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2271985931538896621, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: LevelLoader, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2271985931538896621, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371976132157888119, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_Name
-      value: Txt_EndTime
-      objectReference: {fileID: 0}
     - target: {fileID: 5371976133093002382, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1303829069}
-    - target: {fileID: 5371976133093002382, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitApplication
-      objectReference: {fileID: 0}
     - target: {fileID: 5371976133249815174, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -74349,16 +74327,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5371976133941878613, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: timeText
-      value: 
-      objectReference: {fileID: 629925583}
-    - target: {fileID: 5371976133941878613, guid: 7b1d5d4698a708742a05b777e71fe5da,
-        type: 3}
-      propertyPath: panelEndScreen
-      value: 
-      objectReference: {fileID: 2025902311}
     - target: {fileID: 5371976133941878614, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_RootOrder
