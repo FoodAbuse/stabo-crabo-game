@@ -25,9 +25,9 @@ public class GameManager : MonoBehaviour
     
     public static bool acceptPlayerInput = true;
 
-    //hint tracking
-    private static List<string> hintList;
-    private static string currentHint;
+    //tip tracking
+    private static List<string> tipList; //list of controls tips to send the player
+    private static string currentTip;
 
     private Coroutine currentRoutine;
 
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         InitialiseTargets();//initialise target list
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
-        hintList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the hintList
+        tipList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the tipList
         currentRoutine = StartCoroutine(IntroCutScene()); //play the intro cut-scene
     }
 
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
                 IntroCutSceneEnd(); //End the Intro CutScene
 
             }
-            else if(ui.panelCurrent == ui.panelHints) //exit the hints menu
+            else if(ui.panelCurrent == ui.panelHints) //exit the Hints menu
             {
                 ui.ExitMenu();
             }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         {
             if(ui.panelCurrent == ui.panelHints)
             {
-                ui.ExitMenu(); //if we are already in the hint menu, exit it
+                ui.ExitMenu(); //if we are already in the tip menu, exit it
             }
             else if(!ui.panelCurrent) //only bring up hints if no other menus are open
             {
@@ -80,20 +80,20 @@ public class GameManager : MonoBehaviour
         KeepTime(); //tracks up time in level
     }
 
-    public static IEnumerator NextHint(string hint) //called by other objects
+    public static IEnumerator NextTip(string tip) //called by other objects
     {
-        if(currentHint == hint) //if called hint is being shown
+        if(currentTip == tip) //if called tip is being shown
         {
-            //if(hintList[0] == hint) //if my hint is at the start of the list
+            //if(tipList[0] == tip) //if my tip is at the start of the list
             //{
-                ui.HideHint();
-                hintList.Remove(hint);
-                currentHint = null;
-                if(hintList.Count != 0) //if there is anything left in the hint array
+                ui.HideTip();
+                tipList.Remove(tip);
+                currentTip = null;
+                if(tipList.Count != 0) //if there is anything left in the tip array
                 {
                     yield return new WaitForSeconds(1.0f);
-                    ui.ShowHint(hintList[0]); //show the next hint
-                    currentHint = hintList[0];
+                    ui.ShowTip(tipList[0]); //show the next tip
+                    currentTip = tipList[0];
                 }
             //}
         }
@@ -131,8 +131,8 @@ public class GameManager : MonoBehaviour
         acceptPlayerInput = true;
         levelPhase = 1;
         cam.SwitchCamera(2);
-        ui.ShowHint(hintList[0]); //show first hint
-        currentHint = hintList[0];
+        ui.ShowTip(tipList[0]); //show first tip
+        currentTip = tipList[0];
         ui.hintIcon.SetActive(true);
     }
 
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         //check if there is a next level, and unlock it
 
         ui.Outro(); //outro animation and UI changes
-        ui.HideHint(); //hide the escape text hint
+        ui.HideTip(); //hide the escape text tip
 
         //zoom out camera and play crab animation or something
 

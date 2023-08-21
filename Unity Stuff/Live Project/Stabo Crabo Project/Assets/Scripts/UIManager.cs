@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     //animators
     [SerializeField]
     private Animator titleAnimator;
-    private Animator hintAnimator;
+    private Animator tipAnimator;
     [SerializeField]
     private Animator escapePanel;
 
@@ -90,23 +90,23 @@ public class UIManager : MonoBehaviour
         //this is here in case there are static reference panels that need initialising
     }
 
-    public void ShowHint(string hintKey) //starts a hint fade-in animation
+    public void ShowTip(string tipKey) //starts a tip fade-in animation
     {
-        hintAnimator = GameObject.Find("Txt_" + hintKey + "Hint").GetComponent<Animator>(); //assigns the appropriate animator
-        hintAnimator.SetBool("Visible", true); //starts it's animaton
+        tipAnimator = GameObject.Find("Txt_" + tipKey + "Tip").GetComponent<Animator>(); //assigns the appropriate animator
+        tipAnimator.SetBool("Visible", true); //starts it's animaton
     }
-    public void HideHint() //starts a hint fade-out animation
+    public void HideTip() //starts a tip fade-out animation
     {
-        if(hintAnimator) //if the animator is not null
+        if(tipAnimator) //if the animator is not null
         {
-            hintAnimator.SetBool("Visible", false); //starts the fade out - this only works if the animator has already been assigned using the ShowHint method
+            tipAnimator.SetBool("Visible", false); //starts the fade out - this only works if the animator has already been assigned using the ShowTip method
         }
-        hintAnimator = null; //reset the animator to null
+        tipAnimator = null; //reset the animator to null
     }
 
     public void EscapeScreen() //called form game manager for escape phase
     {
-        ShowHint("Escape"); //bring up esape text
+        ShowTip("Escape"); //bring up esape text
         escapePanel.SetBool("Visible", true); //the escape panel animation
     }
 

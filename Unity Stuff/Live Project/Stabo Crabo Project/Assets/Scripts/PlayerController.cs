@@ -129,10 +129,10 @@ public class PlayerController : MonoBehaviour
     {
         if(moveDirection.magnitude > 0.1) //if there is some movement:
         {
-            StartCoroutine(GameManager.NextHint("Move")); //disable hint
+            StartCoroutine(GameManager.NextTip("Move")); //disable tip
             if(isSprinting)
             {
-                StartCoroutine(GameManager.NextHint("Sprint")); //disable hint
+                StartCoroutine(GameManager.NextTip("Sprint")); //disable tip
                 crabAnimator.SetBool("isRunning", true); //set sprinting animation
                 crabAnimator.SetBool("isWalking", true); //set walking animation > running animation wont work from standstill otherwise
             }
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
         {
             if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
             {
-                StartCoroutine(GameManager.NextHint("Grab")); //disable hint
+                StartCoroutine(GameManager.NextTip("Grab")); //disable tip
                 isGrabbing = true;
                 grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
                 grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1)) //if rmb pressed
         {
-            StartCoroutine(GameManager.NextHint("Stab")); //disable hint
+            StartCoroutine(GameManager.NextTip("Stab")); //disable tip
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
                 armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object
