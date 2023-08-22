@@ -219,7 +219,7 @@ public class NPCController : Interactable
             break;
             case States.Fleeing:
                 agent.speed = speedRun;
-                agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f); //set destination away from point of fear
+                if(agent.enabled){agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f);} //set destination away from point of fear
                 Debug.DrawRay(transform.position, agent.destination, Color.white, 0.0f, false);
             break;
             case States.Pickup:
@@ -368,6 +368,11 @@ public class NPCController : Interactable
         if(!canBeStabbed) //leave this function if the NPC cant be stabbed - would like to move this to a collider collection condition.
         {
             return;
+        }
+
+        if (TryGetComponent<PuzzleController>(out PuzzleController pc))
+        {
+            pc.StabTrigger(); //sets the puzzle controller off if it was set to recieve stabs
         }
 
         DropObject(); //drop anything we are holding

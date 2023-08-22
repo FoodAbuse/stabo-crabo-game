@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class Hint
@@ -18,24 +19,29 @@ public class HintManager : MonoBehaviour
     private int alertNum;
     [SerializeField]
     private GameObject alertIcon; //the icon that shows the number of active hints
+    [SerializeField]
+    private TextMeshProUGUI hintText; //the text that lists all the hints
+    [SerializeField]
+    private TextMeshProUGUI alertText; //the text shows the number of active hints
+
 
     void HintUpdate() //update the text in the hint menu to match the current hint stats
     {
-        //delete the existing text in the menu
+        hintText.text = ""; //erase the existing text
 
         foreach(Hint hint in hintList)
         {
             if(hint.triggered && !hint.achieved) //if the hint has been triggered but not achieved
             {
-                //add the content to the text
+                hintText.text += "\n \u2022 " + hint.content; //add the content to the text
             }
             else if(hint.triggered && hint.achieved) //if the hint has been triggered and achieved
             {
-                //add the content to the text with strikethrough or green + complete or something
+                hintText.text += "\n \u2022 " + hint.content + "done!"; //add the content to the text with strikethrough or green + complete or something
             }
             else
             {
-                //if it has not been triggered ad ???? so that players can see how many hints remain to uncover
+                hintText.text += "\n \u2022 " + "???"; //if it has not been triggered ad ???? so that players can see how many hints remain to uncover
             }
         }
 

@@ -350,7 +350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1667152046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1205,7 +1205,7 @@ GameObject:
   - component: {fileID: 5371976132142769895}
   - component: {fileID: 5371976132142769889}
   m_Layer: 0
-  m_Name: Txt_GrabHint
+  m_Name: Txt_GrabTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1628,7 +1628,7 @@ GameObject:
   - component: {fileID: 5371976132305261414}
   - component: {fileID: 5371976132305261415}
   m_Layer: 0
-  m_Name: Panel_Hints
+  m_Name: Panel_Tips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1950,7 +1950,7 @@ GameObject:
   - component: {fileID: 5371976132559073352}
   - component: {fileID: 5371976132559073354}
   m_Layer: 0
-  m_Name: Txt_StabHint
+  m_Name: Txt_StabTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2923,7 +2923,7 @@ GameObject:
   - component: {fileID: 5371976133196730302}
   - component: {fileID: 5371976133196730296}
   m_Layer: 0
-  m_Name: Txt_SprintHint
+  m_Name: Txt_SprintTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3464,7 +3464,7 @@ GameObject:
   - component: {fileID: 5371976133340377773}
   - component: {fileID: 5371976133340377772}
   m_Layer: 0
-  m_Name: Txt_MoveHint
+  m_Name: Txt_MoveTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3738,7 +3738,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainGame
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 5371976133941878613}
@@ -4649,7 +4649,7 @@ Transform:
   - {fileID: 5371976133814935316}
   - {fileID: 5371976133218362503}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5371976133941878613
 MonoBehaviour:
@@ -5002,7 +5002,7 @@ GameObject:
   - component: {fileID: 1652773290111041107}
   - component: {fileID: 24982549986879917}
   m_Layer: 0
-  m_Name: Txt_EscapeHint
+  m_Name: Txt_EscapeTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

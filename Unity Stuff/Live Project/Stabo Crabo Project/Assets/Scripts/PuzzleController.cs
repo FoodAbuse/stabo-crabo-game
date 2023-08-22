@@ -21,7 +21,7 @@ using UnityEngine.Events;
 public class PuzzleController : MonoBehaviour
 {
     //triggers and inputs
-    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400, Timed = 500}
+    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400, Timed = 500, OnStab = 600}
     public Trigger myTrigger;
     public string lookForTag;
     public List<GameObject> lookForObjects;
@@ -151,6 +151,14 @@ public class PuzzleController : MonoBehaviour
         }
         return true;
 
+    }
+
+    public void StabTrigger() //if we are looking to be stabbed, trigger the outcome
+    {
+        if(myTrigger == Trigger.OnStab)
+        {
+            Outcome();
+        }
     }
 
     void Outcome() //called when trigger is succesful
