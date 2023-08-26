@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrabbing = false;
     private bool isDragging = false;
 
+    public Transform cam;
+
 
     //private Transform grabParent; //commented out because so far everything dropped should go under _prop afterwards
     [HideInInspector]
@@ -93,7 +95,20 @@ public class PlayerController : MonoBehaviour
 
     void MovementInput() //takes player input to move the player character
     {
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
+        float horizontalAxis = Input.GetAxis("Horizontal"); //get input values
+        float verticalAxis = Input.GetAxis("Vertical");
+
+        var forward = cam.forward; //get camera directions
+        var right = cam.right;
+        forward.y = 0; //remove y values from camera directions
+        right.y = 0;
+        forward.Normalize(); //set magnitude to 1
+        right.Normalize();
+
+        moveDirection = (forward * verticalAxis + right * horizontalAxis).normalized;
+
+
+        //moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
             if(Input.GetKey(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
             {
                 isSprinting = true;
