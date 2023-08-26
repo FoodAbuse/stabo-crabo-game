@@ -8,9 +8,9 @@ public class Hint
 {
     public string content;
     public int index;
-    [HideInInspector]
+    //[HideInInspector]
     public bool achieved;
-    [HideInInspector]
+    //[HideInInspector]
     public bool triggered;
 }
 public class HintManager : MonoBehaviour
@@ -33,15 +33,15 @@ public class HintManager : MonoBehaviour
         {
             if(hint.triggered && !hint.achieved) //if the hint has been triggered but not achieved
             {
-                hintText.text += "\n \u2022 " + hint.content; //add the content to the text
+                hintText.text += "\n\u2022 " + hint.content; //add the content to the text
             }
             else if(hint.triggered && hint.achieved) //if the hint has been triggered and achieved
             {
-                hintText.text += "\n \u2022 " + hint.content + "done!"; //add the content to the text with strikethrough or green + complete or something
+                hintText.text += "\n\u2022 " + "<s>" + hint.content + "</s>"; //add the content to the text with strikethrough or green + complete or something
             }
             else
             {
-                hintText.text += "\n \u2022 " + "???"; //if it has not been triggered ad ???? so that players can see how many hints remain to uncover
+                hintText.text += "\n\u2022 " + "???"; //if it has not been triggered ad ???? so that players can see how many hints remain to uncover
             }
         }
 
@@ -87,17 +87,17 @@ public class HintManager : MonoBehaviour
     {
         alertNum += n; //increment the amount
 
-        //update the text on the object to match
+        alertText.text = alertNum.ToString(); //update the text on the object to match
 
         if(alertNum <=0) //if there are no hints to show
         {
             alertNum = 0; //numeric correction
 
-            //hide the alertIcon
+            alertIcon.SetActive(false); //hide the alertIcon
         }
         else
         {
-            //show the alertIcon (it may already be showing but that's fine)
+            alertIcon.SetActive(true); //show the alertIcon (it may already be showing but that's fine)
             //play a sound
         }
     }
