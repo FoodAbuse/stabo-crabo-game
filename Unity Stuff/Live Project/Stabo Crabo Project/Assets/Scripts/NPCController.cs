@@ -207,20 +207,23 @@ public class NPCController : Interactable
         switch(myState)
         {
             case States.Walking:
-                agent.speed = speedWalk;
+                agent.speed = speedRun;
 
                 if(Vector3.Distance(transform.position, agent.destination) <= 0.1f) //if we are ever walking, and we reach our destination and stop walking...
                 {
                     myState = States.Standing; //we are now standing
                 }
+                animator.SetFloat("WalkingBehaviour", 1.0f); //change to walking animation
             break;
             case States.Chasing:
                 agent.speed = speedRun;
+                animator.SetFloat("WalkingBehaviour", 1.0f); //change to running animation
             break;
             case States.Fleeing:
                 agent.speed = speedRun;
                 if(agent.enabled){agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f);} //set destination away from point of fear
                 Debug.DrawRay(transform.position, agent.destination, Color.white, 0.0f, false);
+                animator.SetFloat("WalkingBehaviour", 1.0f); //change to running animation
             break;
             case States.Pickup:
                 if(FOV.target)
@@ -239,6 +242,7 @@ public class NPCController : Interactable
                     handRig.weight = 0.0f; //completely remove the rig incase it hasnt decreased to 0 yet
                 }
                 agent.speed = speedWalk;
+                animator.SetFloat("WalkingBehaviour", 0.0f); //change to walking animation
             break;
         }
     }
