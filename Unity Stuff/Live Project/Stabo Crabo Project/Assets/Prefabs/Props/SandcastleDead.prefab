@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5091065744352386913}
   - component: {fileID: 8846448964937765497}
   - component: {fileID: 4428365985997122925}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7948150282893235026, guid: 6477b273e9d339a499e7ed15c3ba1882, type: 3}
+  - {fileID: 2100000, guid: c67320f35cc4abb409b6e7f41358b327, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,8 @@ GameObject:
   - component: {fileID: 525046528188612580}
   - component: {fileID: 6951329584120740973}
   - component: {fileID: 3443344068220466427}
-  m_Layer: 0
+  - component: {fileID: 7794236085451561554}
+  m_Layer: 9
   m_Name: SandcastleDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +109,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8814750342392893556}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -145,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7948150282893235026, guid: 6477b273e9d339a499e7ed15c3ba1882, type: 3}
+  - {fileID: 2100000, guid: c67320f35cc4abb409b6e7f41358b327, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,3 +168,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7794236085451561554
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814750342392893556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6034983487505095753, guid: 6477b273e9d339a499e7ed15c3ba1882, type: 3}
