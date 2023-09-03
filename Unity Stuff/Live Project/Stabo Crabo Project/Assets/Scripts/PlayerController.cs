@@ -200,11 +200,16 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0)) 
         {
+            StartCoroutine(GameManager.NextTip("Grab")); //disable tip
             if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
             {
-                StartCoroutine(GameManager.NextTip("Grab")); //disable tip
-                isGrabbing = true;
                 grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
+                if(!grabObject.GetComponent<Interactable>().canBeGrabbed) //if the object cannot be grabbed, return
+                {
+                    grabObject = null;
+                    return;
+                }
+                isGrabbing = true;
                 grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
                 //armTargetL.transform.LookAt(grabObject);
                 armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object

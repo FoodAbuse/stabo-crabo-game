@@ -8,6 +8,11 @@ public class ColliderCollection : MonoBehaviour
     public List<string> tagList = new List<string>();
     public bool toggleOutline;
 
+    void Update()
+    {
+        colList.RemoveAll(s => s == null); //remove all null items in list
+    }
+
     //Script for collecting objects that are within collider bounds
     void OnTriggerEnter(Collider other)
     {
@@ -33,6 +38,22 @@ public class ColliderCollection : MonoBehaviour
                 if(colList.Count > 0)
                 {
                     colList[0].GetComponent<Interactable>().ToggleOutline(true); //turns on the outline of the first object in the list - no change if 'other' was not colList[0]
+                }
+            }
+        }
+    }
+
+    public void Remove(Collider self) //called by objects to manually remove themselves from the list
+    {
+        if(tagList.Contains(self.tag) && self.GetComponent<Interactable>())
+        {
+            colList.Remove(self); //removes the collider from the list
+            if(toggleOutline)
+            {
+                self.GetComponent<Interactable>().ToggleOutline(false); //turns off the outline of the object leaving
+                if(colList.Count > 0)
+                {
+                    colList[0].GetComponent<Interactable>().ToggleOutline(true); //turns on the outline of the first object in the list - no change if 'self' was not colList[0]
                 }
             }
         }

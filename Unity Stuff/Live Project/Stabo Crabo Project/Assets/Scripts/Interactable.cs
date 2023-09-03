@@ -69,13 +69,23 @@ public class Interactable : MonoBehaviour
             Instantiate(indicator, stabOrigin.position, stabOrigin.rotation);
             Instantiate(indicator, transform.position, transform.rotation);
         }
-        rb.isKinematic = false;
+        
         if(heldBy && !isHeavy) //if the object is being held and is not heavy (so wont have a character join created)
         {
             transform.parent = GameObject.Find("_Props").transform; //reset parent
             heldBy = null; //is no longer being held
         }
-        rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force. Later it would be nice to have this be affected by the direction of the stab.
+        if(stabForce > 0.0f) //if we have stab force
+        {
+            rb.isKinematic = false;
+            rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force.
+        }
+
+        if (TryGetComponent<PuzzleController>(out PuzzleController pc))
+        {
+            pc.StabTrigger(); //sets the puzzle controller off if it was set to recieve stabs
+        }
+        
     }
 
     void GetOutlineRef()
