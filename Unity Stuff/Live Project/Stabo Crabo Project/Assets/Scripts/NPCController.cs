@@ -213,7 +213,7 @@ public class NPCController : Interactable
                 {
                     myState = States.Standing; //we are now standing
                 }
-                animator.SetFloat("WalkingBehaviour", 1.0f); //change to walking animation
+                animator.SetFloat("WalkingBehaviour", 0.0f); //change to walking animation
             break;
             case States.Chasing:
                 agent.speed = speedRun;
@@ -223,7 +223,7 @@ public class NPCController : Interactable
                 agent.speed = speedRun;
                 if(agent.enabled){agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f);} //set destination away from point of fear
                 Debug.DrawRay(transform.position, agent.destination, Color.white, 0.0f, false);
-                animator.SetFloat("WalkingBehaviour", 1.0f); //change to running animation
+                animator.SetFloat("WalkingBehaviour", 2.0f); //change to fleeing animation
             break;
             case States.Pickup:
                 if(FOV.target)
@@ -488,5 +488,10 @@ public class NPCController : Interactable
         {
             myState = States.Standing; //now we are just standing (can change this to fleeing if needed)
         }
+    }
+
+    public void PlayAnimation(string newAnim) //called from puzzle objects to trigger aniamtions
+    {
+        animator.Play(newAnim); //play the new animation
     }
 }

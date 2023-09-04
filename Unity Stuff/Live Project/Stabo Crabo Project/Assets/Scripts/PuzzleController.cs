@@ -46,6 +46,7 @@ public class PuzzleController : MonoBehaviour
         {
             Outcome();
         }
+        currentTime = Random.Range(timerBase - timerVariance, timerBase + timerVariance); //initially set the timer to not be 0 (can just use on start for that) 
     }
 
     void Update()
