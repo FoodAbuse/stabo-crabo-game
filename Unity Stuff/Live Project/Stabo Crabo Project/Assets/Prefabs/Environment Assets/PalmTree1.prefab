@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4354440012149572611}
   - component: {fileID: 6488706324435341740}
   - component: {fileID: 6478082136356385744}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 60287516515704113}
   - component: {fileID: 7806187042301875829}
   - component: {fileID: 3081215694102312621}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2435274396076596563}
   - component: {fileID: 6298065694936654711}
   - component: {fileID: 5738232428457238692}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 6043542634181256394}
   - component: {fileID: 8333470513851029910}
   - component: {fileID: 2402486392681507510}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: coconut_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 8152429431091503930}
   - component: {fileID: 4046220415427303507}
   - component: {fileID: 480612677904659408}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree__trunk_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 4676571585652189885}
   - component: {fileID: 6995795189832428542}
   - component: {fileID: 4381340004982331092}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 4492782006378688598}
   - component: {fileID: 3436018707020155075}
   - component: {fileID: 4752146605488797803}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 4977526718162191135}
   - component: {fileID: 3292085003513604293}
   - component: {fileID: 8714581657729538282}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: coconut_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1302158845392070834}
   - component: {fileID: 3689875779098938835}
   - component: {fileID: 939973263196225551}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PalmTree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ Transform:
   - {fileID: 2796012491278951926}
   - {fileID: 9086558895818813731}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3689875779098938835
 CapsuleCollider:
@@ -779,12 +779,12 @@ NavMeshObstacle:
   m_GameObject: {fileID: 1826739882040128008}
   m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.25, y: 1, z: 0.25}
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.06, y: 0, z: -0.03}
+  m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1 &2478439338137175042
 GameObject:
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 8124391482552599324}
   - component: {fileID: 2498385762424156062}
   - component: {fileID: 8038757823432392873}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 5622788716615151741}
   - component: {fileID: 5369519873197543506}
   - component: {fileID: 5529687511852597109}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 7386515031348371918}
   - component: {fileID: 6622902379905292194}
   - component: {fileID: 7122836315205939249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 4224939931952097982}
   - component: {fileID: 8700436800340909867}
   - component: {fileID: 9069081776329524492}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 9182436006408361525}
   - component: {fileID: 6976837894444493922}
   - component: {fileID: 150386819442699332}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 7851424132158595255}
   - component: {fileID: 7235327302613265387}
   - component: {fileID: 1503009639061581420}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1301,7 @@ GameObject:
   - component: {fileID: 1877362302305924470}
   - component: {fileID: 5145591500495964859}
   - component: {fileID: 4406034039979208999}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 1850559766263924451}
   - component: {fileID: 296508807552362354}
   - component: {fileID: 7257990349807152033}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: coconut_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 969733061375447190}
   - component: {fileID: 4788215375448895783}
   - component: {fileID: 1654100327242547149}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1552,7 @@ GameObject:
   - component: {fileID: 3068757617397196076}
   - component: {fileID: 5721891601130743072}
   - component: {fileID: 4398589746241313618}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 2550313579941399747}
   - component: {fileID: 5942874373432637257}
   - component: {fileID: 3752217742429244466}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: coconut_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 7642709514449054173}
   - component: {fileID: 8930373661137240626}
   - component: {fileID: 2525084524785496550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: tree_trunk_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1803,7 +1803,7 @@ GameObject:
   - component: {fileID: 7441623151813678655}
   - component: {fileID: 8103116664098859976}
   - component: {fileID: 8920791320104836238}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: leaf_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
