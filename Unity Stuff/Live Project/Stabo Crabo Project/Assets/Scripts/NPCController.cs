@@ -207,7 +207,7 @@ public class NPCController : Interactable
         switch(myState)
         {
             case States.Walking:
-                agent.speed = speedRun;
+                agent.speed = speedWalk;
 
                 if(Vector3.Distance(transform.position, agent.destination) <= 0.1f) //if we are ever walking, and we reach our destination and stop walking...
                 {
