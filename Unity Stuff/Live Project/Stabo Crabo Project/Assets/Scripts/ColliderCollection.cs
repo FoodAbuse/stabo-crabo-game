@@ -16,10 +16,10 @@ public class ColliderCollection : MonoBehaviour
     //Script for collecting objects that are within collider bounds
     void OnTriggerEnter(Collider other)
     {
-        if(tagList.Contains(other.tag) && other.GetComponent<Interactable>()) //if it has a matching tag and has interactable script
+        if(tagList.Contains(other.tag)) //if it has a matching tag and has interactable script
         {
             colList.Add(other); //adds the collider to the list
-            if(toggleOutline)
+            if(toggleOutline && other.GetComponent<Interactable>()) //if we want an outline, and the object is interactable
             {
                 colList[0].GetComponent<Interactable>().ToggleOutline(true); //turns on the outline of the first object in the list
             }
