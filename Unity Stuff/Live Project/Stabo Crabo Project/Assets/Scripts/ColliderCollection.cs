@@ -29,15 +29,18 @@ public class ColliderCollection : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if(tagList.Contains(other.tag) && other.GetComponent<Interactable>())
+        if(tagList.Contains(other.tag))
         {
             colList.Remove(other); //removes the collider from the list
-            if(toggleOutline)
+            if(toggleOutline  && other.GetComponent<Interactable>())
             {
                 other.GetComponent<Interactable>().ToggleOutline(false); //turns off the outline of the object leaving
                 if(colList.Count > 0)
                 {
-                    colList[0].GetComponent<Interactable>().ToggleOutline(true); //turns on the outline of the first object in the list - no change if 'other' was not colList[0]
+                    if(colList[0].GetComponent<Interactable>())
+                    {
+                        colList[0].GetComponent<Interactable>().ToggleOutline(true); //turns on the outline of the first object in the list - no change if 'other' was not colList[0]
+                    }
                 }
             }
         }

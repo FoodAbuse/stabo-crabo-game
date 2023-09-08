@@ -217,13 +217,13 @@ public class NPCController : Interactable
             break;
             case States.Chasing:
                 agent.speed = speedRun;
-                animator.SetFloat("WalkingBehaviour", 1.0f); //change to running animation
+                animator.SetFloat("WalkingBehaviour", 0.5f); //change to running animation
             break;
             case States.Fleeing:
                 agent.speed = speedRun;
                 if(agent.enabled){agent.SetDestination(transform.position+(transform.position - fleeFrom.position).normalized*1.2f);} //set destination away from point of fear
                 Debug.DrawRay(transform.position, agent.destination, Color.white, 0.0f, false);
-                animator.SetFloat("WalkingBehaviour", 2.0f); //change to fleeing animation
+                animator.SetFloat("WalkingBehaviour", 1.0f); //change to fleeing animation
             break;
             case States.Pickup:
                 if(FOV.target)
