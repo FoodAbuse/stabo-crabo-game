@@ -5,7 +5,7 @@ using UnityEngine;
 public class HairSelection : MonoBehaviour
 {
     public bool randomHair = true;
-    public bool isFemale;
+    public bool isFemale = false;
 
     public int randomColourRef;
     public int randomStyleRef;
@@ -17,7 +17,9 @@ public class HairSelection : MonoBehaviour
 
     void Awake()
     {
-        // temporary - randomizes gender
+        // temporarily disabled - randomizes gender
+
+        /*
         int genderCoinflip = Random.Range(1, 3);
         if (genderCoinflip == 1)
         {
@@ -27,6 +29,7 @@ public class HairSelection : MonoBehaviour
         {
             isFemale = false;
         }
+        */
 
 
         // Checks if NPC wants randomized hair
