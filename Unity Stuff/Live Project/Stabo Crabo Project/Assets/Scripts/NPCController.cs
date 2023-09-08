@@ -53,7 +53,7 @@ public class NPCController : Interactable
 
     //NPC behaviour variable
     public enum Behaviours {Idle = 100, Roaming = 200, Sleeping = 300, Defending = 400, Guarding = 500, Dead = 900}
-    public enum States {Standing, Sitting, Lying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj} //these are things that an NPC can do based on what the behaviour dictates
+    public enum States {Standing, Sitting, Lying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj, Swimming} //these are things that an NPC can do based on what the behaviour dictates
     public Behaviours myBehaviour; //The Current behaviour of the NPC
     [SerializeField]
     private States myState;
@@ -99,6 +99,9 @@ public class NPCController : Interactable
                 break;
             case States.Lying:
                 animator.Play("NPC_LyingDown");
+                break;
+            case States.Swimming:
+                animator.Play("NPC_DefaultSwimIdle");
                 break;
         }
 
@@ -269,15 +272,18 @@ public class NPCController : Interactable
     private void ShovePlayerStart()
     {
         Debug.Log("ShoveCD: " + shoveCD);
-        if(myState == States.Attacking || shoveCD > 0.0f){return;} //cancel attack if we are not already attacking or attack is on cooldown
+        if(myState == States.Attacking || shoveCD > 0.0f) //cancel attack if we are not already attacking or attack is on cooldown
+        {
+            myState = States.Standing; //return to standing state
+            return;
+        } 
         myState = States.Attacking;
         Debug.Log("Shoving Player");
-        //play an animation
-        //during the animation trigger the next function:
-        ShovePlayerEnd();
+        animator.Play("NPC_Kick"); //play the kick animation
+        //during the animation ShovePlayerEnd() is triggered
     }
 
-    private void ShovePlayerEnd()
+    public void ShovePlayerEnd()
     {
         myState = States.Standing; //return to standing state
         if(FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
