@@ -142,7 +142,7 @@ MeshRenderer:
   m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 1
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!114 &1205943157507596115
 MonoBehaviour:

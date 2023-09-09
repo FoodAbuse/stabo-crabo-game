@@ -42,7 +42,7 @@ Transform:
   - {fileID: 1446766921839832885}
   - {fileID: 3310627886841908482}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &672816707969816082
 PrefabInstance:
@@ -127,6 +127,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b3992426c0af99d4694a580e2f7f08cf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_Name
@@ -195,6 +200,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &1070988399181066745 stripped
 Transform:
@@ -285,6 +291,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0ebd39795a777d941994e62e8cb00f5c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_Name
@@ -359,6 +370,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &1412243129657002206
 PrefabInstance:
@@ -443,6 +455,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0ebd39795a777d941994e62e8cb00f5c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_Name
@@ -517,6 +534,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &3061057932575353577
 PrefabInstance:
@@ -601,6 +619,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0ebd39795a777d941994e62e8cb00f5c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_Name
@@ -669,6 +692,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &3310627886841908482 stripped
 Transform:
@@ -761,6 +785,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4c7cc36a62682114cb75854ed1e66e66, type: 2}
@@ -832,6 +861,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &4337841742927927143 stripped
 Transform:
@@ -924,6 +954,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4c7cc36a62682114cb75854ed1e66e66, type: 2}
@@ -995,6 +1030,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &4073947879405307521 stripped
 Transform:
@@ -1085,6 +1121,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0ebd39795a777d941994e62e8cb00f5c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ebd39795a777d941994e62e8cb00f5c,
         type: 3}
       propertyPath: m_Name
@@ -1159,6 +1200,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &5853206975090116991
 PrefabInstance:
@@ -1243,6 +1285,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_Name
@@ -1317,6 +1364,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &7562895342109689887
 PrefabInstance:
@@ -1401,6 +1449,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b3992426c0af99d4694a580e2f7f08cf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_Name
@@ -1469,6 +1522,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &8033986616879673332 stripped
 Transform:
@@ -1559,6 +1613,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0f650f1e652427b4d95fbc9c874ca6e9,
         type: 3}
       propertyPath: m_Name
@@ -1633,6 +1692,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &8564027980924424113
 PrefabInstance:
@@ -1717,6 +1777,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b3992426c0af99d4694a580e2f7f08cf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_Name
@@ -1791,6 +1856,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!1001 &8628865869183891842
 PrefabInstance:
@@ -1800,6 +1866,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4950776525886936354}
     m_Modifications:
+    - target: {fileID: -9012981737104323669, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9012981737104323669, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_RootOrder
@@ -1875,15 +1951,35 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8573963395159530673, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8573963395159530673, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -337276467937240882, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: -39301586529095741, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 609855619553158100, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 609855619553158100, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
@@ -1893,17 +1989,37 @@ PrefabInstance:
     - target: {fileID: 1816166785860093249, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 2678957884619817983, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644849237160290195, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644849237160290195, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6381697371407959380, guid: ad27a24041f16c1459ad71442e3f67af,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027486592773948308, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9027486592773948308, guid: ad27a24041f16c1459ad71442e3f67af,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2065,6 +2181,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b3992426c0af99d4694a580e2f7f08cf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3992426c0af99d4694a580e2f7f08cf,
         type: 3}
       propertyPath: m_Name
@@ -2133,6 +2254,7 @@ MonoBehaviour:
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
   indicator: {fileID: 0}
 --- !u!4 &8823846228248937591 stripped
 Transform:

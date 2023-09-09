@@ -754,7 +754,7 @@ Transform:
   - {fileID: 2796012491278951926}
   - {fileID: 9086558895818813731}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3689875779098938835
 CapsuleCollider:
@@ -1937,6 +1937,16 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aa8d72400ef3b144b9d32293d99d73c4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: aa8d72400ef3b144b9d32293d99d73c4,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: aa8d72400ef3b144b9d32293d99d73c4,
+        type: 3}
+      propertyPath: m_LightProbeUsage
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: aa8d72400ef3b144b9d32293d99d73c4,
