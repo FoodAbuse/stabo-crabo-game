@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
 
     private Coroutine currentRoutine;
 
+    // Currently used for deleting unused hair, can be modified to include other variables needing deleting later
+    public GameObject[] toDelete;
+
 
     void Start()
     {
@@ -42,6 +45,15 @@ public class GameManager : MonoBehaviour
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
         tipList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the tipList
         currentRoutine = StartCoroutine(IntroCutScene()); //play the intro cut-scene
+
+
+        // Clears unused hair from the scene
+        toDelete = GameObject.FindGameObjectsWithTag("InactiveHair");
+        
+        for (int i = 0; i < toDelete.Length; i++)
+        {
+            Destroy(toDelete[i]);
+        }
     }
 
     void Update()
