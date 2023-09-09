@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GameManager.NextTip("Grab")); //disable tip
             if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
             {
+
                 grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
                 if(!grabObject.GetComponent<Interactable>().canBeGrabbed) //if the object cannot be grabbed, return
                 {
