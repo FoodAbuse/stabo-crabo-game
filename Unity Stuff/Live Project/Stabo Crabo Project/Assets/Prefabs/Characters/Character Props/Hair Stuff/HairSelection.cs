@@ -47,7 +47,8 @@ public class HairSelection : MonoBehaviour
         {
             RandomizeHair();
         }
-        else
+        
+        if (!randomHair && activeHair != null)
         {
             activeHair.GetComponent<MeshRenderer>().enabled = true;
             activeHair.tag = "ActiveHair";
