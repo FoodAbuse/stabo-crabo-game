@@ -38,6 +38,9 @@ public class PuzzleController : MonoBehaviour
     [SerializeField]
     private bool destroyTrigger; //add in whichever object triggered this script to be destroyed
     [SerializeField]
+    private bool destroySelf = false; //adding a new bool to go as the very last function - in builds the object can destroy itself before it can finish all of its outcome tasks
+    [SerializeField]
+
     private List<GameObject> spawnProps; //these objects will be created at this puzzle object's positon and rotation
 
     void Start()
@@ -184,6 +187,13 @@ public class PuzzleController : MonoBehaviour
         {
             Debug.Log("Destroying Trigger " + triggerObject);
             Destroy(triggerObject);
+        }
+
+        // Hugo's addition - May be temporary but attempting to fix build issues
+        if(destroySelf)
+        {
+            Debug.Log(gameObject + "says: Destroying Myself. Well, its been real");
+            Destroy(gameObject);
         }
     }
 
