@@ -17619,7 +17619,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 3078e6443df3fc243a1f041a9179839a, type: 3}
+  - {fileID: 2100000, guid: 1226ef32add7d6d47a76817992019672, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26376,7 +26376,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HairPackFinal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 249134001330047664, guid: 94b46eae75df1a84eb29367d96571d6f, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 94b46eae75df1a84eb29367d96571d6f, type: 3}
 --- !u!4 &1362770968149814658 stripped
@@ -26403,11 +26404,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b0ec87ea22c2441b50002d5da3c9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomHair: 1
+  randomizeNPC: 1
   randomColourRef: 0
   randomStyleRef: 0
+  randomSkinRef: 0
   hairBundleRef: {fileID: 0}
   activeHair: {fileID: 0}
   genderedBundle: {fileID: 0}
+  activeSkin: {fileID: 0}
+  geoRef: {fileID: 5823890977079153503}
+  femaleSkin1: {fileID: 2100000, guid: 03a9aee9066c6474abac4b103c2f676d, type: 2}
+  femaleSkin2: {fileID: 2100000, guid: 0db4485b770c3fc448c082efb204d92c, type: 2}
+  femaleSkin3: {fileID: 2100000, guid: d10c56c2c7e374e47b8a31f64bebec3d, type: 2}
+  maleSkin1: {fileID: 2100000, guid: 1226ef32add7d6d47a76817992019672, type: 2}
+  maleSkin2: {fileID: 2100000, guid: 572e5da0bf37b9646bfd00c2169c8d94, type: 2}
+  maleSkin3: {fileID: 2100000, guid: 7e48f11ca0a9c9843a5dd612d0e868be, type: 2}
   gender: 0
   hairColour: 0

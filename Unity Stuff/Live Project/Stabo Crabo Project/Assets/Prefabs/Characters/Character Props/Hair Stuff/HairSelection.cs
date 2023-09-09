@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class HairSelection : MonoBehaviour
 {
-    public bool randomHair = true;
+    public bool randomizeNPC = true;
     //public bool isFemale = false;
 
     public int randomColourRef;
     public int randomStyleRef;
+    public int randomSkinRef;
 
     public GameObject hairBundleRef;
     public GameObject activeHair;
     public GameObject genderedBundle;
+
+    // NPC Material Ref
+    public Material activeSkin;
+
+    // NPC Geo Ref
+    public GameObject geoRef;
+
+    // Female NPC Skins
+
+    
+    public Material femaleSkin1;
+    public Material femaleSkin2;
+    public Material femaleSkin3;
+
+    // Male NPC Skins
+    public Material maleSkin1;
+    public Material maleSkin2;
+    public Material maleSkin3;
+    
 
 
     public enum NPC_gender {male, female};
@@ -28,8 +48,9 @@ public class HairSelection : MonoBehaviour
 
     void Awake()
     {
-        // Gender Randomization
+        activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
 
+        // Gender Randomization
         int genderCoinflip = Random.Range(1, 3);
         if (genderCoinflip == 1)
         {
@@ -42,13 +63,13 @@ public class HairSelection : MonoBehaviour
         
 
 
-        // Checks if NPC wants randomized hair
-        if (randomHair)
+        // Checks if NPC wants randomizeNPCd hair
+        if (randomizeNPC)
         {
-            RandomizeHair();
+            Randomize();
         }
         
-        if (!randomHair && activeHair != null)
+        if (!randomizeNPC && activeHair != null)
         {
             activeHair.GetComponent<MeshRenderer>().enabled = true;
             activeHair.tag = "ActiveHair";
@@ -60,7 +81,7 @@ public class HairSelection : MonoBehaviour
 
 
 
-    void RandomizeHair()
+    void Randomize()
     {
         // Randomizes Hair Colour
         randomColourRef = Random.Range(1, 6);
@@ -68,7 +89,10 @@ public class HairSelection : MonoBehaviour
 
         // Randomizes Hair Style
         randomStyleRef = Random.Range(0, 4);
-            //Debug.Log("Style ref = " + randomStyleRef);
+        //Debug.Log("Style ref = " + randomStyleRef);
+
+        // Randomizes NPC Skin
+        randomSkinRef = Random.Range(1, 4);
 
         // 1 = Black
         if (randomColourRef == 1)
@@ -106,6 +130,43 @@ public class HairSelection : MonoBehaviour
         }
 
         
+
+        // Chooses skin based on gender
+        if (gender == NPC_gender.male)
+        {
+            if (randomSkinRef == 1)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin1;
+            }
+            if (randomSkinRef == 2)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin2;
+            }
+            if (randomSkinRef == 3)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin3;
+            }
+
+            //geoRef.GetComponent<SkinnedMeshRenderer>().materials[0] = activeSkin;
+        }
+
+        if (gender == NPC_gender.female)
+        {
+            if (randomSkinRef == 1)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin1;
+            }
+            if (randomSkinRef == 2)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin2;
+            }
+            if (randomSkinRef == 3)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin3;
+            }
+
+            
+        }
         
     }
 

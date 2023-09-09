@@ -659,6 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1581299705678218284}
+  - component: {fileID: 249134001330047664}
   m_Layer: 0
   m_Name: HairPackFinal
   m_TagString: Untagged
@@ -684,8 +685,34 @@ Transform:
   - {fileID: 2987897464508158851}
   - {fileID: 3586623484106321499}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249134001330047664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214142746561683094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b0ec87ea22c2441b50002d5da3c9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomHair: 1
+  randomColourRef: 0
+  randomStyleRef: 0
+  hairBundleRef: {fileID: 0}
+  activeHair: {fileID: 0}
+  genderedBundle: {fileID: 0}
+  femaleSkin1: {fileID: 0}
+  femaleSkin2: {fileID: 0}
+  femaleSkin3: {fileID: 0}
+  maleSkin1: {fileID: 0}
+  maleSkin2: {fileID: 0}
+  maleSkin3: {fileID: 0}
+  gender: 0
+  hairColour: 0
 --- !u!1 &2436897703257985980
 GameObject:
   m_ObjectHideFlags: 0
