@@ -296,7 +296,12 @@ public class PlayerController : MonoBehaviour
                 {
                     stabObject = col.gameObject.transform; //save the object
                     //armTargetR.transform.LookAt(stabObject);
-                    stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
+
+                    // added to fix an error when stabbing bucket prefab
+                    if (stabObject.GetComponent<Interactable>() != null)
+                    {
+                        stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
+                    }
                 }
                 Invoke("FinishStab",0.5f);
             }
