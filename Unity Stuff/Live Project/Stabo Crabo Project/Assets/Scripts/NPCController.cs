@@ -422,7 +422,7 @@ public class NPCController : Interactable
 
     public IEnumerator Flee(Transform crabPos)
     {
-        if(fleeTime == 0.0f)
+        if(fleeTime == 0.0f) //if the flee time is 0 they kick instead
         {
             yield return null;
         }
