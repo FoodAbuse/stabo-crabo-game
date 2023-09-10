@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
     // Currently used for deleting unused hair, can be modified to include other variables needing deleting later
     public GameObject[] toDelete;
 
+    void Awake()
+    {        
+        Application.targetFrameRate = 60;        
+        QualitySettings.vSyncCount = 1;
+    }
+
 
     void Start()
     {

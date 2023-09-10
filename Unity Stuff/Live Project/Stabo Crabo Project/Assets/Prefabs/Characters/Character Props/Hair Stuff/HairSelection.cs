@@ -136,15 +136,15 @@ public class HairSelection : MonoBehaviour
         {
             if (randomSkinRef == 1)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin1;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = maleSkin1;
             }
             if (randomSkinRef == 2)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin2;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = maleSkin2;
             }
             if (randomSkinRef == 3)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = maleSkin3;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = maleSkin3;
             }
 
             //geoRef.GetComponent<SkinnedMeshRenderer>().materials[0] = activeSkin;
@@ -154,15 +154,15 @@ public class HairSelection : MonoBehaviour
         {
             if (randomSkinRef == 1)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin1;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = femaleSkin1;
             }
             if (randomSkinRef == 2)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin2;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = femaleSkin2;
             }
             if (randomSkinRef == 3)
             {
-                geoRef.GetComponent<SkinnedMeshRenderer>().material = femaleSkin3;
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = femaleSkin3;
             }
 
             
