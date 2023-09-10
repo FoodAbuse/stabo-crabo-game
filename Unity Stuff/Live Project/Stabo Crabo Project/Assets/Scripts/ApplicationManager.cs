@@ -9,6 +9,9 @@ public class ApplicationManager : MonoBehaviour
 
     void Awake()
 	{
+		Application.targetFrameRate = 60;
+		QualitySettings.vSyncCount = 1;
+
 		if (_instance == null) //if no manager already exists
 		{
 			_instance = this; //store this manager
