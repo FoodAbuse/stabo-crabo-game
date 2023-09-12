@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1943104309118402328}
   - component: {fileID: 4401068360177585106}
   - component: {fileID: 3528158123250711033}
+  - component: {fileID: 965613331151140433}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1943104309118402328
 MeshFilter:
@@ -100,3 +101,17 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.16600001, y: 0.497, z: 0}
   m_TimeToStationary: 0.5
+--- !u!64 &965613331151140433
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743607152067684871}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8536425139288874787, guid: bbc058722e5e48f4882590b3625cccf4, type: 3}
