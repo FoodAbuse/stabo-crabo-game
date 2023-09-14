@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HairSelection : MonoBehaviour
 {
+
+    public enum NPC_Type{standard, child, police, unique};
+    public NPC_Type npcType;
     public bool randomizeNPC = true;
     //public bool isFemale = false;
 
@@ -32,6 +35,10 @@ public class HairSelection : MonoBehaviour
     public Material maleSkin1;
     public Material maleSkin2;
     public Material maleSkin3;
+
+    public Material childSkin1;
+    public Material childSkin2;
+    public Material childSkin3;
     
 
 
@@ -50,20 +57,37 @@ public class HairSelection : MonoBehaviour
     {
         activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
 
-        // Gender Randomization
-        int genderCoinflip = Random.Range(1, 3);
-        if (genderCoinflip == 1)
+        if (npcType == NPC_Type.standard || npcType == NPC_Type.child)
         {
-            gender = NPC_gender.female;
+           // Gender Randomization for standard NPCs and Child NPCs
+            int genderCoinflip = Random.Range(1, 3);
+            if (genderCoinflip == 1)
+            {
+                gender = NPC_gender.female;
+            }
+            else
+            {
+                gender = NPC_gender.male;
+            }
+
+            // Checks to see if NPC is a default NPC in order to randomize
+            if (npcType == NPC_Type.standard)
+            {
+                randomizeNPC = true;
+            }
+
+            else 
+            {
+                randomizeNPC = false;
+                randomizeChild();
+            }
         }
-        else
-        {
-            gender = NPC_gender.male;
-        }
+
+        
         
 
 
-        // Checks if NPC wants randomizeNPCd hair
+        // Checks if NPC wants randomized hair and textures
         if (randomizeNPC)
         {
             Randomize();
@@ -168,6 +192,69 @@ public class HairSelection : MonoBehaviour
             
         }
         
+    }
+
+    void randomizeChild()
+    {
+        // Sets the hairstyle to be randomized between those appropriate for the child NPCs
+        if (gender == NPC_gender.female)
+        {
+            randomStyleRef = Random.Range(1,4);
+        }
+        else
+        {
+            randomStyleRef = Random.Range(1,3);
+        }
+
+        randomSkinRef = Random.Range(1,4);
+        randomColourRef = Random.Range(1,5);
+
+
+        // 1 = Black
+         if (randomColourRef == 1)
+        {
+            hairColour = NPC_HairColour.black;
+            BlackHairRandomize();
+        }
+
+        // 2 = Blonde
+        if (randomColourRef == 2)
+        {
+            hairColour = NPC_HairColour.blonde;
+            BlondeHairRandomize();
+        }
+
+        // 3 = Brown
+        if (randomColourRef == 3)
+        {
+            hairColour = NPC_HairColour.brown;
+            BrownHairRandomize();
+        }
+
+        // 4 = Red
+        if (randomColourRef == 4)
+        {
+            hairColour = NPC_HairColour.red;
+            RedHairRandomize();
+        }
+
+
+        // Sets Skin from ChildNPC Skins
+        if (randomSkinRef == 1)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = childSkin1;
+            }
+            if (randomSkinRef == 2)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = childSkin2;
+            }
+            if (randomSkinRef == 3)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = childSkin3;
+            }
+
+
+
     }
 
     void BlackHairRandomize()
