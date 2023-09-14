@@ -39,9 +39,11 @@ public class PuzzleController : MonoBehaviour
     private bool destroyTrigger; //add in whichever object triggered this script to be destroyed
     [SerializeField]
     private bool destroySelf = false; //adding a new bool to go as the very last function - in builds the object can destroy itself before it can finish all of its outcome tasks
+    
     [SerializeField]
-
     private List<GameObject> spawnProps; //these objects will be created at this puzzle object's positon and rotation
+    [SerializeField]
+    private float spawnVelocity; //launches the spawned prop
 
     void Start()
     {
@@ -181,7 +183,12 @@ public class PuzzleController : MonoBehaviour
 
         foreach(var x in spawnProps) //run through the spawn props list and spawn everything in it
         {
-            Instantiate(x, transform.position, transform.rotation, GameObject.Find("_Props").transform);
+            GameObject spawned = Instantiate(x, transform.position, transform.rotation, GameObject.Find("_Props").transform);
+            if(spawned.GetComponent<Rigidbody>() && spawnVelocity > 0.0f) //launch the objects with spawn velocity
+            {
+              Debug.Log("Launching...");
+              spawned.GetComponent<Rigidbody>().AddForce(transform.forward * spawnVelocity);
+            }
         }
         if(destroyTrigger)
         {
@@ -196,10 +203,4 @@ public class PuzzleController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void CreateObject(GameObject obj) //specialised function that can be called from the event
-    {
-        Instantiate(obj, transform.position, transform.rotation); //create an object at the desired location
-    }
-
 }

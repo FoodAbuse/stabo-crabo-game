@@ -22,7 +22,7 @@ public class NPCController : Interactable
     private float speedRun;
     public float newDestTimeMin = 5.0f; //the time before the NPC looks for a new destination once reaching its previous destination'
     public float newDestTimeMax = 15.0f;
-    private float countdownToNewDestination = 0.0f;
+    private float countdownToNewDestination = -1.0f;
     public float fleeTime = 5.0f; //how long NPC will flee for
     private Transform fleeFrom; //where the NPC is fleeing from
     //attacking stats
@@ -83,6 +83,7 @@ public class NPCController : Interactable
 
     void Start()
     {
+        preferredPos = transform.position; //objects initially prefer to be in their starting position. This can be changed later.
         path = new NavMeshPath(); //initialize the path
 
         headRig.weight = 0.0f; //initial rig weighting is 0
@@ -112,6 +113,9 @@ public class NPCController : Interactable
         //movement
         switch (myBehaviour)
         {
+             case Behaviours.Idle: //when idle, countdown timer, and then return to preferred position
+                OutOfPositionCheck(); //check if we are out, and return us if not
+                break;
             case Behaviours.Defending:
                 if(myState == States.Standing) //if we are just standing ie we have finished our defence action
                 {
@@ -345,6 +349,33 @@ public class NPCController : Interactable
         0.0f,
         Random.Range(bounds.min.z, bounds.max.z)
     );
+    }
+
+    private void OutOfPositionCheck()
+    {
+        if(countdownToNewDestination <= -1.0f)
+        {
+            countdownToNewDestination = Random.Range(newDestTimeMin, newDestTimeMax); //reset the countdown initially
+            return;
+        }
+        if(Vector3.Distance(transform.position, preferredPos) > 0.5f)//if we are out of position
+        {
+            if(countdownToNewDestination <= 0.0f) //if countdown is finished
+            {
+                agent.SetDestination(preferredPos); //return to starting destination
+                countdownToNewDestination = Random.Range(newDestTimeMin, newDestTimeMax); //reset the countdown
+                myState = States.Walking; //we are now walking
+            }
+            else
+            {
+                countdownToNewDestination -= 1 * Time.deltaTime; //tick down countdown
+            }
+        }
+        else
+        {
+            myState = States.Standing;
+        }
+        
     }
 
     private void DisableRagdoll() //disables ragdoll should be accompanied by a line to set behaviour to idle / roaming etc.
