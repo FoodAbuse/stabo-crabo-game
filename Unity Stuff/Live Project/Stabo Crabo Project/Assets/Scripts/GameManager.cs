@@ -214,9 +214,14 @@ public class GameManager : MonoBehaviour
 
     private static void LevelPhaseEscape() //run when entering phase 2 - escape
     {
+        //removes sprint tip, which is the only tip possible to beat the game without solving
+        ui.HideTip();
+
         ui.EscapeScreen(); //handles whatever Ui elements are necessary for the escape sequence
         //also include any needed changes to NPC AI here.
         //and changes to audio etc.
+
+        
     }
 
 }
