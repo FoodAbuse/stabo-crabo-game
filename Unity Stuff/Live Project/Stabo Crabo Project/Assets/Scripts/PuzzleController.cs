@@ -199,7 +199,7 @@ public class PuzzleController : MonoBehaviour
         // Hugo's addition - May be temporary but attempting to fix build issues
         if(destroySelf)
         {
-            Debug.Log(gameObject + "says: Destroying Myself. Well, its been real");
+            //Debug.Log(gameObject + "says: Destroying Myself. Well, its been real");
             Destroy(gameObject);
         }
     }

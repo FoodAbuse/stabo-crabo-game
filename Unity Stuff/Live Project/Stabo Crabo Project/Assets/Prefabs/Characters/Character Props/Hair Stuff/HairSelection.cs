@@ -199,7 +199,13 @@ public class HairSelection : MonoBehaviour
         // Sets the hairstyle to be randomized between those appropriate for the child NPCs
         if (gender == NPC_gender.female)
         {
-            randomStyleRef = Random.Range(1,4);
+            randomStyleRef = Random.Range(0,3);
+
+            if (randomStyleRef > 0)
+            {
+                // Corrects for the random female hair referencing child 1 (second in sequence, Hat Hair) and adds one to the int to offset position
+                randomStyleRef++;
+            }
         }
         else
         {
