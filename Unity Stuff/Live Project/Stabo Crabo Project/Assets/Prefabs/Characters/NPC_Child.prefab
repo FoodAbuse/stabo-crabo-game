@@ -604,8 +604,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colList: []
+  byTag: 1
   tagList:
   - Player
+  anyInteractable: 0
   toggleOutline: 0
 --- !u!1 &175546214823810171
 GameObject:
@@ -22620,7 +22622,7 @@ GameObject:
   - component: {fileID: 4194686646900725166}
   m_Layer: 7
   m_Name: NPC_Child
-  m_TagString: Interactable
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22642,7 +22644,7 @@ Transform:
   - {fileID: 4136344410012773393}
   - {fileID: 4087055795035398426}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3666658007820025231
 Animator:
@@ -22747,6 +22749,7 @@ MonoBehaviour:
   radius: 7.5
   angle: 190
   targetRef: []
+  tagRef: []
   targetMask:
     serializedVersion: 2
     m_Bits: 576

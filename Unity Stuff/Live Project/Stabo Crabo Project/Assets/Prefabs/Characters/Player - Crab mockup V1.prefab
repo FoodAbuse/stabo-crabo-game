@@ -393,10 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colList: []
-  tagList:
-  - GrabLight
-  - GrabHeavy
-  - Interactable
+  byTag: 0
+  tagList: []
+  anyInteractable: 1
   toggleOutline: 1
 --- !u!1 &2108271777064321021
 GameObject:
@@ -546,11 +545,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colList: []
-  tagList:
-  - Breakable
-  - Killable
-  - Stabbable
-  - Interactable
+  byTag: 0
+  tagList: []
+  anyInteractable: 1
   toggleOutline: 0
 --- !u!1 &5009117343049803994
 GameObject:

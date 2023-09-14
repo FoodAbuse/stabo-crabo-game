@@ -21,6 +21,7 @@ public class FieldOfView : MonoBehaviour
     public float angle;
 
     public List<Interactable> targetRef; //list of all targets
+    public List<string> tagRef; //will target objects containing this string in their name
 
     public LayerMask targetMask; //so we are not checking over all objects in a scene
     public LayerMask obstructionMask;
@@ -98,7 +99,7 @@ public class FieldOfView : MonoBehaviour
                 else //otherwise we are just looking for objects
                 {
                     Interactable found = col.GetComponent<Interactable>();//fetch the interactable script on the found object
-                    if(targetRef.Contains(found)) //if this is actually a target we care about
+                    if(targetRef.Contains(found) || tagRef.Contains(col.tag)) //if this is actually a target we care about
                     {
                         //Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
                         //Debug.Log(target);

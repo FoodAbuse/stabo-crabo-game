@@ -531,4 +531,9 @@ public class NPCController : Interactable
     {
         animator.Play(newAnim); //play the new animation
     }
+
+    public void AddTarget(Interactable a)
+    {
+        FOV.targetRef.Add(a);
+    }
 }

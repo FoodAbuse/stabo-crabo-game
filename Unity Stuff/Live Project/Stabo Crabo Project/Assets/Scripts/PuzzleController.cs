@@ -167,7 +167,7 @@ public class PuzzleController : MonoBehaviour
         }
     }
 
-    void Outcome() //called when trigger is succesful
+    public void Outcome() //called when trigger is succesful
     {
         myOutput.Invoke(); //call all the output events
 

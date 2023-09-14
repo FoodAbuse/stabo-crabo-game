@@ -5428,8 +5428,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colList: []
+  byTag: 1
   tagList:
   - Player
+  anyInteractable: 0
   toggleOutline: 0
 --- !u!1 &1871685100355593698
 GameObject:
@@ -17397,7 +17399,7 @@ GameObject:
   - component: {fileID: 860010387617971831}
   m_Layer: 7
   m_Name: NPC
-  m_TagString: Interactable
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17538,6 +17540,7 @@ MonoBehaviour:
   radius: 7.5
   angle: 190
   targetRef: []
+  tagRef: []
   targetMask:
     serializedVersion: 2
     m_Bits: 576
@@ -21810,8 +21813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colList: []
+  byTag: 0
   tagList:
   - Player
+  anyInteractable: 0
   toggleOutline: 0
 --- !u!1 &7689618057736138456
 GameObject:
