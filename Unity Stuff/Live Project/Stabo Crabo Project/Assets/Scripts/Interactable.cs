@@ -23,6 +23,7 @@ public class Interactable : MonoBehaviour
     public bool isHeavy;
 
     public Vector3 preferredPos; //where the object likes to be
+    public int priority = 0; //higher number means higher priority
 
     //temp
     public GameObject indicator; //debugging vectors of stabbing the objects

@@ -203,8 +203,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GameManager.NextTip("Grab")); //disable tip
             if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
             {
-
-                grabObject = grabCollider.colList[0].gameObject.transform; //save the prop
+                grabObject = grabCollider.selected.transform; //save the prop
                 if(!grabObject.GetComponent<Interactable>().canBeGrabbed) //if the object cannot be grabbed, return
                 {
                     grabObject = null;
@@ -213,7 +212,7 @@ public class PlayerController : MonoBehaviour
                 isGrabbing = true;
                 grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
                 //armTargetL.transform.LookAt(grabObject);
-                armTargetL.position = grabCollider.colList[0].bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
+                armTargetL.position = grabCollider.selected.bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
                 if(!grabObject.GetComponent<Interactable>().isHeavy)//if the object is light
                 {
@@ -268,8 +267,8 @@ public class PlayerController : MonoBehaviour
         }
         else //the object is set to be destroyed
         {
-            if(grabCollider.colList.Contains(grabObject.GetComponent<Collider>())) grabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //remove the held object from the collider collection
-            if(stabCollider.colList.Contains(grabObject.GetComponent<Collider>())) stabCollider.colList.Remove(grabObject.GetComponent<Collider>()); //in the situation that a different object is the [0], problems amy arise
+            grabCollider.Remove(grabObject.GetComponent<Collider>()); //remove the held object from the collider collection
+            stabCollider.Remove(grabObject.GetComponent<Collider>());
         }
         armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
         //armTargetL.localRotation = Quaternion.Euler(Vector3.zero);
@@ -291,17 +290,16 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(GameManager.NextTip("Stab")); //disable tip
             if(stabCollider.colList.Count > 0) //if there is something to stab
             {
-                armTargetR.position = stabCollider.colList[0].bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object
+                armTargetR.position = stabCollider.selected.bounds.ClosestPoint(armTargetR.position); //move Rhand to stabbed object
                 foreach(Collider col in stabCollider.colList) //stab now applies to everything in range all at once
                 {
                     stabObject = col.gameObject.transform; //save the object
-                    //armTargetR.transform.LookAt(stabObject);
 
                     // added to fix an error when stabbing bucket prefab
-                    if (stabObject.GetComponent<Interactable>() != null)
-                    {
+                    //if (stabObject.GetComponent<Interactable>())
+                    //{
                         stabObject.GetComponent<Interactable>().Stabbed(transform); //call the object's stabbed function
-                    }
+                    //}
                 }
                 Invoke("FinishStab",0.5f);
             }
