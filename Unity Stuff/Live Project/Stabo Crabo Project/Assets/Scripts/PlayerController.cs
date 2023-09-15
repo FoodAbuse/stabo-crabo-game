@@ -276,8 +276,11 @@ public class PlayerController : MonoBehaviour
         if(grabObject.GetComponent<Interactable>().isHeavy) //if the object was heavy
         {
             isDragging = false; //turn of dragging
-            CharacterJoint joint = GetComponent<CharacterJoint>();
-            Destroy(joint); //destroy the joint we created
+            CharacterJoint[] joints = GetComponents<CharacterJoint>();
+            foreach(CharacterJoint joint in joints) //this is here because an issue came up with alt + tab creating multiple joints
+            {
+                Destroy(joint); //destroy the joint(s) we created
+            }
         }
 
         grabObject = null; //reset grabObject
