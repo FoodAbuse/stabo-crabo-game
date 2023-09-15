@@ -68,7 +68,7 @@ public class FieldOfView : MonoBehaviour
             yield return wait;
             if(targetRef.Count != 0 || seekingPlayer) //if there are targets to look for or we are seeking the player
             {
-                returnedTarget = false;; //reset this tracker every iteration
+                returnedTarget = false; //reset this tracker every iteration
                 FieldOfViewCheck(); //look for objects and or player
             }
         }

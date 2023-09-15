@@ -353,6 +353,7 @@ public class NPCController : Interactable
 
     private void OutOfPositionCheck()
     {
+        if(myState != States.Standing){return;} //only run this check if we are standing
         if(countdownToNewDestination <= -1.0f)
         {
             countdownToNewDestination = Random.Range(newDestTimeMin, newDestTimeMax); //reset the countdown initially
