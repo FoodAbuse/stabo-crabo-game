@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1302158845392070834}
   - component: {fileID: 3689875779098938835}
   - component: {fileID: 939973263196225551}
+  - component: {fileID: 4190786107955442151}
   m_Layer: 11
   m_Name: PalmTree1
   m_TagString: Untagged
@@ -45,9 +46,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.27
-  m_Height: 1.9
+  m_Height: 2.5595791
   m_Direction: 1
-  m_Center: {x: 0.04, y: 0.6, z: 0}
+  m_Center: {x: 0.03999999, y: 0.92978966, z: 0}
 --- !u!208 &939973263196225551
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -64,6 +65,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &4190786107955442151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826739882040128008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0195093, y: 0.18600702, z: 1.9387227}
+  m_Center: {x: 0.49429256, y: 3.359454, z: -0.0141205}
 --- !u!1001 &8760425213722580680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: palmTreeUnwrapped
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aa8d72400ef3b144b9d32293d99d73c4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
