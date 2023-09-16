@@ -74,6 +74,7 @@ public class NPCController : Interactable
     private Rig handRig;
     [SerializeField]
     private Transform handR; //the right hand
+    private States preferredState; //the state this NPC preferrs to be in (matters mainly for idle NPCs)
 
     void Awake()
     {
@@ -84,27 +85,13 @@ public class NPCController : Interactable
     void Start()
     {
         preferredPos = transform.position; //objects initially prefer to be in their starting position. This can be changed later.
+        preferredState = myState;
         path = new NavMeshPath(); //initialize the path
 
         headRig.weight = 0.0f; //initial rig weighting is 0
 
         //enter initial animation
-        switch (myState)
-        {
-            case States.Standing:
-                animator.Play("NPC_Idle");
-                break;
-            case States.Sitting:
-                animator.SetFloat("IdleBehaviour", 3.0f);
-                animator.Play("NPC_Idle");
-                break;
-            case States.Lying:
-                animator.Play("NPC_LyingDown");
-                break;
-            case States.Swimming:
-                animator.Play("NPC_DefaultSwimIdle");
-                break;
-        }
+        IdleAnimation(); //use myState to determine which idle animation plays
 
     }
 
@@ -351,6 +338,27 @@ public class NPCController : Interactable
     );
     }
 
+    void IdleAnimation() //uses States to determine which idle animation should play
+    {
+        switch (myState)
+        {
+            case States.Standing:
+                animator.SetFloat("IdleBehaviour", 0.0f);
+                animator.Play("NPC_Idle");
+                break;
+            case States.Sitting:
+                animator.SetFloat("IdleBehaviour", 3.0f);
+                animator.Play("NPC_Idle");
+                break;
+            case States.Lying:
+                animator.Play("NPC_LyingDown");
+                break;
+            case States.Swimming:
+                animator.Play("NPC_DefaultSwimIdle");
+                break;
+        }
+    }
+
     private void OutOfPositionCheck()
     {
         if(myState != States.Standing){return;} //only run this check if we are standing
@@ -374,7 +382,12 @@ public class NPCController : Interactable
         }
         else
         {
-            myState = States.Standing;
+            if(myState != preferredState)
+            {
+                myState = preferredState;
+                IdleAnimation(); //return to preferred animation
+            }
+            
         }
         
     }
@@ -446,8 +459,8 @@ public class NPCController : Interactable
             {
                 agent.isStopped = true; //pause navmesh movement
             }
-
             animator.SetTrigger("Stabbed"); //play the hurt animation
+            animator.SetFloat("IdleBehaviour", 0.0f); //when returning to idle, will be default idle
             StartCoroutine("Flee", stabOrigin); //after the stab animation the NPC will flee
         }        
     }
@@ -456,7 +469,7 @@ public class NPCController : Interactable
     {
         if(fleeTime == 0.0f) //if the flee time is 0 they kick instead
         {
-            yield return null;
+            yield break;
         }
         fleeFrom = crabPos;
         myState = States.Fleeing;
@@ -465,10 +478,6 @@ public class NPCController : Interactable
         agent.SetDestination(transform.position); //set destination to current pos stops movement
         myState = States.Standing;
         fleeFrom = null;
-
-        
-
-
     }
 
     public void ResumeBehaviour()
