@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3488221305222938628}
   - component: {fileID: 7693026456781144400}
   - component: {fileID: 954640040758190345}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flamingo
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -173,6 +173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0551d831c92432245b4dcda64e4374b1,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0551d831c92432245b4dcda64e4374b1,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -272,6 +277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: flamingoUnwrapped
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0551d831c92432245b4dcda64e4374b1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

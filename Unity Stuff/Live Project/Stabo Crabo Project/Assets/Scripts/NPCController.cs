@@ -179,14 +179,14 @@ public class NPCController : Interactable
                         Vector3 guardDest = destinationBounds.ClosestPoint(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position));
                         agent.SetDestination(guardDest); //head to the closest point we can in our bounds                                              
                         Debug.DrawRay(transform.position, guardDest - transform.position, Color.green, 0.0f, false);
-                        transform.rotation = Quaternion.LookRotation(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position) - transform.position, Vector3.up); //always look in the direction of the drab as well
+                        //transform.rotation = Quaternion.LookRotation(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position) - transform.position, Vector3.up); //always look in the direction of the drab as well
+                        myState = Vector3.Distance(guardDest,transform.position) > 1.0f ? myState = States.Chasing:myState = States.Walking;
                     }
                     else
                     {
                         agent.SetDestination(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position)); //go to closest point in the target's collider
-                        
+                        myState = States.Chasing;
                     }
-                    myState = States.Chasing;
                     BubbleOn(FOV.target.GetComponent<BubbleReference>().bubbleSprite); //activate a bubble above this NPC's head
                 }
 
@@ -555,6 +555,7 @@ public class NPCController : Interactable
 
     public void NewDestination(Transform t) //exists here so that puzzle controllers can call it
     {
+        myState = States.Walking;
         agent.SetDestination(t.position);
     }
 }
