@@ -75,6 +75,7 @@ public class NPCController : Interactable
     [SerializeField]
     private Transform handR; //the right hand
     private States preferredState; //the state this NPC preferrs to be in (matters mainly for idle NPCs)
+    private Quaternion preferredRotation;
 
     void Awake()
     {
@@ -85,6 +86,7 @@ public class NPCController : Interactable
     void Start()
     {
         preferredPos = transform.position; //objects initially prefer to be in their starting position. This can be changed later.
+        preferredRotation = transform.rotation;
         preferredState = myState;
         path = new NavMeshPath(); //initialize the path
 
@@ -244,16 +246,20 @@ public class NPCController : Interactable
     private void PickupStart(Transform pTarget)
     {
         myState = States.Pickup;
+        if(pTarget.GetComponent<Interactable>().heldBy && pTarget.GetComponent<Interactable>().heldBy.tag == "Player") //if somehow the kcik didn't work and the player is still holding on,
+        {
+            pTarget.GetComponent<Interactable>().heldBy.GetComponent<PlayerController>().DropObject(); //make them drop it
+        }
         animator.Play("NPC_Pickup1"); //play the pickup animation
         heldObject = pTarget.gameObject;
     }
 
     public void PickupEnd()
     {
+        animator.SetFloat("IdleBehaviour", 0.0f);
         heldObject.transform.parent = handR; //set the target as a child of our right hand
         heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
-        heldObject.GetComponent<Interactable>().canBeStabbed = false; //player cannot interact with these an object held by an NPC
-        heldObject.GetComponent<Interactable>().canBeGrabbed = false;
+        heldObject.GetComponent<Interactable>().DisableInteraction(); //player cannot interact with these an object held by an NPC
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         myState = States.ReturningObj;
         FOV.WipeTarget();
@@ -277,7 +283,7 @@ public class NPCController : Interactable
     public void ShovePlayerEnd()
     {
         myState = States.Standing; //return to standing state
-        if(FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
+        if(!FOV.target || FOV.target && FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
         Debug.Log("still targeting player"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
         Vector3 shoveVector = (FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce;
         shoveVector.y = 0.2f * shoveForce; //give some vertical velocity
@@ -384,6 +390,7 @@ public class NPCController : Interactable
         {
             if(myState != preferredState)
             {
+                transform.rotation = preferredRotation; //reset rotation
                 myState = preferredState;
                 IdleAnimation(); //return to preferred animation
             }
@@ -526,8 +533,7 @@ public class NPCController : Interactable
         }
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.GetComponent<Interactable>().heldBy = null;
-        heldObject.GetComponent<Interactable>().canBeStabbed = true; //re-enable player interaction with this object
-        heldObject.GetComponent<Interactable>().canBeGrabbed = true;
+        heldObject.GetComponent<Interactable>().EnableInteraction(); //re-enable player interaction with this object
         heldObject.transform.parent = GameObject.Find("_Props").transform;
         heldObject = null;
 
@@ -545,5 +551,10 @@ public class NPCController : Interactable
     public void AddTarget(Interactable a)
     {
         FOV.targetRef.Add(a);
+    }
+
+    public void NewDestination(Transform t) //exists here so that puzzle controllers can call it
+    {
+        agent.SetDestination(t.position);
     }
 }

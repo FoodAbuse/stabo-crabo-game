@@ -12,6 +12,7 @@ public class FieldOfViewEditor : Editor
         FieldOfView fov = (FieldOfView)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.eyes.position, Vector3.up, Vector3.forward, 360, fov.radius); //draws circle around NPC to indicate range of FOV
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radiusInner); //draws circle around NPC to indicate range of FOV
 
         Vector3 viewAngle1 = DirectionFromAngle(fov.eyes.eulerAngles.y, -fov.angle / 2); //left side
         Vector3 viewAngle2 = DirectionFromAngle(fov.eyes.eulerAngles.y, fov.angle / 2); //right side

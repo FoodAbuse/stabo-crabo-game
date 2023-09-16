@@ -110,5 +110,17 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public void DisableInteraction()
+    {
+        canBeGrabbed = false;
+        canBeStabbed = false;
+    }
+
+     public void EnableInteraction()
+    {
+        canBeGrabbed = true;
+        canBeStabbed = true;
+    }
+
 
 }

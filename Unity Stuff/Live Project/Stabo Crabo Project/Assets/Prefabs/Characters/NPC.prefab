@@ -751,6 +751,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &238931109724179834
@@ -1210,6 +1211,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &329993938741699394
@@ -1978,6 +1980,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &652560489467281142
@@ -4474,6 +4477,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &1706077846632587301
@@ -5433,6 +5437,7 @@ MonoBehaviour:
   - Player
   anyInteractable: 0
   toggleOutline: 0
+  selected: {fileID: 0}
 --- !u!1 &1871685100355593698
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,6 +5844,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &2054640689974408129
@@ -6357,6 +6363,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &2233171578048607011
@@ -17477,6 +17484,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   agent: {fileID: 4513776521486623222}
   destinationBounds: {fileID: 0}
@@ -17537,7 +17545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d07abb1c743ac84aa76852312cbdafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7.5
+  radius: 5
+  radiusInner: 1.5
   angle: 190
   targetRef: []
   tagRef: []
@@ -21818,6 +21827,7 @@ MonoBehaviour:
   - Player
   anyInteractable: 0
   toggleOutline: 0
+  selected: {fileID: 0}
 --- !u!1 &7689618057736138456
 GameObject:
   m_ObjectHideFlags: 0
@@ -24281,6 +24291,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: 8054069290081049583}
 --- !u!1 &8603359486601051463
@@ -26409,6 +26420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b0ec87ea22c2441b50002d5da3c9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcType: 0
   randomizeNPC: 1
   randomColourRef: 0
   randomStyleRef: 0
@@ -26424,5 +26436,8 @@ MonoBehaviour:
   maleSkin1: {fileID: 2100000, guid: 1226ef32add7d6d47a76817992019672, type: 2}
   maleSkin2: {fileID: 2100000, guid: 572e5da0bf37b9646bfd00c2169c8d94, type: 2}
   maleSkin3: {fileID: 2100000, guid: 7e48f11ca0a9c9843a5dd612d0e868be, type: 2}
+  childSkin1: {fileID: 0}
+  childSkin2: {fileID: 0}
+  childSkin3: {fileID: 0}
   gender: 0
   hairColour: 0

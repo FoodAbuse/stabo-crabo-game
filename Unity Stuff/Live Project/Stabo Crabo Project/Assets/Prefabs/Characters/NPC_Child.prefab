@@ -609,6 +609,7 @@ MonoBehaviour:
   - Player
   anyInteractable: 0
   toggleOutline: 0
+  selected: {fileID: 0}
 --- !u!1 &175546214823810171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,6 +4148,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &1239473504472460060
@@ -7816,6 +7818,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &2413510018068684573
@@ -8348,6 +8351,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &2618112702351710286
@@ -9438,6 +9442,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &2895365848916266011
@@ -11976,6 +11981,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &4003436682496317095
@@ -12714,6 +12720,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &4257885820624195452
@@ -13098,6 +13105,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &4382998255666405700
@@ -13397,6 +13405,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &4423470348612310261
@@ -14395,6 +14404,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &4681740537338398482
@@ -15674,6 +15684,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &5139252453533564237
@@ -16096,6 +16107,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &5303399963531401782
@@ -17493,6 +17505,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &5861884797992394818
@@ -19872,6 +19885,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   npc: {fileID: -5556589019566435613}
 --- !u!1 &6954041241449708378
@@ -22687,6 +22701,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
   agent: {fileID: -652939068834198331}
   destinationBounds: {fileID: 0}
@@ -22747,7 +22762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d07abb1c743ac84aa76852312cbdafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7.5
+  radius: 5
+  radiusInner: 1.5
   angle: 190
   targetRef: []
   tagRef: []

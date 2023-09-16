@@ -17,7 +17,9 @@ public class FieldOfView : MonoBehaviour
 
 
     public float radius;
+        public float radiusInner; //inner radius has 360 degree vision
     [Range(0,360)] //limit angle to 360
+
     public float angle;
 
     public List<Interactable> targetRef; //list of all targets
@@ -136,8 +138,8 @@ public class FieldOfView : MonoBehaviour
     private void SightCheck(Transform found) //checks line of sight for the found object
     {
         Vector3 directionToFound = (found.position - eyes.position).normalized; //gets direction to the found object
-
-            if(Vector3.Angle(transform.forward, directionToFound) < angle / 2) //if the angle to our found obj does not exceed our FOV angle
+            //if the angle to our found obj does not exceed our FOV angle, or if it is in our inner radius
+            if(Vector3.Angle(transform.forward, directionToFound) < angle / 2 || Vector3.Distance(transform.position, found.position) < radiusInner)
             {
                 float distanceToFound = Vector3.Distance(eyes.position, found.position); //gets distance between us and the found obj
                 if(!Physics.Raycast(eyes.position, directionToFound, distanceToFound, obstructionMask)) //raycast from us in the direction, at the distance, stopped by obstructions
