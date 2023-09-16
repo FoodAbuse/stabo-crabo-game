@@ -41,6 +41,7 @@ public class ColliderCollection : MonoBehaviour
     }
     void Select(Collider col)
     {
+        colList.RemoveAll(s => s == null); //remove all null items in list
         if(!selected) //if there is nothing selected at the moment
         {
             selected = col; //select this col automatically
