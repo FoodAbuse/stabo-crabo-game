@@ -111,15 +111,8 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public void DisableInteraction()
+    public void ToggleInteraction(bool state)
     {
-        interactive = false;
+        interactive = state;
     }
-
-     public void EnableInteraction()
-    {
-        interactive = true;
-    }
-
-
 }

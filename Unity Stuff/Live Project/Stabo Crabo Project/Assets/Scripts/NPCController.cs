@@ -259,7 +259,7 @@ public class NPCController : Interactable
         animator.SetFloat("IdleBehaviour", 0.0f);
         heldObject.transform.parent = handR; //set the target as a child of our right hand
         heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
-        heldObject.GetComponent<Interactable>().DisableInteraction(); //player cannot interact with these an object held by an NPC
+        heldObject.GetComponent<Interactable>().ToggleInteraction(false); //player cannot interact with these an object held by an NPC
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         myState = States.ReturningObj;
         FOV.WipeTarget();
@@ -533,7 +533,7 @@ public class NPCController : Interactable
         }
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
         heldObject.GetComponent<Interactable>().heldBy = null;
-        heldObject.GetComponent<Interactable>().EnableInteraction(); //re-enable player interaction with this object
+        heldObject.GetComponent<Interactable>().ToggleInteraction(true); //re-enable player interaction with this object
         heldObject.transform.parent = GameObject.Find("_Props").transform;
         heldObject = null;
 

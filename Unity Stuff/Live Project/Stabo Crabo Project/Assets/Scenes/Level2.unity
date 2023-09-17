@@ -2195,6 +2195,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!65 &57491276
 BoxCollider:
@@ -8839,6 +8840,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &236877731
 PrefabInstance:
@@ -10490,6 +10492,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &288482090
 Rigidbody:
@@ -12586,6 +12589,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &344782815
 Rigidbody:
@@ -17650,6 +17654,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &520796582
 PrefabInstance:
@@ -17996,6 +18001,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &537356221
 PrefabInstance:
@@ -25113,6 +25119,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &699702728
 Rigidbody:
@@ -30395,6 +30402,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &841998821
 Rigidbody:
@@ -38159,7 +38167,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -38189,7 +38197,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -38220,7 +38228,7 @@ PrefabInstance:
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1262928033}
+      objectReference: {fileID: 1302158844910590157}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -38279,7 +38287,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: SetState
+      value: ToggleInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -38309,7 +38317,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: NPCController, Assembly-CSharp
+      value: Interactable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -38324,7 +38332,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_IntArgument
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -43455,6 +43463,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &1252057263
 PrefabInstance:
@@ -43747,6 +43756,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &1264312138
 Rigidbody:
@@ -44956,6 +44966,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &1292241638
 PrefabInstance:
@@ -47140,6 +47151,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &1373854780
 Rigidbody:
@@ -47813,7 +47825,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.114
+      value: -1.832
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47823,12 +47835,12 @@ PrefabInstance:
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.746
+      value: 24.41
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99428475
+      value: 0.9995486
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47838,7 +47850,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.10676072
+      value: 0.030042985
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47848,17 +47860,17 @@ PrefabInstance:
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -48.24
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 125.766
+      value: 183.443
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936322, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -89.127
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47957,11 +47969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lookForObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 824993660}
+      objectReference: {fileID: 19202936}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47976,7 +47988,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -47997,7 +48009,7 @@ PrefabInstance:
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1725846728}
+      objectReference: {fileID: 1302158844910590157}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -48036,7 +48048,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: NewDestination
+      value: ToggleInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -48056,7 +48068,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: NPCController, Assembly-CSharp
+      value: Interactable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -48085,6 +48097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
@@ -48107,7 +48124,7 @@ PrefabInstance:
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 256767281}
+      objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -48121,7 +48138,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Transform, UnityEngine
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -51123,6 +51140,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &1488377801
 PrefabInstance:
@@ -51600,6 +51618,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!4 &1509344234 stripped
 Transform:
@@ -51926,6 +51945,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1001 &1519548584
 PrefabInstance:
@@ -53347,6 +53367,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1 &1567231114
 GameObject:
@@ -61248,6 +61269,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!54 &1788232924
 Rigidbody:
@@ -65527,6 +65549,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!1 &1912569129
 GameObject:
@@ -73848,6 +73871,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4607557848173874842}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1302158844910590157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 919938339887936311, guid: d791aaac93373714380799ca5f756634,
+    type: 3}
+  m_PrefabInstance: {fileID: 4607557848173874842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2494f1cc30423343894ac28c7ded92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1305146844658023259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74789,6 +74824,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!4 &2364828004993199879
 Transform:
@@ -77077,6 +77113,7 @@ MonoBehaviour:
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
   priority: 0
+  interactive: 0
   indicator: {fileID: 0}
 --- !u!4 &6071246565615448528
 Transform:
