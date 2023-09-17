@@ -4092,6 +4092,37 @@ Transform:
   m_Father: {fileID: 45784860640348337}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0.5147412, y: -174.00511, z: 13.880569}
+--- !u!1 &1586771239204758081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2332653830347556478}
+  m_Layer: 7
+  m_Name: handPickupPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2332653830347556478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586771239204758081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0033, y: 0.0058, z: -0.044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1967185908641037200}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589767033736178889
 GameObject:
   m_ObjectHideFlags: 0
@@ -17511,6 +17542,7 @@ MonoBehaviour:
   handTarget: {fileID: 5865141805657732566}
   handRig: {fileID: 5528073761153758427}
   handR: {fileID: 7459656167792085480}
+  handPickup: {fileID: 2332653830347556478}
 --- !u!195 &4513776521486623222
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -20856,6 +20888,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4750870262511757171}
+  - {fileID: 2332653830347556478}
   m_Father: {fileID: 7459656167792085480}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 1.1514363, y: -11.165577, z: 0.59418476}

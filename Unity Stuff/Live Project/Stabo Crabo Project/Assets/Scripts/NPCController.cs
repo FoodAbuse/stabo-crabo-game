@@ -74,6 +74,8 @@ public class NPCController : Interactable
     private Rig handRig;
     [SerializeField]
     private Transform handR; //the right hand
+    [SerializeField]
+    private Transform handPickup;
     private States preferredState; //the state this NPC preferrs to be in (matters mainly for idle NPCs)
     private Quaternion preferredRotation;
 
@@ -222,17 +224,14 @@ public class NPCController : Interactable
                 animator.SetFloat("WalkingBehaviour", 1.0f); //change to fleeing animation
             break;
             case States.Pickup:
-                if(FOV.target)
-                {
-                    handTarget.position = FOV.target.GetComponent<Collider>().ClosestPoint(handR.position); //instantly move the hand target to the target's position
-                } 
-                handRig.weight = Mathf.Lerp(handRig.weight, 1.0f, 3 * Time.deltaTime); //increase the weight of the rig over time
+                //asdf
             break;
             case States.ReturningObj:
                 agent.SetDestination(heldObject.GetComponent<Interactable>().preferredPos); //set our destination to the objects preferred position
                 handRig.weight = Mathf.Lerp(handRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig over time
                 if(Vector3.Distance(transform.position, heldObject.GetComponent<Interactable>().preferredPos) < 0.5f) //if we are near the position
                 {
+                    Debug.Log("Reached Object preferred Position");
                     DropObject(); //drop it
                     myState = States.Standing;
                     handRig.weight = 0.0f; //completely remove the rig incase it hasnt decreased to 0 yet
@@ -246,6 +245,8 @@ public class NPCController : Interactable
     private void PickupStart(Transform pTarget)
     {
         myState = States.Pickup;
+        handTarget.position = FOV.target.GetComponent<Collider>().ClosestPoint(handR.position); //instantly move the hand target to the target's position
+        handRig.weight = 1.0f; //increase the weight of the rig to full
         if(pTarget.GetComponent<Interactable>().heldBy && pTarget.GetComponent<Interactable>().heldBy.tag == "Player") //if somehow the kcik didn't work and the player is still holding on,
         {
             pTarget.GetComponent<Interactable>().heldBy.GetComponent<PlayerController>().DropObject(); //make them drop it
@@ -259,8 +260,9 @@ public class NPCController : Interactable
         animator.SetFloat("IdleBehaviour", 0.0f);
         heldObject.transform.parent = handR; //set the target as a child of our right hand
         heldObject.GetComponent<Interactable>().heldBy = this.gameObject;
-        heldObject.GetComponent<Interactable>().ToggleInteraction(false); //player cannot interact with these an object held by an NPC
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
+        heldObject.GetComponent<Interactable>().ToggleInteraction(false); //player cannot interact with these an object held by an NPC
+        heldObject.transform.position = handPickup.position;//move the object into the hand
         myState = States.ReturningObj;
         FOV.WipeTarget();
         BubbleOff();
@@ -279,6 +281,14 @@ public class NPCController : Interactable
         animator.Play("NPC_Kick"); //play the kick animation
         //during the animation ShovePlayerEnd() is triggered
     }
+
+    public void DestroyHeldObject()
+    {
+        if(!heldObject){return;}
+        Destroy(heldObject); //destroy the object we are holding
+    }
+
+
 
     public void ShovePlayerEnd()
     {

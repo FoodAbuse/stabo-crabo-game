@@ -24,7 +24,8 @@ public class Interactable : MonoBehaviour
 
     public Vector3 preferredPos; //where the object likes to be
     public int priority = 0; //higher number means higher priority
-    public bool interactive; //used to temporarily disable the object without destroy can be grabbed or stabbed info
+    [HideInInspector][System.NonSerialized]
+    public bool interactive = true; //used to temporarily disable the object without destroy can be grabbed or stabbed info
 
     //temp
     public GameObject indicator; //debugging vectors of stabbing the objects
@@ -114,5 +115,9 @@ public class Interactable : MonoBehaviour
     public void ToggleInteraction(bool state)
     {
         interactive = state;
+        if(state == false && heldBy && heldBy.tag == "Player") //if we are disabling interaction while held by player
+        {
+            heldBy.SendMessage("DropObject", SendMessageOptions.DontRequireReceiver); //we should be dropped
+        }
     }
 }

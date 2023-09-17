@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6155055961294860851}
   - component: {fileID: 4167387096201375456}
   - component: {fileID: 4346465910407692649}
-  - component: {fileID: 7235844294911391874}
   - component: {fileID: 1204762839619180012}
   - component: {fileID: -181207732796655779}
   - component: {fileID: 4751951042267851676}
+  - component: {fileID: 7118721090915459513}
   m_Layer: 9
   m_Name: DonutPink
   m_TagString: Donut
@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7767521597452272248}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0005659779, y: 0.01, z: -0.06435275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4167387096201375456
 MeshFilter:
@@ -87,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7235844294911391874
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7767521597452272248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7471826086207602732, guid: 140c4c648859ce14cbd84e0f3319a486, type: 3}
 --- !u!54 &1204762839619180012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,6 +123,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  priority: 0
   indicator: {fileID: 0}
 --- !u!65 &4751951042267851676
 BoxCollider:
@@ -151,3 +138,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12400004, y: 0.037258986, z: 0.12400001}
   m_Center: {x: -0.0000000037252903, y: 0.018629493, z: -0.0000000037252903}
+--- !u!114 &7118721090915459513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767521597452272248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de7702b67460a44487ae3875f478cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleSprite: {fileID: 21300000, guid: 410e32fc311c0aa4ab68948ba17f8712, type: 3}
