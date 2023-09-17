@@ -24,6 +24,7 @@ public class Interactable : MonoBehaviour
 
     public Vector3 preferredPos; //where the object likes to be
     public int priority = 0; //higher number means higher priority
+    public bool interactive; //used to temporarily disable the object without destroy can be grabbed or stabbed info
 
     //temp
     public GameObject indicator; //debugging vectors of stabbing the objects
@@ -112,14 +113,12 @@ public class Interactable : MonoBehaviour
 
     public void DisableInteraction()
     {
-        canBeGrabbed = false;
-        canBeStabbed = false;
+        interactive = false;
     }
 
      public void EnableInteraction()
     {
-        canBeGrabbed = true;
-        canBeStabbed = true;
+        interactive = true;
     }
 
 

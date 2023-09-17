@@ -45,36 +45,44 @@ public class PuzzleController : MonoBehaviour
     [SerializeField]
     private float spawnVelocity; //launches the spawned prop
 
+    private bool inQueue; //when outcome has been called, but there is a delay
+
+    public bool debugMode; //enable or disable Debug.Log
+
     void Start()
     {
         if(myTrigger == Trigger.OnStart) //immediately trigger this outcome 
         {
             Outcome();
         }
-        currentTime = Random.Range(timerBase - timerVariance, timerBase + timerVariance); //initially set the timer to not be 0 (can just use on start for that) 
     }
 
     void Update()
     {
-        switch(myTrigger)
+        if(inQueue) //while in queue, we tick down time to then launch outcome
         {
-            case Trigger.Timed:
-                if(currentTime <= 0) //if timer reachs 0
-                {
-                    Outcome();
-                    currentTime = Random.Range(timerBase - timerVariance, timerBase + timerVariance); //set new random time within range
-                }
-                else
-                {
-                    currentTime -= 1 * Time.deltaTime; //tick down the timer
-                }
-            break;
+             if(debugMode){Debug.Log(currentTime);}
+            if(currentTime <= 0) //if timer reachs 0
+            {
+                Outcome();
+            }
+            else
+            {
+                currentTime -= 1 * Time.deltaTime; //tick down the timer
+            }
+        }
+        
+        if(myTrigger == Trigger.Timed && !inQueue) //trigger outcome for regular timed everytime we are not in queue
+        {
+            Outcome();
         }
     }
 
 
     void OnTriggerEnter(Collider other) //triggering the input
     {
+        if(debugMode){Debug.Log(other.gameObject);}
+        if(inQueue){return;}
         triggerObject = other.gameObject;
         //selection based off trigger types
         switch(myTrigger) 
@@ -134,6 +142,7 @@ public class PuzzleController : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
+        if(inQueue){return;}
         switch(myTrigger)
         {
             case Trigger.AllObjects:
@@ -161,6 +170,7 @@ public class PuzzleController : MonoBehaviour
 
     public void StabTrigger() //if we are looking to be stabbed, trigger the outcome
     {
+        if(inQueue){return;}
         if(myTrigger == Trigger.OnStab)
         {
             Outcome();
@@ -169,6 +179,17 @@ public class PuzzleController : MonoBehaviour
 
     public void Outcome() //called when trigger is succesful
     {
+        if(debugMode){Debug.Log("Outcome");}
+        if(!inQueue)
+        {
+            currentTime = Random.Range(timerBase - timerVariance, timerBase + timerVariance); //set new random time within range
+            inQueue = true; //set this the first time Outcome is called, preventing re-calls during the delay
+        }
+        if(currentTime > 0.0f) //if timer hasn't reached 0, we are outcoming early and need to stop
+        {
+            return;
+        }
+
         myOutput.Invoke(); //call all the output events
 
         foreach(var x in destroyObjects) //run through the destroy objects list and destroy everything in it
@@ -202,5 +223,7 @@ public class PuzzleController : MonoBehaviour
             //Debug.Log(gameObject + "says: Destroying Myself. Well, its been real");
             Destroy(gameObject);
         }
+
+        inQueue = false; //reset Queue ready for next time we want to trigger
     }
 }

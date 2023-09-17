@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ColliderCollection : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class ColliderCollection : MonoBehaviour
 
     void Update()
     {
-        colList.RemoveAll(s => s == null); //remove all null items in list
+        colList.RemoveAll(x => x == null); //remove all null items in list
+        colList
+            .Where(y => y.GetComponent<Interactable>() && !y.GetComponent<Interactable>().interactive).ToList()
+            .ForEach(z => Remove(z));
+            //tldr: removes all items with 'interactive' set to false
     }
 
     //Script for collecting objects that are within collider bounds
     void OnTriggerEnter(Collider other)
     {
+        if(other.GetComponent<Interactable>() && !other.GetComponent<Interactable>().interactive){return;} //cannot enter collection if not interactive currently
+
         if(byTag && tagList.Contains(other.tag)) //if it has a matching tag and has interactable script
         {
             colList.Add(other); //adds the collider to the list
