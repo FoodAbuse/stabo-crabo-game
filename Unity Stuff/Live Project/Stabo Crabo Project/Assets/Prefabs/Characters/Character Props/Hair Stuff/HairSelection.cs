@@ -39,6 +39,10 @@ public class HairSelection : MonoBehaviour
     public Material childSkin1;
     public Material childSkin2;
     public Material childSkin3;
+
+    public Material policeSkin1;
+    public Material policeSkin2;
+    public Material policeSkin3;
     
 
 
@@ -81,6 +85,11 @@ public class HairSelection : MonoBehaviour
                 randomizeNPC = false;
                 randomizeChild();
             }
+        }
+
+        if (npcType == NPC_Type.police)
+        {
+            RandomizePolice();
         }
 
         
@@ -261,6 +270,26 @@ public class HairSelection : MonoBehaviour
 
 
 
+    }
+
+    void RandomizePolice ()
+    {
+        randomSkinRef = Random.Range(1, 4);
+
+        if (randomSkinRef == 1)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = policeSkin1;
+            }
+
+        if (randomSkinRef == 2)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = policeSkin2;
+            }
+
+        if (randomSkinRef == 3)
+            {
+                geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = policeSkin3;
+            }
     }
 
     void BlackHairRandomize()
