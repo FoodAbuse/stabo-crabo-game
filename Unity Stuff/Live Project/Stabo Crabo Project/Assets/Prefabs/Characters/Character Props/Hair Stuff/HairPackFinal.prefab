@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1447624870530137363}
   - component: {fileID: 7101837890822962039}
   - component: {fileID: 5575591511458909739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapHair
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8940446153768741511}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlackHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 839992923032018569}
   - component: {fileID: 1482870596837318433}
   - component: {fileID: 4097679608282501538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairBun
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 1103070440753295685}
   - component: {fileID: 4067213827159435541}
   - component: {fileID: 7099135116508382370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairStraight
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4107872032205470964}
   - component: {fileID: 1856528172108393177}
   - component: {fileID: 8239757623454235974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairElvis
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8885783970755882964}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: maleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 6442846425579837881}
   - component: {fileID: 1329922009772439275}
   - component: {fileID: 1947348962098716262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairStraight
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 7322763708131022108}
   - component: {fileID: 7684648974938774004}
   - component: {fileID: 8944032539276354267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairStraight
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 1062241407848005758}
   - component: {fileID: 6694975993544197120}
   - component: {fileID: 2073642200362773483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHat
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581299705678218284}
   - component: {fileID: 249134001330047664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HairPackFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,18 +699,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b0ec87ea22c2441b50002d5da3c9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomHair: 1
+  npcType: 0
+  randomizeNPC: 1
   randomColourRef: 0
   randomStyleRef: 0
+  randomSkinRef: 0
   hairBundleRef: {fileID: 0}
   activeHair: {fileID: 0}
   genderedBundle: {fileID: 0}
+  activeSkin: {fileID: 0}
+  geoRef: {fileID: 0}
   femaleSkin1: {fileID: 0}
   femaleSkin2: {fileID: 0}
   femaleSkin3: {fileID: 0}
   maleSkin1: {fileID: 0}
   maleSkin2: {fileID: 0}
   maleSkin3: {fileID: 0}
+  childSkin1: {fileID: 0}
+  childSkin2: {fileID: 0}
+  childSkin3: {fileID: 0}
+  policeSkin1: {fileID: 0}
+  policeSkin2: {fileID: 0}
+  policeSkin3: {fileID: 0}
   gender: 0
   hairColour: 0
 --- !u!1 &2436897703257985980
@@ -724,7 +734,7 @@ GameObject:
   - component: {fileID: 486748007201442494}
   - component: {fileID: 2403127009555059319}
   - component: {fileID: 5206834919176709126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairElvis
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -807,7 +817,7 @@ GameObject:
   - component: {fileID: 8795822593150756258}
   - component: {fileID: 2272764235364301496}
   - component: {fileID: 1109857094730958878}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairStraight
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -890,7 +900,7 @@ GameObject:
   - component: {fileID: 967134934320075318}
   - component: {fileID: 1756746350107524002}
   - component: {fileID: 8507240558147289045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHighPony
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -974,7 +984,7 @@ GameObject:
   - component: {fileID: 4541725274819640731}
   - component: {fileID: 7436459953903447868}
   - component: {fileID: 8897606576171119507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairBun
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1058,7 +1068,7 @@ GameObject:
   - component: {fileID: 4201168312948930526}
   - component: {fileID: 228595123701999423}
   - component: {fileID: 6779536876519987424}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairMalding
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1139,7 +1149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4724803428191469386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: femaleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,7 +1184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3977785228934676665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: maleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,7 +1221,7 @@ GameObject:
   - component: {fileID: 5770041758568850389}
   - component: {fileID: 2482567555838971420}
   - component: {fileID: 6672557059091576520}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairElvis
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1292,7 +1302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016519406763994643}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: maleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,7 +1339,7 @@ GameObject:
   - component: {fileID: 5049103564258061462}
   - component: {fileID: 2812760831432667494}
   - component: {fileID: 8667272941906926682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHat
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1412,7 +1422,7 @@ GameObject:
   - component: {fileID: 3818633104242292328}
   - component: {fileID: 1800926249861889319}
   - component: {fileID: 3422761272430416442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairMalding
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1495,7 +1505,7 @@ GameObject:
   - component: {fileID: 3943055494394452878}
   - component: {fileID: 4328323375984656271}
   - component: {fileID: 6703142822532318987}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapHair
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1578,7 +1588,7 @@ GameObject:
   - component: {fileID: 6706168857793332939}
   - component: {fileID: 7499092689105410207}
   - component: {fileID: 348710021707086284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHat
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1661,7 +1671,7 @@ GameObject:
   - component: {fileID: 7523450210318273194}
   - component: {fileID: 2306944532536624329}
   - component: {fileID: 4276569423049506232}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapBald
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1744,7 +1754,7 @@ GameObject:
   - component: {fileID: 8158084064347868087}
   - component: {fileID: 2942140004393983385}
   - component: {fileID: 3428930006655981348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapBald
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1827,7 +1837,7 @@ GameObject:
   - component: {fileID: 3405645250495920595}
   - component: {fileID: 4579029606036363759}
   - component: {fileID: 824508476112735627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairBun
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1911,7 +1921,7 @@ GameObject:
   - component: {fileID: 5205867733415139761}
   - component: {fileID: 371898896107101886}
   - component: {fileID: 5588351406077336384}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapBald
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -1994,7 +2004,7 @@ GameObject:
   - component: {fileID: 534324751503407180}
   - component: {fileID: 1348504892701912915}
   - component: {fileID: 4955205534714059992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairMalding
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2077,7 +2087,7 @@ GameObject:
   - component: {fileID: 4710944571408164938}
   - component: {fileID: 5049933118582665148}
   - component: {fileID: 3619648160279386127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairStraight
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2160,7 +2170,7 @@ GameObject:
   - component: {fileID: 4920004023864464385}
   - component: {fileID: 513627016938721995}
   - component: {fileID: 2626698753317047860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapBald
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2243,7 +2253,7 @@ GameObject:
   - component: {fileID: 8018919898333230958}
   - component: {fileID: 745556869799099635}
   - component: {fileID: 4257704464273122994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHat
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2324,7 +2334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3586623484106321499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2359,7 +2369,7 @@ GameObject:
   - component: {fileID: 3363311963696234650}
   - component: {fileID: 8457748791210964181}
   - component: {fileID: 8313256319081412193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapHair
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2442,7 +2452,7 @@ GameObject:
   - component: {fileID: 9015550956427203661}
   - component: {fileID: 5513943735791372216}
   - component: {fileID: 7333235501365018889}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairBun
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2524,7 +2534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6019496299198695572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: maleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2561,7 +2571,7 @@ GameObject:
   - component: {fileID: 2914645623214804196}
   - component: {fileID: 3207009537446843831}
   - component: {fileID: 2818180237883844252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHighPony
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2645,7 +2655,7 @@ GameObject:
   - component: {fileID: 2462377253985673140}
   - component: {fileID: 2776767249078034684}
   - component: {fileID: 2272958359602788868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairElvis
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2728,7 +2738,7 @@ GameObject:
   - component: {fileID: 2400895758359878396}
   - component: {fileID: 3208795700935196712}
   - component: {fileID: 7183948365082488654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairBun
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2812,7 +2822,7 @@ GameObject:
   - component: {fileID: 5134128681936014176}
   - component: {fileID: 2030705189041167692}
   - component: {fileID: 4002522937822447745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHighPony
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -2895,7 +2905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9067182494810802847}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: femaleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2930,7 +2940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550827279317311606}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: femaleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2965,7 +2975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8231886807114442201}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: maleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3000,7 +3010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987897464508158851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GreyHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3033,7 +3043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9112003172288714554}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BrownHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3068,7 +3078,7 @@ GameObject:
   - component: {fileID: 8354618609213763226}
   - component: {fileID: 2544537261629721086}
   - component: {fileID: 2368605454729085862}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairMalding
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3151,7 +3161,7 @@ GameObject:
   - component: {fileID: 3790257795619154210}
   - component: {fileID: 6868340608180831824}
   - component: {fileID: 2225845756860745822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHat
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3234,7 +3244,7 @@ GameObject:
   - component: {fileID: 9000654966210390070}
   - component: {fileID: 6112574224482340164}
   - component: {fileID: 8873871985793723804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapHair
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3317,7 +3327,7 @@ GameObject:
   - component: {fileID: 4470960068996237531}
   - component: {fileID: 5786456853273087236}
   - component: {fileID: 3656454770674315000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairMalding
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3400,7 +3410,7 @@ GameObject:
   - component: {fileID: 8343515513493918995}
   - component: {fileID: 5999947032487231683}
   - component: {fileID: 8831005720412111890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHighPony
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3484,7 +3494,7 @@ GameObject:
   - component: {fileID: 5300635605878721977}
   - component: {fileID: 2663252068248975809}
   - component: {fileID: 7700842154352301660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapBald
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3565,7 +3575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8589560366087664241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlondeHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3600,7 +3610,7 @@ GameObject:
   - component: {fileID: 3247411173282765568}
   - component: {fileID: 7893452453568945889}
   - component: {fileID: 143355631699316466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairCapHair
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3681,7 +3691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 60647890229524773}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: femaleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3718,7 +3728,7 @@ GameObject:
   - component: {fileID: 2871853875099347076}
   - component: {fileID: 1042091769624843841}
   - component: {fileID: 5431390423817661001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mHairElvis
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}
@@ -3799,7 +3809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6201490178610108012}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: femaleHair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3836,7 +3846,7 @@ GameObject:
   - component: {fileID: 8396917972572021386}
   - component: {fileID: 6690893259927178}
   - component: {fileID: 3310543271103339495}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: fHairHighPony
   m_TagString: InactiveHair
   m_Icon: {fileID: 0}

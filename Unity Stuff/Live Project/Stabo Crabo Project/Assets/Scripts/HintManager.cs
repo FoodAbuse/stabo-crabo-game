@@ -18,12 +18,39 @@ public class HintManager : MonoBehaviour
     public List<Hint> hintList;
     private int alertNum;
     [SerializeField]
+    private string alertIconRef;
     private GameObject alertIcon; //the icon that shows the number of active hints
     [SerializeField]
+    private string hintTextRef;
     private TextMeshProUGUI hintText; //the text that lists all the hints
     [SerializeField]
+    private string alertTextRef;
     private TextMeshProUGUI alertText; //the text shows the number of active hints
 
+    private Transform ui;
+
+    void Start()
+    {
+        //hint managers are local to the level scene, and so cannot drag and drop connections to the ui manager
+        ui = GameObject.Find("UIManager").GetComponent<Transform>();
+        CanvasRenderer[] uiTransforms = ui.GetComponentsInChildren<CanvasRenderer>(true);
+        foreach(CanvasRenderer t in uiTransforms)
+        {
+            if(t.name == alertIconRef)
+            {
+                alertIcon = t.gameObject;
+            }
+            else if(t.name == hintTextRef)
+            {
+                hintText = t.GetComponent<TextMeshProUGUI>();
+            }
+            else if(t.name == alertTextRef)
+            {
+                alertText = t.GetComponent<TextMeshProUGUI>();
+            }
+        }
+        //have to do this long winded approach because the hint panel starts as inactive, so gameobject.find doesn't work
+    }
 
     void HintUpdate() //update the text in the hint menu to match the current hint stats
     {

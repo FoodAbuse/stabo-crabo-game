@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject panelCurrent; //the pannel that is currently active
 
-    [HideInInspector]
+    //[HideInInspector]
     public string levelName;
 
     [SerializeField]
