@@ -112,7 +112,7 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    public void ToggleInteraction(bool state)
+    public virtual void ToggleInteraction(bool state)
     {
         interactive = state;
         if(state == false && heldBy && heldBy.tag == "Player") //if we are disabling interaction while held by player

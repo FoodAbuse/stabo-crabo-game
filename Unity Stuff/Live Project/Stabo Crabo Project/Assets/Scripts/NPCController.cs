@@ -150,7 +150,7 @@ public class NPCController : Interactable
             }
         }*/
 
-        if(myBehaviour != Behaviours.Dead) //if we are not dead
+        if(myBehaviour != Behaviours.Dead && myState != States.Fleeing) //if we are not dead, and not fleeing
         {
             if(FOV.canSeeTarget) //and the FOV script has triggered on a target that we can see
             {
@@ -567,5 +567,19 @@ public class NPCController : Interactable
     {
         myState = States.Walking;
         agent.SetDestination(t.position);
+    }
+
+    public override void ToggleInteraction(bool state)
+    {
+        InteractableExtender[] childInteractables = GetComponentsInChildren<InteractableExtender>();
+        foreach(InteractableExtender iE in childInteractables)
+        {
+            Debug.Log(iE.gameObject.name);
+            iE.interactive = state;
+            if(state == false && iE.heldBy && iE.heldBy.tag == "Player") //if we are disabling interaction while held by player
+            {
+                iE.heldBy.SendMessage("DropObject", SendMessageOptions.DontRequireReceiver); //we should be dropped
+            }
+        }
     }
 }
