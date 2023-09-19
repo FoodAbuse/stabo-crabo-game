@@ -397,6 +397,7 @@ MonoBehaviour:
   tagList: []
   anyInteractable: 1
   toggleOutline: 1
+  selected: {fileID: 0}
 --- !u!1 &2108271777064321021
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +550,7 @@ MonoBehaviour:
   tagList: []
   anyInteractable: 1
   toggleOutline: 0
+  selected: {fileID: 0}
 --- !u!1 &5009117343049803994
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +984,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LightProbeUsage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7491092094610045190, guid: 8c5fa3c07c5d3ef49b1b4710a5a8fcee,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7491092094610045190, guid: 8c5fa3c07c5d3ef49b1b4710a5a8fcee,
         type: 3}
