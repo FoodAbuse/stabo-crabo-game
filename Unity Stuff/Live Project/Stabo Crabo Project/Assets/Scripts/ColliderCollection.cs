@@ -20,6 +20,10 @@ public class ColliderCollection : MonoBehaviour
             .Where(y => y.GetComponent<Interactable>() && !y.GetComponent<Interactable>().interactive).ToList()
             .ForEach(z => Remove(z));
             //tldr: removes all items with 'interactive' set to false
+        colList
+            .Where(y => y.enabled == false).ToList()
+            .ForEach(z => Remove(z));
+            //tldr: removes all colliders that are inactive
     }
 
     //Script for collecting objects that are within collider bounds
