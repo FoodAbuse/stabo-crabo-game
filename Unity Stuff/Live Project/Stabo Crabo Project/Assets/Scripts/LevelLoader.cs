@@ -56,6 +56,7 @@ public class LevelLoader : MonoBehaviour
         transition.SetBool("Start", true); //play animation - fade to black
         yield return new WaitForSeconds(transitionPause); //pauses the co-routine for x amount of seconds
         SceneManager.LoadScene(levelName); //load the scene
+        uiManager.levelName = levelName;
         transition.SetBool("Start", false); //play animation - fade from black
     }
 

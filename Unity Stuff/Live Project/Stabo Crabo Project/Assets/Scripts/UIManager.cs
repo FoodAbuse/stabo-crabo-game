@@ -29,6 +29,14 @@ public class UIManager : MonoBehaviour
 
     public GameObject panelCurrent; //the pannel that is currently active
 
+    [HideInInspector]
+    public string levelName;
+
+    [SerializeField]
+    private GameObject endL1; //panel content to be shown at the end of level 1
+    [SerializeField]
+    private GameObject endL2;
+
 
     void Awake()
 	{
@@ -116,6 +124,16 @@ public class UIManager : MonoBehaviour
         timeText.text = "Time: " + GameManager.timerString;
 
         MenuScreen(panelEndScreen); //show the end panel
+        endL1.SetActive(false);
+        endL2.SetActive(false);
+        if(levelName == "Level1")
+        {
+            endL1.SetActive(true);
+        }
+        else if(levelName == "Level2")
+        {
+            endL2.SetActive(true);
+        }
         //switch to a zoomed out camera after a little bit or something
     }
 

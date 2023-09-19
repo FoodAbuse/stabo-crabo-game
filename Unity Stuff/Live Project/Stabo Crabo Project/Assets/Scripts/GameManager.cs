@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform targetParent; //all the targets in the level will be children of this
 
     //tracking variables
-    //private static Level levelCurrent;
+    //public static Level levelCurrent;
     public static float timerCurrent;
     public static string timerString;
     public static int levelPhase; //0 - intro, 1 - puzzles, 2-escape, 3 - end
