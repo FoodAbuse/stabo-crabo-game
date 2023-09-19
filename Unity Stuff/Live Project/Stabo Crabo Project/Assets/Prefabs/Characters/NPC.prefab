@@ -21773,8 +21773,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7030002915725455234}
   - component: {fileID: 5528073761153758427}
-  - component: {fileID: 7249591594030309515}
-  - component: {fileID: 7015951447160870583}
   m_Layer: 7
   m_Name: NPCHandRig
   m_TagString: Untagged
@@ -21828,39 +21826,6 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
---- !u!136 &7249591594030309515
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7686793627793189946}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 1.15
-  m_Height: 4.13
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.82, z: 1.16}
---- !u!114 &7015951447160870583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7686793627793189946}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e7b851570c35c45ba0757c0c1034f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colList: []
-  byTag: 0
-  tagList:
-  - Player
-  anyInteractable: 0
-  toggleOutline: 0
-  selected: {fileID: 0}
 --- !u!1 &7689618057736138456
 GameObject:
   m_ObjectHideFlags: 0
@@ -26472,5 +26437,8 @@ MonoBehaviour:
   childSkin1: {fileID: 0}
   childSkin2: {fileID: 0}
   childSkin3: {fileID: 0}
+  policeSkin1: {fileID: 0}
+  policeSkin2: {fileID: 0}
+  policeSkin3: {fileID: 0}
   gender: 0
   hairColour: 0

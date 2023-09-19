@@ -263,6 +263,7 @@ public class NPCController : Interactable
         heldObject.GetComponent<Rigidbody>().isKinematic = true;
         heldObject.GetComponent<Interactable>().ToggleInteraction(false); //player cannot interact with these an object held by an NPC
         heldObject.transform.position = handPickup.position;//move the object into the hand
+        handRig.weight = 0.0f;
         myState = States.ReturningObj;
         FOV.WipeTarget();
         BubbleOff();
@@ -541,11 +542,14 @@ public class NPCController : Interactable
         {
             return;
         }
-        heldObject.GetComponent<Rigidbody>().isKinematic = false;
-        heldObject.GetComponent<Interactable>().heldBy = null;
-        heldObject.GetComponent<Interactable>().ToggleInteraction(true); //re-enable player interaction with this object
-        heldObject.transform.parent = GameObject.Find("_Props").transform;
-        heldObject = null;
+        if(heldObject && !heldObject.GetComponent<Interactable>().isDoomed)
+        {
+            heldObject.GetComponent<Rigidbody>().isKinematic = false;
+            heldObject.GetComponent<Interactable>().heldBy = null;
+            heldObject.GetComponent<Interactable>().ToggleInteraction(true); //re-enable player interaction with this object
+            heldObject.transform.parent = GameObject.Find("_Props").transform;
+            heldObject = null;
+        }
 
         if(myState == States.ReturningObj) //if we were returning an object at the time...
         {
