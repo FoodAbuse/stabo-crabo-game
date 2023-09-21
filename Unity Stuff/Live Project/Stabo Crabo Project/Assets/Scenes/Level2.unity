@@ -2054,6 +2054,7 @@ MonoBehaviour:
   alertIconRef: HintAlertIcon
   hintTextRef: Txt_HintsContent
   alertTextRef: AlertIconText
+  hintIconAnimator: {fileID: 1311324206}
 --- !u!4 &46870144
 Transform:
   m_ObjectHideFlags: 0
@@ -34174,6 +34175,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1581754970, guid: 7b1d5d4698a708742a05b777e71fe5da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667152045, guid: 7b1d5d4698a708742a05b777e71fe5da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904963833, guid: 7b1d5d4698a708742a05b777e71fe5da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 780550876795127509, guid: 7b1d5d4698a708742a05b777e71fe5da,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -51815,6 +51828,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310733668}
   m_Mesh: {fileID: -4198129138449494379, guid: 2f6b373c31350774cb541d1ef3e7b5dd, type: 3}
+--- !u!1 &1311324205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1667152045, guid: 7b1d5d4698a708742a05b777e71fe5da,
+    type: 3}
+  m_PrefabInstance: {fileID: 881117471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1311324206
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311324205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88f36322b1434554abb61bb601ad2718, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1312206765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87555,7 +87594,7 @@ PrefabInstance:
     - target: {fileID: 4607557847949093543, guid: d791aaac93373714380799ca5f756634,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Outline
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

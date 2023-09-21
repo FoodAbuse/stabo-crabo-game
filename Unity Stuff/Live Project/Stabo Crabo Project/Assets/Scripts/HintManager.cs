@@ -29,6 +29,8 @@ public class HintManager : MonoBehaviour
 
     private Transform ui;
 
+    public Animator hintIconAnimator; //reference to hint icon animator for alert flashes etc.
+
     void Start()
     {
         //hint managers are local to the level scene, and so cannot drag and drop connections to the ui manager
@@ -77,6 +79,9 @@ public class HintManager : MonoBehaviour
 
     public void HintTrigger(int hintIndex) //turn on the hint
     {
+        // Hugo - Hint Alert Trigger
+        hintIconAnimator.SetTrigger("newAlert");
+
         foreach(Hint hint in hintList)
         {
             if(hint.index == hintIndex) //if it is the matching hint
