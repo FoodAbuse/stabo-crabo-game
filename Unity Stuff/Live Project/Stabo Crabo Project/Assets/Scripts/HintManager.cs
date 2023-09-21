@@ -28,8 +28,10 @@ public class HintManager : MonoBehaviour
     private TextMeshProUGUI alertText; //the text shows the number of active hints
 
     private Transform ui;
+    [SerializeField]
+    private string hintIconAnimatorRef;
 
-    public Animator hintIconAnimator; //reference to hint icon animator for alert flashes etc.
+    private Animator hintIconAnimator; //reference to hint icon animator for alert flashes etc.
 
     void Start()
     {
@@ -49,6 +51,10 @@ public class HintManager : MonoBehaviour
             else if(t.name == alertTextRef)
             {
                 alertText = t.GetComponent<TextMeshProUGUI>();
+            }
+            else if(t.name == hintIconAnimatorRef)
+            {
+                hintIconAnimator = t.GetComponent<Animator>();
             }
         }
         //have to do this long winded approach because the hint panel starts as inactive, so gameobject.find doesn't work
