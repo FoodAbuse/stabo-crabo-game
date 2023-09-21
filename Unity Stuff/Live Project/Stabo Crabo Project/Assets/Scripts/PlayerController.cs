@@ -211,6 +211,7 @@ public class PlayerController : MonoBehaviour
                 }
                 isGrabbing = true;
                 grabObject.GetComponent<Interactable>().heldBy = gameObject; //we are holding the object
+                
                 //armTargetL.transform.LookAt(grabObject);
                 armTargetL.position = grabCollider.selected.bounds.ClosestPoint(armTargetL.position); //move Lhand to grabbed object
 
@@ -219,6 +220,10 @@ public class PlayerController : MonoBehaviour
                     grabObject.parent = armTargetL; //make the grabbed object a child of the grabbing arm
                     armTargetL.position = grabLightTarget.position; //move the arm to the position for holding light objects
                     grabObject.GetComponent<Rigidbody>().isKinematic = true;
+
+                    // TESTING
+                    //Debug.Log(grabObject.GetComponent<Collider>() + "is now being held"); 
+                    grabObject.GetComponent<Collider>().enabled = false;
                 }
                 else //if the object is heavy
                 {
@@ -261,7 +266,12 @@ public class PlayerController : MonoBehaviour
         isGrabbing = false;
         if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
         {
-            grabObject.parent = GameObject.Find("_Props").transform; //return the original parent  
+            grabObject.parent = GameObject.Find("_Props").transform; //return the original parent 
+
+            // TESTING
+
+            grabObject.GetComponent<Collider>().enabled = true;
+
             grabObject.GetComponent<Rigidbody>().isKinematic = false;
             grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
         }
