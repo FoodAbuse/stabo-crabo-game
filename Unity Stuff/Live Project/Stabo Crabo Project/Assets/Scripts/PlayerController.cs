@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        
         //Fetch component references
         rb = GetComponent<Rigidbody>();
 
