@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //controls
+    private PlayerControls controls;
+    private bool sprintBtnDown;
+    private Vector2 moveControl;
 
     //Defining variables
     public float baseMoveSpeed = 2.5f;
@@ -51,6 +56,27 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private Quaternion targetRotation;
 
+    void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Gameplay.Grab.started += ctx => GrabCheck();
+        controls.Gameplay.Grab.canceled += ctx => DropObject();
+        controls.Gameplay.Stab.performed += ctx => StabCheck();
+        controls.Gameplay.Sprint.started += ctx => sprintBtnDown = true;
+        controls.Gameplay.Sprint.canceled += ctx => sprintBtnDown = false;
+        controls.Gameplay.Move.performed += ctx => moveControl = ctx.ReadValue<Vector2>();
+        controls.Gameplay.Move.canceled += ctx => moveControl = Vector2.zero;
+    }
+
+    void OnEnable()
+    {
+        controls.Gameplay.Enable(); //enables all of our controls
+    }
+
+    void OnDisable()
+    {
+        controls.Gameplay.Disable(); //enables all of our controls
+    }
 
     void Start()
     {
@@ -69,17 +95,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
+        if(stabTimer > 0.0f) //if stab is on cooldown,
         {
-            GrabCheck(); //check for grab input and execute it
-            if(stabTimer <= 0) //if the cool down has been exhausted
-            {
-                StabCheck(); //check for stab input and execute it
-            }
-            else
-            {
-                stabTimer -= 1 * Time.deltaTime; //keep cooling-down the stab timer
-            }
+            stabTimer -= 1 * Time.deltaTime; //tick it down
         }
 
         if(stunned > 0.0f) //if the player is stunned
@@ -91,13 +109,12 @@ public class PlayerController : MonoBehaviour
         {
             isStunned = false;
         }
-        
     }
 
     void MovementInput() //takes player input to move the player character
     {
-        float horizontalAxis = Input.GetAxis("Horizontal"); //get input values
-        float verticalAxis = Input.GetAxis("Vertical");
+        float horizontalAxis = moveControl.x; //Input.GetAxis("Horizontal"); //get input values
+        float verticalAxis = moveControl.y; //Input.GetAxis("Vertical");
 
         var forward = cam.forward; //get camera directions
         var right = cam.right;
@@ -110,18 +127,18 @@ public class PlayerController : MonoBehaviour
 
 
         //moveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")).normalized; //receive input for movement vector
-            if(Input.GetKey(KeyCode.LeftShift) && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
-            {
-                isSprinting = true;
-                moveSpeed = sprintMoveSpeed; //increase movement
-                turnSpeed = sprintTurnSpeed;
-            }
-            else
-            {
-                isSprinting = false;
-                moveSpeed = baseMoveSpeed; //reset movement
-                turnSpeed = baseTurnSpeed;                
-            }
+        if(sprintBtnDown && moveDirection.magnitude > 0.1 && !isDragging) //sprint button on and we are moving, and we are not dragging something
+        {
+            isSprinting = true;
+            moveSpeed = sprintMoveSpeed; //increase movement
+            turnSpeed = sprintTurnSpeed;
+        }
+        else
+        {
+            isSprinting = false;
+            moveSpeed = baseMoveSpeed; //reset movement
+            turnSpeed = baseTurnSpeed;                
+        }
     }
 
     void FixedUpdate()
@@ -199,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     private void GrabCheck()
     {
-        if(Input.GetMouseButtonDown(0)) 
+        if(GameManager.acceptPlayerInput) 
         {
             StartCoroutine(GameManager.NextTip("Grab")); //disable tip
             if(grabCollider.colList.Count > 0) //checks that there are actually objects to grab
@@ -245,25 +262,15 @@ public class PlayerController : MonoBehaviour
                 armTargetL.position = grabAirTarget.position; //grab the air
             }
         }
-        if(Input.GetMouseButtonUp(0))
-        {
-            if(isGrabbing)
-            {
-                /*if (grabObject.GetComponent<OutlineManager>() != null) // Hugo - Reenables the outline after the object is dropped 
-                    grabObject.GetComponent<OutlineManager>().isHeld = false; */
-                
-                DropObject(); //drop the currently held object  
-            }
-            else
-            {
-                armTargetL.localPosition = startPosArmTargetL; //return the arm to its start posiiton 
-            }
-        }
     }
 
     public void DropObject()
     {
-        if(!isGrabbing){return;} //if we are not grabbing anything, return
+        if(!isGrabbing)
+        {
+            armTargetL.localPosition = startPosArmTargetL;
+            return; //if we are not grabbing anything, return
+        } 
         isGrabbing = false;
         if(!grabObject.GetComponent<Interactable>().isDoomed) //if the held object is not about to be destroyed
         {
@@ -299,7 +306,7 @@ public class PlayerController : MonoBehaviour
 
     private void StabCheck()
     {
-        if(Input.GetMouseButtonDown(1)) //if rmb pressed
+        if(GameManager.acceptPlayerInput && stabTimer <= 0.0f) //if we are allowed to stab
         {
             StartCoroutine(GameManager.NextTip("Stab")); //disable tip
             if(stabCollider.colList.Count > 0) //if there is something to stab

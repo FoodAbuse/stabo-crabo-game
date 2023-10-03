@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
     //purpose of this manager is to run menus, tooltips most of the UI.
+
+    private PlayerControls controls;
     private static UIManager _instance; // the manager variable
 
     //reference to different menu panels
@@ -50,28 +53,35 @@ public class UIManager : MonoBehaviour
 			if (_instance != this) //Otherwise if there is a different manager
 				Destroy(gameObject); //Destroy this object, because it is a duplicate
 		}
+
+        controls = new PlayerControls();
+        controls.Gameplay.UiStart.performed += ctx => IntroBtn();
+    }
+
+    void OnEnable()
+    {
+        controls.Gameplay.Enable(); //enables all of our controls
+    }
+
+    void OnDisable()
+    {
+        //disabled as was causing error
+        //controls.Gameplay.Disable(); //enables all of our controls
     }
 
     void Start()
     {
         InitialisePanels();//initial set of UI variables
         //panelCurrent = panelTitle;
-        
     }
 
-    void Update()
+    void IntroBtn()
     {
         if(panelTitle.GetComponent<CanvasGroup>().interactable && panelTitle.activeSelf) //checks if the title screen is currently active
         {
-            if(Input.anyKey) //checks for any input
-            {
-                panelTitle.SetActive(false); //disables title screen
-                MenuScreen(panelMain);
-            }
+            panelTitle.SetActive(false); //disables title screen
+            MenuScreen(panelMain);
         }
-
-        
-        
     }
 
     public void MenuScreen(GameObject targetPanel) //changes the current menu panel

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     //purpose of this is to manage the levels and the game itself
     //private static GameManager _instance; //the static holder for this script
+
+    private PlayerControls controls;
 
     private static UIManager ui;
 
@@ -38,8 +41,20 @@ public class GameManager : MonoBehaviour
     {        
         Application.targetFrameRate = 60;        
         QualitySettings.vSyncCount = 1;
+        controls = new PlayerControls();
+        controls.Gameplay.Pause.performed += ctx => EscapeBtn();
+        controls.Gameplay.Hints.performed += ctx => HintsBtn();
     }
 
+    void OnEnable()
+    {
+        controls.Gameplay.Enable(); //enables all of our controls
+    }
+
+    void OnDisable()
+    {
+        controls.Gameplay.Disable(); //enables all of our controls
+    }
 
     void Start()
     {
@@ -64,38 +79,37 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            if(levelPhase == 0) //if in intro phase
-            {
-                StopCoroutine(currentRoutine);
-                IntroCutSceneEnd(); //End the Intro CutScene
-
-            }
-            else if(ui.panelCurrent == ui.panelHints) //exit the Hints menu
-            {
-                ui.ExitMenu();
-            }
-            else
-            {
-                TogglePause(); //pause the game
-            }
-        }
-
-        if(Input.GetKeyUp(KeyCode.Q))
-        {
-            if(ui.panelCurrent == ui.panelHints)
-            {
-                ui.ExitMenu(); //if we are already in the tip menu, exit it
-            }
-            else if(!ui.panelCurrent) //only bring up hints if no other menus are open
-            {
-                ui.MenuScreen(ui.panelHints); //enable hints menu
-            }
-
-        }
-
         KeepTime(); //tracks up time in level
+    }
+
+    void EscapeBtn() //when esc or 'start' are pressed
+    {
+        if(levelPhase == 0) //if in intro phase
+        {
+            StopCoroutine(currentRoutine);
+            IntroCutSceneEnd(); //End the Intro CutScene
+
+        }
+        else if(ui.panelCurrent == ui.panelHints) //exit the Hints menu
+        {
+            ui.ExitMenu();
+        }
+        else
+        {
+            TogglePause(); //pause the game
+        }
+    }
+
+    void HintsBtn() //when q or 'xbox y' are pressed
+    {
+        if(ui.panelCurrent == ui.panelHints)
+        {
+            ui.ExitMenu(); //if we are already in the tip menu, exit it
+        }
+        else if(!ui.panelCurrent) //only bring up hints if no other menus are open
+        {
+            ui.MenuScreen(ui.panelHints); //enable hints menu
+        }
     }
 
     public static IEnumerator NextTip(string tip) //called by other objects
