@@ -26,7 +26,10 @@ public class ApplicationManager : MonoBehaviour
 
     public void ExitApplication()
     {
-        Application.Quit(); //close the app
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
     }
 
 
