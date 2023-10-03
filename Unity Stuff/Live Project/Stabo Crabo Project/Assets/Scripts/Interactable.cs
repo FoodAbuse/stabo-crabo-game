@@ -23,6 +23,8 @@ public class Interactable : MonoBehaviour
     public bool isHeavy;
 
     public Vector3 preferredPos; //where the object likes to be
+    [HideInInspector]
+    public Quaternion preferredRotation;
     public int priority = 0; //higher number means higher priority
     [HideInInspector][System.NonSerialized]
     public bool interactive = true; //used to temporarily disable the object without destroy can be grabbed or stabbed info
@@ -35,6 +37,7 @@ public class Interactable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GetOutlineRef();
         preferredPos = transform.position; //objects initially prefer to be in their starting position. This can be changed later.
+        preferredRotation = transform.rotation;
     }
 
     void OnDestroy() //is called when this object is destroyed

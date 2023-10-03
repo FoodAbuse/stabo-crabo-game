@@ -2438,6 +2438,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!65 &57491276
@@ -9099,17 +9100,17 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1929417270}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2f6b373c31350774cb541d1ef3e7b5dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f6b373c31350774cb541d1ef3e7b5dd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.24
+      value: 0.24000001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f6b373c31350774cb541d1ef3e7b5dd,
         type: 3}
@@ -9119,7 +9120,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2f6b373c31350774cb541d1ef3e7b5dd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.24
+      value: 0.24000001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f6b373c31350774cb541d1ef3e7b5dd,
         type: 3}
@@ -9771,6 +9772,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &236877731
@@ -11494,6 +11496,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &288482090
@@ -12855,6 +12858,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 322986757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &323966368
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976949542652219331, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130378896086744277, guid: 6c31cabc2d6929d44a70eb71ec0749ec,
+        type: 3}
+      propertyPath: m_Name
+      value: Failsafe Object Catcher
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c31cabc2d6929d44a70eb71ec0749ec, type: 3}
 --- !u!1001 &324170003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13717,6 +13791,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &344782815
@@ -19205,6 +19280,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &517768111
@@ -19639,6 +19715,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &537356221
@@ -27032,6 +27109,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &699702728
@@ -32775,6 +32853,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &841998821
@@ -49976,6 +50055,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &1252057263
@@ -50191,6 +50271,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &1264312138
@@ -51491,6 +51572,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &1292241638
@@ -54045,6 +54127,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &1373854780
@@ -58377,6 +58460,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &1488377801
@@ -58860,6 +58944,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!4 &1509344234 stripped
@@ -59186,6 +59271,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1001 &1519548584
@@ -61093,6 +61179,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1 &1567231114
@@ -69753,6 +69840,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!54 &1788232924
@@ -75448,6 +75536,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!1 &1912569129
@@ -76024,6 +76113,7 @@ Transform:
   - {fileID: 209780985}
   - {fileID: 1095626483}
   - {fileID: 1729883690}
+  - {fileID: 1497081709}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86240,6 +86330,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!4 &2364828004993199879
@@ -88653,6 +88744,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!4 &6071246565615448528

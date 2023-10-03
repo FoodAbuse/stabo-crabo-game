@@ -77,7 +77,6 @@ public class NPCController : Interactable
     [SerializeField]
     private Transform handPickup;
     private States preferredState; //the state this NPC preferrs to be in (matters mainly for idle NPCs)
-    private Quaternion preferredRotation;
 
     void Awake()
     {
