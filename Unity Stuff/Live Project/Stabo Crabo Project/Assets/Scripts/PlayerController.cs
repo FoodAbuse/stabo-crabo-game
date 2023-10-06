@@ -153,8 +153,11 @@ public class PlayerController : MonoBehaviour
             {
                 moveDirection = Vector3.zero;
             }
-            ApplyMovement();
             ApplyRotation();
+            ApplyMovement();
+            
+            
+            
         }
     }
 
@@ -177,7 +180,12 @@ public class PlayerController : MonoBehaviour
             Vector3 netMovement = moveDirection * moveSpeed; //this is just horizontal movement in 3D space
             netMovement.y = rb.velocity.y; //adds in the y movement of the current rigidbody (so physics calculations etc)
             if(netMovement.y >= moveSpeed) netMovement.y = moveSpeed; //caps the upward velocity, but hopefully not the downward velocity, because I am not grabbing magnitude
-            rb.velocity = netMovement;
+
+            if(Quaternion.Angle(transform.rotation,targetRotation) < 10.0f || isSprinting || isDragging) //start to move once we are facing the target direction, or if we are sprinting
+            { 
+                //Debug.Log(rb.velocity.magnitude);
+                rb.velocity = netMovement;
+            }
         }
         else
         {
