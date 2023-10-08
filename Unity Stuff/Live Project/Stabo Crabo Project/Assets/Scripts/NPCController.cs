@@ -180,7 +180,7 @@ public class NPCController : Interactable
                         Vector3 guardDest = destinationBounds.ClosestPoint(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position));
                         agent.SetDestination(guardDest); //head to the closest point we can in our bounds                                              
                         Debug.DrawRay(transform.position, guardDest - transform.position, Color.green, 0.0f, false);
-                        //transform.rotation = Quaternion.LookRotation(FOV.target.GetComponent<Collider>().ClosestPoint(transform.position) - transform.position, Vector3.up); //always look in the direction of the drab as well
+                        transform.rotation = Quaternion.LookRotation(new Vector3(FOV.target.transform.position.x, transform.position.y, FOV.target.transform.position.z) - transform.position,Vector3.up);//, Vector3.up);//always look in the direction of the crab when guarding against them
                         myState = Vector3.Distance(guardDest,transform.position) > 1.0f ? myState = States.Chasing:myState = States.Walking;
                     }
                     else
