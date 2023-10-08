@@ -83,7 +83,30 @@ public class FieldOfView : MonoBehaviour
         {
             foreach(Collider col in rangeChecks) //iterrate through each of those objects
             {
-                if(seekingPlayer && col.tag == "Player") //if we are seeking the player and this obj is the player
+                //try to target objects first
+                Interactable found = col.GetComponent<Interactable>();//fetch the interactable script on the found object
+                if(targetRef.Contains(found) || tagRef.Contains(col.tag)) //if this is actually a target we care about
+                {
+                    //Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
+                    //Debug.Log(target);
+                    if(found.GetComponent<Interactable>().heldBy)  //if the object is being held
+                    {
+                        if(found.GetComponent<Interactable>().heldBy.tag == "Player") //if the object is currently held by the player it is a priority
+                        {
+                            Debug.Log("Found held by player");
+                            SightCheck(found.transform);
+                        }  //if it is held by another NPC we ignore it
+                    }
+                    else if(!target || target.tag == "Player" //if target has not yet been assigned or the current target is the player
+                    && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0 //and this object is not in its preferred position
+                    && !npc.heldObject) //and we are not holding an object currently
+                    {
+                        //fill with the first object that this loops through
+                        SightCheck(found.transform);
+                    }
+                }
+                //then target players if defending / seeking / guarding
+                if(!target && seekingPlayer && col.tag == "Player") //if we are seeking the player and this obj is the player
                 {
                     if(npc.destinationBounds.bounds.Contains(col.transform.position)) //if the player is within defended area
                     {
@@ -96,30 +119,6 @@ public class FieldOfView : MonoBehaviour
                     else if(target) //if the we are defending, but they are our current target we no longer target them
                     {
                         if(target.tag == "Player"){WipeTarget();} //wipe the target, if it doesnt catch a new target in the current loop, it will find a new one in the next loop
-                    }
-                }
-                else //otherwise we are just looking for objects
-                {
-                    Interactable found = col.GetComponent<Interactable>();//fetch the interactable script on the found object
-                    if(targetRef.Contains(found) || tagRef.Contains(col.tag)) //if this is actually a target we care about
-                    {
-                        //Debug.Log(Vector3.Distance(found.transform.position, found.preferredPos));
-                        //Debug.Log(target);
-                        if(found.GetComponent<Interactable>().heldBy)  //if the object is being held
-                        {
-                            if(found.GetComponent<Interactable>().heldBy.tag == "Player") //if the object is currently held by the player it is a priority
-                            {
-                                Debug.Log("Found held by player");
-                                SightCheck(found.transform);
-                            }  //if it is held by another NPC we ignore it
-                        }
-                        else if(!target //if target has not yet been assigned
-                        && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0 //and this object is not in its preferred position
-                        && !npc.heldObject) //and we are not holding an object currently
-                        {
-                            //fill with the first object that this loops through
-                            SightCheck(found.transform);
-                        }
                     }
                 }
             }
