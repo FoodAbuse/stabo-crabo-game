@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
             netMovement.y = rb.velocity.y; //adds in the y movement of the current rigidbody (so physics calculations etc)
             if(netMovement.y >= moveSpeed) netMovement.y = moveSpeed; //caps the upward velocity, but hopefully not the downward velocity, because I am not grabbing magnitude
 
-            if(Quaternion.Angle(transform.rotation,targetRotation) < 10.0f || isSprinting || isDragging) //start to move once we are facing the target direction, or if we are sprinting
+            if(Quaternion.Angle(transform.rotation,targetRotation) < 10.0f || isSprinting || isDragging || rb.velocity.magnitude >= 1.0f) //start to move once we are facing the target direction, or if we are sprinting
             { 
                 //Debug.Log(rb.velocity.magnitude);
                 rb.velocity = netMovement;
