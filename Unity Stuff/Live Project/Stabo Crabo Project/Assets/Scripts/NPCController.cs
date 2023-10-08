@@ -574,10 +574,10 @@ public class NPCController : Interactable
 
     public override void ToggleInteraction(bool state)
     {
+        Debug.Log("Toggle Interaction was called on " + gameObject + " and set to " + state);
         InteractableExtender[] childInteractables = GetComponentsInChildren<InteractableExtender>();
         foreach(InteractableExtender iE in childInteractables)
         {
-            Debug.Log(iE.gameObject.name);
             iE.interactive = state;
             if(state == false && iE.heldBy && iE.heldBy.tag == "Player") //if we are disabling interaction while held by player
             {

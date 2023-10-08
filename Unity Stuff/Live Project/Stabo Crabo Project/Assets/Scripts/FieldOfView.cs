@@ -97,7 +97,7 @@ public class FieldOfView : MonoBehaviour
                             SightCheck(found.transform);
                         }  //if it is held by another NPC we ignore it
                     }
-                    else if(!target || target.tag == "Player" //if target has not yet been assigned or the current target is the player
+                    else if(target && target.tag == "Player" || !target //if target has not yet been assigned or the current target is the player
                     && Vector3.Distance(found.transform.position, found.preferredPos) > 1.0 //and this object is not in its preferred position
                     && !npc.heldObject) //and we are not holding an object currently
                     {

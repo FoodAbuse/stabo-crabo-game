@@ -81,7 +81,7 @@ public class PuzzleController : MonoBehaviour
 
     void OnTriggerEnter(Collider other) //triggering the input
     {
-        if(debugMode){Debug.Log(other.gameObject);}
+        if(debugMode){Debug.Log(gameObject + " has triggered from: " + other.gameObject);}
         if(inQueue){return;}
         triggerObject = other.gameObject;
         //selection based off trigger types
