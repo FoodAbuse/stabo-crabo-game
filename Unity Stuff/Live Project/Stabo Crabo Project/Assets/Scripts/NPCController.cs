@@ -31,6 +31,8 @@ public class NPCController : Interactable
     private float shoveCD; //the current attack cooldown
     [SerializeField]
     private float shoveForce = 5.0f; //how hard the player is shoved
+
+    private Transform shoveTarget; //should only be the player
     
 
 
@@ -270,16 +272,32 @@ public class NPCController : Interactable
 
     private void ShovePlayerStart()
     {
-        Debug.Log("ShoveCD: " + shoveCD);
+        
         if(myState == States.Attacking || shoveCD > 0.0f) //cancel attack if we are not already attacking or attack is on cooldown
         {
             myState = States.Standing; //return to standing state
             return;
-        } 
+        }
+        Debug.Log("ShoveCD: " + shoveCD);
         myState = States.Attacking;
+        shoveTarget = FOV.target;
         Debug.Log("Shoving Player");
         animator.Play("NPC_Kick"); //play the kick animation
         //during the animation ShovePlayerEnd() is triggered
+    }
+    public void ShovePlayerEnd()
+    {
+        myState = States.Standing; //return to standing state
+        //if(!FOV.target || FOV.target && FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
+        if(Vector3.Distance(transform.position, shoveTarget.position) > 1.0f){return;} //if target is beyond 1 unit of the NPC at kick end
+        Debug.Log("Shove end"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
+        Vector3 shoveVector = (shoveTarget.position - destinationBounds.bounds.center).normalized * shoveForce;
+        shoveVector.y = 0.2f * shoveForce; //give some vertical velocity
+        shoveTarget.GetComponent<Rigidbody>().AddForce(shoveVector); //set the player's velocity towards undefended area
+        shoveTarget.GetComponent<PlayerController>().stunned = 0.25f; //stun the plyer for a split second
+        shoveTarget.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
+        shoveCD = shoveCDBase; //reset our attack cooldown
+        BubbleOff();
     }
 
     public void DestroyHeldObject()
@@ -288,22 +306,6 @@ public class NPCController : Interactable
         Destroy(heldObject); //destroy the object we are holding
     }
 
-
-
-    public void ShovePlayerEnd()
-    {
-        myState = States.Standing; //return to standing state
-        //if(!FOV.target || FOV.target && FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
-        
-        Debug.Log("Shove end"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
-        Vector3 shoveVector = (FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce;
-        shoveVector.y = 0.2f * shoveForce; //give some vertical velocity
-        FOV.target.GetComponent<Rigidbody>().AddForce(shoveVector); //set the player's velocity towards undefended area
-        FOV.target.GetComponent<PlayerController>().stunned = 0.5f; //stun the plyer for a split second
-        FOV.target.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
-        shoveCD = shoveCDBase; //reset our attack cooldown
-        BubbleOff();
-    }
 
     void LateUpdate() //runs after update
     {
