@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveDirection = Vector3.zero;
     private Quaternion targetRotation;
+    private bool pivotRightPressed;
+    private bool pivotLeftPressed;
+    private bool pivoting;
 
     void Awake()
     {
@@ -66,6 +69,10 @@ public class PlayerController : MonoBehaviour
         controls.Gameplay.Sprint.canceled += ctx => sprintBtnDown = false;
         controls.Gameplay.Move.performed += ctx => moveControl = ctx.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += ctx => moveControl = Vector2.zero;
+        controls.Gameplay.PivotRight.started += ctx => pivotRightPressed = true;
+        controls.Gameplay.PivotRight.canceled += ctx => pivotRightPressed = false;
+        controls.Gameplay.PivotLeft.started += ctx => pivotLeftPressed = true;
+        controls.Gameplay.PivotLeft.canceled += ctx => pivotLeftPressed = false;
     }
 
     void OnEnable()
@@ -148,16 +155,14 @@ public class PlayerController : MonoBehaviour
             if(GameManager.acceptPlayerInput) //the following functions require player input via keyboard or mouse and can be switched off
             {
                 MovementInput(); //create a vector based on key presses
+                PivotCheck();
             }
             else if(!isStunned) //if we ARE stunned, our direction has been written by a shove script
             {
                 moveDirection = Vector3.zero;
             }
             ApplyRotation();
-            ApplyMovement();
-            
-            
-            
+            ApplyMovement();       
         }
     }
 
@@ -181,9 +186,13 @@ public class PlayerController : MonoBehaviour
             netMovement.y = rb.velocity.y; //adds in the y movement of the current rigidbody (so physics calculations etc)
             if(netMovement.y >= moveSpeed) netMovement.y = moveSpeed; //caps the upward velocity, but hopefully not the downward velocity, because I am not grabbing magnitude
 
-            if(Quaternion.Angle(transform.rotation,targetRotation) < 10.0f || isSprinting || isDragging || rb.velocity.magnitude >= 1.0f) //start to move once we are facing the target direction, or if we are sprinting
+            /*if(Quaternion.Angle(transform.rotation,targetRotation) < 10.0f || isSprinting || isDragging || rb.velocity.magnitude >= 1.0f) //start to move once we are facing the target direction, or if we are sprinting
             { 
                 //Debug.Log(rb.velocity.magnitude);
+                rb.velocity = netMovement;
+            } OPTION 1 FOR PIVOT ON SPOT*/
+            if(true)
+            {
                 rb.velocity = netMovement;
             }
         }
@@ -191,6 +200,39 @@ public class PlayerController : MonoBehaviour
         {
             crabAnimator.SetBool("isWalking", false); //un-set walking animation
             crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
+        }
+    }
+
+    void PivotCheck()
+    {
+        if(moveDirection.magnitude > 0.1){return;} //only pivot when not moving
+
+        if(pivotRightPressed && pivotLeftPressed)
+        {
+            pivoting = false; //nothing
+        }
+        else if(pivotRightPressed)
+        {
+            targetRotation = transform.rotation *= Quaternion.Euler(0,turnSpeed*0.8f,0);
+            pivoting = true;
+            //rb.angularVelocity = new Vector3(0, 1, 0);
+            //rb.AddTorque(0,100.0f,0); //pivot right
+        }
+        else if(pivotLeftPressed)
+        {
+            targetRotation = transform.rotation *= Quaternion.Euler(0,-turnSpeed*0.8f,0);
+            pivoting = true;
+            //rb.angularVelocity = new Vector3(0, -1, 0);
+            //rb.AddTorque(0,-100.0f,0); //pivot left
+        }
+        else
+        {
+            pivoting = false;
+        }
+
+        if(pivoting)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
         }
     }
 

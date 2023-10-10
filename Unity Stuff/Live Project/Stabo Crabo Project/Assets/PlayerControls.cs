@@ -89,6 +89,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PivotRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""0af1080a-16ff-4367-9300-1b3c9a15a2b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PivotLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e8dbe95-b1d3-48cc-8a19-619c93416329"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -161,7 +179,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e9295568-23b7-4a24-87cf-bdd5c60fb4b9"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -289,6 +307,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""UiStart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c66c11e4-a89b-4fc6-8492-b99f9ec0cdf3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PivotRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""599a7237-0910-4aff-8617-eec03577e42e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PivotRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac6b40e0-4491-4d6b-8b01-7596234f7103"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PivotLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e7dda5d-2f17-4a93-9682-dccd0dc171c2"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PivotLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -304,6 +366,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_UiStart = m_Gameplay.FindAction("UiStart", throwIfNotFound: true);
+        m_Gameplay_PivotRight = m_Gameplay.FindAction("PivotRight", throwIfNotFound: true);
+        m_Gameplay_PivotLeft = m_Gameplay.FindAction("PivotLeft", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +434,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_UiStart;
+    private readonly InputAction m_Gameplay_PivotRight;
+    private readonly InputAction m_Gameplay_PivotLeft;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -381,6 +447,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @UiStart => m_Wrapper.m_Gameplay_UiStart;
+        public InputAction @PivotRight => m_Wrapper.m_Gameplay_PivotRight;
+        public InputAction @PivotLeft => m_Wrapper.m_Gameplay_PivotLeft;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -411,6 +479,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UiStart.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUiStart;
                 @UiStart.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUiStart;
                 @UiStart.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUiStart;
+                @PivotRight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotRight;
+                @PivotRight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotRight;
+                @PivotRight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotRight;
+                @PivotLeft.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
+                @PivotLeft.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
+                @PivotLeft.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -436,6 +510,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @UiStart.started += instance.OnUiStart;
                 @UiStart.performed += instance.OnUiStart;
                 @UiStart.canceled += instance.OnUiStart;
+                @PivotRight.started += instance.OnPivotRight;
+                @PivotRight.performed += instance.OnPivotRight;
+                @PivotRight.canceled += instance.OnPivotRight;
+                @PivotLeft.started += instance.OnPivotLeft;
+                @PivotLeft.performed += instance.OnPivotLeft;
+                @PivotLeft.canceled += instance.OnPivotLeft;
             }
         }
     }
@@ -449,5 +529,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnUiStart(InputAction.CallbackContext context);
+        void OnPivotRight(InputAction.CallbackContext context);
+        void OnPivotLeft(InputAction.CallbackContext context);
     }
 }
