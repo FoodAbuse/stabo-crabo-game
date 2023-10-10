@@ -113,7 +113,13 @@ public class NPCController : Interactable
                 {
                     Roaming(); //wander around
                 }
-            break;
+                break;
+            case Behaviours.Guarding:
+                if(!FOV.target)
+                {
+                    BubbleOff();
+                }
+                break;
             case Behaviours.Roaming:
                 Roaming();//wanders at a set interval
                 break;
@@ -306,7 +312,6 @@ public class NPCController : Interactable
         Destroy(heldObject); //destroy the object we are holding
     }
 
-
     void LateUpdate() //runs after update
     {
         float speed = agent.velocity.magnitude; //grabs the current agent vector's magnitude
@@ -341,6 +346,8 @@ public class NPCController : Interactable
     {
         myBehaviour = (Behaviours)behaviourNumber; //change to the new behaviour
         FOV.WipeTarget();
+        animator.SetFloat("IdleBehaviour", 0.0f); //any changes in behaviour will result in the didle being the default standing anim for now
+        //if the NPC needs to be set to idle (hasn't come up yet) then we will need to add a 'set idle behaviour' function.
     }
 
     public void SetZone(Collider col)

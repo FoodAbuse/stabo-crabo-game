@@ -291,7 +291,8 @@ public class PlayerController : MonoBehaviour
 
                     // TESTING
                     //Debug.Log(grabObject.GetComponent<Collider>() + "is now being held"); 
-                    grabObject.GetComponent<Collider>().enabled = false;
+                    //grabObject.GetComponent<Collider>().enabled = false;
+                    grabObject.GetComponent<Collider>().isTrigger = true;
                 }
                 else //if the object is heavy
                 {
@@ -327,8 +328,8 @@ public class PlayerController : MonoBehaviour
             grabObject.parent = GameObject.Find("_Props").transform; //return the original parent 
 
             // TESTING
-
-            grabObject.GetComponent<Collider>().enabled = true;
+            //grabObject.GetComponent<Collider>().enabled = true;
+            grabObject.GetComponent<Collider>().isTrigger = false;
 
             grabObject.GetComponent<Rigidbody>().isKinematic = false;
             grabObject.GetComponent<Interactable>().heldBy = null; //nothing is holding the object
