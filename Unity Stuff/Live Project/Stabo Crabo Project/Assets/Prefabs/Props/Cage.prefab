@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4742347655880455994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cage Outline
   m_TagString: Outline
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 2011504134055004254}
   - component: {fileID: 2754071327564233291}
   - component: {fileID: 1498842416378337539}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageWallR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 7310659123722077390}
   - component: {fileID: 4832497547271372010}
   - component: {fileID: 2546552986972215011}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageWallF1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 4963246045064277194}
   - component: {fileID: 4285412130165680100}
   - component: {fileID: 6152163309735650549}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageWallL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 5662987475136414434}
   - component: {fileID: 7016910172536243958}
   - component: {fileID: 1728938186034480401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 8037575656247370989}
   - component: {fileID: 2846806823865883269}
   - component: {fileID: 3002527390381179423}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Cage
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -772,6 +772,8 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 1
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
+  priority: 0
   indicator: {fileID: 0}
 --- !u!114 &2846806823865883269
 MonoBehaviour:
@@ -893,6 +895,8 @@ MonoBehaviour:
   destroyTrigger: 0
   destroySelf: 0
   spawnProps: []
+  spawnVelocity: 0
+  debugMode: 0
 --- !u!65 &3002527390381179423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1031,7 +1035,7 @@ GameObject:
   - component: {fileID: 1918483248791147798}
   - component: {fileID: 1423298284802144807}
   - component: {fileID: 2838663070699394970}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageWallB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1342,7 +1346,7 @@ GameObject:
   - component: {fileID: 1405765297255558587}
   - component: {fileID: 6998791387930139952}
   - component: {fileID: 2873493418647311032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CageFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

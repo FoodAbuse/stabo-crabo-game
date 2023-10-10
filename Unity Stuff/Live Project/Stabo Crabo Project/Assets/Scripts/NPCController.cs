@@ -293,8 +293,9 @@ public class NPCController : Interactable
     public void ShovePlayerEnd()
     {
         myState = States.Standing; //return to standing state
-        if(!FOV.target || FOV.target && FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
-        Debug.Log("still targeting player"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
+        //if(!FOV.target || FOV.target && FOV.target.tag != "Player"){return;} //return if between the start and end of the attack player is no longer our target
+        
+        Debug.Log("Shove end"); //FOV.target.position - transform.position - destinationBounds.ClosestPointOnBounds(FOV.target.position) - FOV.target.position
         Vector3 shoveVector = (FOV.target.position - destinationBounds.bounds.center).normalized * shoveForce;
         shoveVector.y = 0.2f * shoveForce; //give some vertical velocity
         FOV.target.GetComponent<Rigidbody>().AddForce(shoveVector); //set the player's velocity towards undefended area
