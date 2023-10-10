@@ -61,7 +61,7 @@ public class PuzzleController : MonoBehaviour
     {
         if(inQueue) //while in queue, we tick down time to then launch outcome
         {
-             if(debugMode){Debug.Log(currentTime);}
+            if(debugMode){Debug.Log(currentTime);}
             if(currentTime <= 0) //if timer reachs 0
             {
                 Outcome();
@@ -81,7 +81,7 @@ public class PuzzleController : MonoBehaviour
 
     void OnTriggerEnter(Collider other) //triggering the input
     {
-        if(debugMode){Debug.Log(gameObject + " has triggered from: " + other.gameObject);}
+        //if(debugMode){Debug.Log(gameObject + " has triggered from: " + other.gameObject);}
         if(inQueue){return;}
         triggerObject = other.gameObject;
         //selection based off trigger types
@@ -124,6 +124,7 @@ public class PuzzleController : MonoBehaviour
             case Trigger.AnyObject:
                 if(lookForObjects.Contains(other.gameObject)) //if the game object matches the list of possible objects
                 {
+                    if(debugMode){Debug.Log(gameObject + " has triggered from: " + other.gameObject);}
                     Outcome();
                 }
                 break;
@@ -198,23 +199,19 @@ public class PuzzleController : MonoBehaviour
         }
         if(destroyTrigger)
         {
-            Debug.Log("Destroying Trigger " + triggerObject);
+            if(debugMode){Debug.Log("Destroying Trigger " + triggerObject);}
             Destroy(triggerObject);
         }
 
         foreach(var x in spawnProps) //run through the spawn props list and spawn everything in it
         {
             GameObject spawned = Instantiate(x, transform.position, transform.rotation, GameObject.Find("_Props").transform);
+            if(debugMode){Debug.Log(gameObject + " has spawned in " + spawned.gameObject);}
             if(spawned.GetComponent<Rigidbody>() && spawnVelocity > 0.0f) //launch the objects with spawn velocity
             {
-              Debug.Log("Launching...");
+              if(debugMode){Debug.Log("Launching...");}
               spawned.GetComponent<Rigidbody>().AddForce(transform.forward * spawnVelocity);
             }
-        }
-        if(destroyTrigger)
-        {
-            Debug.Log("Destroying Trigger " + triggerObject);
-            Destroy(triggerObject);
         }
 
         // Hugo's addition - May be temporary but attempting to fix build issues
