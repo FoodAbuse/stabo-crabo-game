@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
 	{
-		if (_instance == null) //if no manager already exists
+		/*if (_instance == null) //if no manager already exists
 		{
 			_instance = this; //store this manager
 			DontDestroyOnLoad(gameObject); //And protect it across scene loads
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 		{
 			if (_instance != this) //Otherwise if there is a different manager
 				Destroy(gameObject); //Destroy this object, because it is a duplicate
-		}
+		}*/
 
         controls = new PlayerControls();
         controls.Gameplay.UiStart.performed += ctx => IntroBtn();

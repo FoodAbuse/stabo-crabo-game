@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
 
     void Awake()
 	{
-		if (_instance == null) //if no instance already exists
+		/*if (_instance == null) //if no instance already exists
 		{
 			_instance = this; //store this level loader
 			DontDestroyOnLoad(gameObject); //And protect it across scene loads
@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour
 		{
 			if (_instance != this) //Otherwise if there is a different level loader
 				Destroy(gameObject); //Destroy this object, because it is a duplicate
-		}
+		}*/
     }
 
     void Start()
