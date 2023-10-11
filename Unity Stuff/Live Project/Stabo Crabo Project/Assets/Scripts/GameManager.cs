@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     private PlayerControls controls;
 
     private static UIManager ui;
-
-    [SerializeField]
-    private CameraController cam;
     
     //objective tracking
     private static List<GameObject> targetList; //holds all of the targets
@@ -65,7 +62,7 @@ public class GameManager : MonoBehaviour
         InitialiseTargets();//initialise target list
         levelPhase = 0; //at the moment skipping straight to 1 as there is no intro set up
         tipList = new List<string>{"Move", "Stab", "Grab", "Sprint"}; //populate the tipList
-        currentRoutine = StartCoroutine(IntroCutScene()); //play the intro cut-scene
+        acceptPlayerInput = false;
 
 
         // Clears unused hair from the scene
@@ -139,30 +136,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator IntroCutScene() //called when the level is loaded. At the end it should set level phase to 1.
-    {
-        acceptPlayerInput = false;
-        foreach(GameObject target in targetList) //turn on all identifiers
-        {
-            //target.GetComponent<NPCController>().ToggleIdentify(); disabled for now becuase it clashes with speech bubble
-        }
-        yield return new WaitForSeconds(3.0f);
-        cam.SwitchCamera(1);
-        yield return new WaitForSeconds(3.0f);
-        cam.SwitchCamera(2);
-        yield return new WaitForSeconds(1.0f);
-        IntroCutSceneEnd();
-        foreach(GameObject target in targetList) //turn off all identifiers
-        {
-           // target.GetComponent<NPCController>().ToggleIdentify();
-        }
-    }
-
-    private void IntroCutSceneEnd()
+    public void IntroCutSceneEnd()
     {
         acceptPlayerInput = true;
         levelPhase = 1;
-        cam.SwitchCamera(2);
         ui.ShowTip(tipList[0]); //show first tip
         currentTip = tipList[0];
         ui.hintIcon.SetActive(true);
@@ -234,8 +211,7 @@ public class GameManager : MonoBehaviour
         ui.EscapeScreen(); //handles whatever Ui elements are necessary for the escape sequence
         //also include any needed changes to NPC AI here.
         //and changes to audio etc.
-
-        
     }
+
 
 }
