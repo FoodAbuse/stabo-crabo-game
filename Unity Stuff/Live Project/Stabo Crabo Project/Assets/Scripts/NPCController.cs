@@ -406,7 +406,7 @@ public class NPCController : Interactable
         }
         else
         {
-            if(myState != preferredState)
+            if(myState != preferredState && agent.velocity.magnitude < 0.1f)
             {
                 transform.rotation = preferredRotation; //reset rotation
                 myState = preferredState;
