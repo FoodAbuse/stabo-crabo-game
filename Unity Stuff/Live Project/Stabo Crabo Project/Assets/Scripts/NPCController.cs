@@ -534,7 +534,8 @@ public class NPCController : Interactable
     {
         if(!myBubble) //if we don't yet have a bubble, make one
         {
-            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0), pointAboveHead); //spawn the bubble prefab
+            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0)); //spawn the bubble prefab
+            myBubble.GetComponent<BubbleController>().anchor = pointAboveHead;
         }
         myBubble.GetComponent<SpriteRenderer>().sprite = bubbleSprite; //set the image on the bubble
     }
