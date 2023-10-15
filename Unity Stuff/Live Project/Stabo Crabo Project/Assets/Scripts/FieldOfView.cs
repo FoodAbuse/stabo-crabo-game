@@ -70,7 +70,6 @@ public class FieldOfView : MonoBehaviour
             yield return wait;
             if(targetRef.Count != 0 || seekingPlayer) //if there are targets to look for or we are seeking the player
             {
-                returnedTarget = false; //reset this tracker every iteration
                 FieldOfViewCheck(); //look for objects and or player
             }
         }
@@ -78,6 +77,7 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
+        returnedTarget = false; //reset this tracker every iteration
         Collider[] rangeChecks = Physics.OverlapSphere(eyes.position, radius, targetMask); //creates an array of all objects in a radius around this transform
         if(rangeChecks.Length != 0) //if there are any objects in range
         {
@@ -106,19 +106,22 @@ public class FieldOfView : MonoBehaviour
                     }
                 }
                 //then target players if defending / seeking / guarding
-                if(!target && seekingPlayer && col.tag == "Player") //if we are seeking the player and this obj is the player
+                if(!target || target && target.tag == "Player") //if we do not yet have a target, or the current target is the player, we need to sight check the player
                 {
-                    if(npc.destinationBounds.bounds.Contains(col.transform.position)) //if the player is within defended area
+                    if(seekingPlayer && col.tag == "Player") //if we are seeking the player and this obj is the player
                     {
-                        SightCheck(col.transform);
-                    }
-                    else if(npc.myBehaviour == NPCController.Behaviours.Guarding) //if we are guarding we still care even if they are not in the zone
-                    {
-                        SightCheck(col.transform);
-                    }
-                    else if(target) //if the we are defending, but they are our current target we no longer target them
-                    {
-                        if(target.tag == "Player"){WipeTarget();} //wipe the target, if it doesnt catch a new target in the current loop, it will find a new one in the next loop
+                        if(npc.destinationBounds.bounds.Contains(col.transform.position)) //if the player is within defended area
+                        {
+                            SightCheck(col.transform);
+                        }
+                        else if(npc.myBehaviour == NPCController.Behaviours.Guarding) //if we are guarding we still care even if they are not in the zone
+                        {
+                            SightCheck(col.transform);
+                        }
+                        else if(target) //if the we are defending, but they are our current target we no longer target them
+                        {
+                            if(target.tag == "Player"){WipeTarget();} //wipe the target, if it doesnt catch a new target in the current loop, it will find a new one in the next loop
+                        }
                     }
                 }
             }
@@ -149,15 +152,13 @@ public class FieldOfView : MonoBehaviour
                 }
                 else if(target == found) //if we cant see it, but this was our current target...
                 {
-                    canSeeTarget = false;
-                    target = null; //this is no longer able to be our active target
+                    WipeTarget(); //this is no longer able to be our active target
                 }
 
             }
             else if (target == found) //if its out of angle range, but this was our current target...
             {
-                canSeeTarget = false;
-                target = null;
+                WipeTarget();
             }
 
 

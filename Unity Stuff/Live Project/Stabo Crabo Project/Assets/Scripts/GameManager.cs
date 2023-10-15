@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     private static string currentTip;
 
     private Coroutine currentRoutine;
+    private PlayableDirector timeLine;
 
     // Currently used for deleting unused hair, can be modified to include other variables needing deleting later
     public GameObject[] toDelete;
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
+        timeLine = GameObject.Find("_VirtualCameras").GetComponent<PlayableDirector>();
 
         timerCurrent = 0.0f;
 
@@ -83,8 +86,8 @@ public class GameManager : MonoBehaviour
     {
         if(levelPhase == 0) //if in intro phase
         {
-            StopCoroutine(currentRoutine);
-            IntroCutSceneEnd(); //End the Intro CutScene
+            timeLine.time = timeLine.playableAsset.duration;
+            //IntroCutSceneEnd(); //End the Intro CutScene
 
         }
         else if(ui.panelCurrent == ui.panelHints) //exit the Hints menu

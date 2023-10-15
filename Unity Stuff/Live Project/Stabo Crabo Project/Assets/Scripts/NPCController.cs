@@ -238,7 +238,6 @@ public class NPCController : Interactable
                 handRig.weight = Mathf.Lerp(handRig.weight, 0.0f, 3 * Time.deltaTime); //decrease the weight of the rig over time
                 if(Vector3.Distance(transform.position, heldObject.GetComponent<Interactable>().preferredPos) < 0.5f) //if we are near the position
                 {
-                    Debug.Log("Reached Object preferred Position");
                     DropObject(); //drop it
                     myState = States.Standing;
                     handRig.weight = 0.0f; //completely remove the rig incase it hasnt decreased to 0 yet
@@ -303,7 +302,6 @@ public class NPCController : Interactable
         shoveTarget.GetComponent<PlayerController>().stunned = 0.25f; //stun the plyer for a split second
         shoveTarget.GetComponent<PlayerController>().DropObject(); //cause the player to drop things
         shoveCD = shoveCDBase; //reset our attack cooldown
-        BubbleOff();
     }
 
     public void DestroyHeldObject()
@@ -408,7 +406,7 @@ public class NPCController : Interactable
         }
         else
         {
-            if(myState != preferredState)
+            if(myState != preferredState && agent.velocity.magnitude < 0.1f)
             {
                 transform.rotation = preferredRotation; //reset rotation
                 myState = preferredState;
@@ -532,9 +530,12 @@ public class NPCController : Interactable
 
     public void BubbleOn(Sprite bubbleSprite) //creates a bubble above the NPC that shows an image
     {
+        
         if(!myBubble) //if we don't yet have a bubble, make one
         {
-            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0), pointAboveHead); //spawn the bubble prefab
+            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0)); //spawn the bubble prefab
+            myBubble.GetComponent<BubbleController>().anchor = pointAboveHead;
+            myBubble.transform.position = new Vector3(pointAboveHead.position.x, pointAboveHead.position.y + myBubble.GetComponent<BubbleController>().offset, pointAboveHead.position.z);
         }
         myBubble.GetComponent<SpriteRenderer>().sprite = bubbleSprite; //set the image on the bubble
     }
