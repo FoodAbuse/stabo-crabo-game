@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 3673285556905180909}
   - component: {fileID: 919938339887936311}
   - component: {fileID: 919938339887936310}
-  - component: {fileID: 919938339887936308}
   m_Layer: 11
   m_Name: coconutDropTree
   m_TagString: Interactable
@@ -65,12 +64,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4749226535615516609}
   - {fileID: 1289866945579585510}
-  - {fileID: 4607557846704171324}
   - {fileID: 4607557847403624737}
+  - {fileID: 3032443339505681025}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 136.598, z: 0}
 --- !u!136 &919938339887936305
 CapsuleCollider:
@@ -122,6 +120,7 @@ MonoBehaviour:
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
   priority: 0
   indicator: {fileID: 0}
 --- !u!114 &919938339887936310
@@ -156,7 +155,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 919938339887936308}
+      - m_Target: {fileID: 8094083059800954298}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: Play
         m_Mode: 5
@@ -183,29 +182,10 @@ MonoBehaviour:
   destroyObjects: []
   destroyTrigger: 0
   destroySelf: 0
+  onlyDestroyComponent: 0
   spawnProps: []
   spawnVelocity: 0
   debugMode: 0
---- !u!95 &919938339887936308
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2785677914841058538}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 32ef6f8ee008d5448896ee0cae46ec29, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4607557846704171327
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,11 +211,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607557846704171327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8549999, y: 2.494, z: 0.12299979}
-  m_LocalScale: {x: 0.25999993, y: 0.35, z: 0.25999993}
+  m_LocalPosition: {x: 0.8549998, y: 2.494, z: 0.12299979}
+  m_LocalScale: {x: 0.2599999, y: 0.35, z: 0.2599999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3306600769472484944}
+  m_Father: {fileID: 3032443339505681025}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4607557846704171325
@@ -261,6 +241,7 @@ MonoBehaviour:
   destroyObjects: []
   destroyTrigger: 0
   destroySelf: 0
+  onlyDestroyComponent: 0
   spawnProps:
   - {fileID: 7434345161371671498, guid: e7eeeef10a4b696438f174b14f8109d0, type: 3}
   spawnVelocity: 0
@@ -435,12 +416,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5378270970249778555}
-  m_LocalRotation: {x: 0, y: 0, z: -0.02864568, w: 0.9995896}
+  m_LocalRotation: {x: -9.313226e-10, y: 0.000000029802322, z: -0.02864568, w: 0.9995896}
   m_LocalPosition: {x: 0.56700015, y: 1.61, z: 0.086999595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3306600769472484944}
+  m_Father: {fileID: 3032443339505681025}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.283}
 --- !u!33 &8522921327046672484
@@ -507,3 +488,57 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: -0.55, y: -0.91, z: -0.18}
+--- !u!1 &6486764532239284087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3032443339505681025}
+  - component: {fileID: 8094083059800954298}
+  m_Layer: 11
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3032443339505681025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486764532239284087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4749226535615516609}
+  - {fileID: 4607557846704171324}
+  m_Father: {fileID: 3306600769472484944}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8094083059800954298
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486764532239284087}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32ef6f8ee008d5448896ee0cae46ec29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
