@@ -259,7 +259,9 @@ public class PlayerController : MonoBehaviour
             {
                 targetRotation *= Quaternion.Euler(0,180,0);//change target rotation to backwards
             }
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
+            Vector3 torque = Vector3.Cross(moveDirection, -transform.forward);
+            rb.AddTorque(torque * 10);
             
         }
     }
