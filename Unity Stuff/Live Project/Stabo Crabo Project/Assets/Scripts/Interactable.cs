@@ -17,6 +17,7 @@ public class Interactable : MonoBehaviour
     public bool canBeStabbed = true;
     [SerializeField]
     private float stabForce = 1f;
+    public bool stabRotational = false; //casuses stab force to be applied as rotation
 
     public bool canBeGrabbed = true;
     public GameObject heldBy; //which object is holding this one
@@ -28,6 +29,7 @@ public class Interactable : MonoBehaviour
     public int priority = 0; //higher number means higher priority
     [HideInInspector][System.NonSerialized]
     public bool interactive = true; //used to temporarily disable the object without destroy can be grabbed or stabbed info
+
 
     //temp
     public GameObject indicator; //debugging vectors of stabbing the objects
@@ -83,8 +85,17 @@ public class Interactable : MonoBehaviour
         }
         if(stabForce > 0.0f) //if we have stab force
         {
-            rb.isKinematic = false;
-            rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force.
+            if(!stabRotational)
+            {
+                rb.isKinematic = false;
+                rb.AddForce((transform.position - stabOrigin.position).normalized * stabForce); //sends the object into the air according to force.
+            }
+            else
+            {
+                rb.isKinematic = false;
+                rb.AddTorque(new Vector3(0.0f,10 * stabForce,0.0f)); //sends the object into the air according to force.                
+            }
+            
         }
 
         if (TryGetComponent<PuzzleController>(out PuzzleController pc))

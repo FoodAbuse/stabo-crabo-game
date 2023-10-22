@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = false;
             moveSpeed = baseMoveSpeed; //reset movement
-            turnSpeed = baseTurnSpeed;                
+            turnSpeed = baseTurnSpeed;       
         }
     }
 
@@ -215,15 +215,11 @@ public class PlayerController : MonoBehaviour
         {
             targetRotation = transform.rotation *= Quaternion.Euler(0,turnSpeed*0.8f,0);
             pivoting = true;
-            //rb.angularVelocity = new Vector3(0, 1, 0);
-            //rb.AddTorque(0,100.0f,0); //pivot right
         }
         else if(pivotLeftPressed)
         {
             targetRotation = transform.rotation *= Quaternion.Euler(0,-turnSpeed*0.8f,0);
             pivoting = true;
-            //rb.angularVelocity = new Vector3(0, -1, 0);
-            //rb.AddTorque(0,-100.0f,0); //pivot left
         }
         else
         {
@@ -241,26 +237,41 @@ public class PlayerController : MonoBehaviour
         //apply rotation - this is not based on player input. This is based on current movement vector - which is based on player input
         if(moveDirection != Vector3.zero) //if there is some amount of movement
         {
-            targetRotation = Quaternion.LookRotation(moveDirection); //set target rotation to match the move direction;
+            Vector3 targetDirection = moveDirection; //direction we will rotate to
             if(isSprinting)
             {
                 if((transform.right - moveDirection).magnitude < (-transform.right - moveDirection).magnitude) //checks which side of the crab is closest to the target direction
                 {
-                    targetRotation *= Quaternion.Euler(0,-90,0);//change target rotation by 90deg
+                    targetDirection = Quaternion.AngleAxis(-90, Vector3.up) * targetDirection;
                     crabAnimator.SetBool("reverseRun", true);
                 }
                 else
                 {
-                    targetRotation *= Quaternion.Euler(0,90,0);//change in the other direction by 90deg
+                    targetDirection = Quaternion.AngleAxis(90, Vector3.up) * targetDirection;
                     crabAnimator.SetBool("reverseRun", false);
                 }
             }
-            else if (isDragging)
+            else if (isDragging) //set reverse direction
             {
-                targetRotation *= Quaternion.Euler(0,180,0);//change target rotation to backwards
+                targetDirection = Quaternion.AngleAxis(180, Vector3.up) * targetDirection;
             }
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed); //smoothly aligns the player facing direction
-            
+            Vector3 torque = Vector3.Cross(transform.forward, targetDirection); //torque is the cross between our forward and the target rotation
+            if(Vector3.Angle(targetDirection, transform.forward) > 150)
+            {
+                rb.AddTorque(torque * Vector3.Angle(targetDirection, transform.forward) / 10);
+            }
+            else if(Vector3.Angle(targetDirection, transform.forward) > 1)
+            {
+                //rb.AddTorque(torque * Vector3.Angle(targetDirection, transform.forward) / 10);
+                rb.angularVelocity = (torque * turnSpeed);
+            }
+            else
+            {
+                rb.angularVelocity = Vector3.zero;
+                transform.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            }
+            //rb.AddRelativeTorque(torque * turnSpeed);//(Vector3.Angle(targetDirection, transform.forward))/10);
+            Debug.Log(Vector3.Angle(targetDirection, transform.forward));
         }
     }
 
