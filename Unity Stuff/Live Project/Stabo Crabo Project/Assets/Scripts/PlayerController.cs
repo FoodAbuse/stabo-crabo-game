@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
             }
             //rb.AddRelativeTorque(torque * turnSpeed);//(Vector3.Angle(targetDirection, transform.forward))/10);
-            Debug.Log(Vector3.Angle(targetDirection, transform.forward));
+            //Debug.Log(Vector3.Angle(targetDirection, transform.forward));
         }
     }
 
