@@ -2527,6 +2527,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -9987,6 +9988,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -11900,6 +11902,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -14453,6 +14456,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -16900,27 +16904,13 @@ GameObject:
   - component: {fileID: 415146643}
   - component: {fileID: 415146642}
   - component: {fileID: 415146641}
-  - component: {fileID: 415146640}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &415146640
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415146639}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &415146641
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16979,7 +16969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415146639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.6, y: -1.0927553, z: 55.7}
+  m_LocalPosition: {x: 40.6, y: 18.7, z: 55.7}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19982,27 +19972,13 @@ GameObject:
   - component: {fileID: 505282757}
   - component: {fileID: 505282756}
   - component: {fileID: 505282755}
-  - component: {fileID: 505282754}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &505282754
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 505282753}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &505282755
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20061,7 +20037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505282753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.06, y: -1.0927553, z: 21.71}
+  m_LocalPosition: {x: 22.06, y: 18.7, z: 21.71}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20167,6 +20143,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -20602,6 +20579,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -27188,27 +27166,13 @@ GameObject:
   - component: {fileID: 690575582}
   - component: {fileID: 690575581}
   - component: {fileID: 690575580}
-  - component: {fileID: 690575579}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &690575579
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690575578}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &690575580
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27267,7 +27231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690575578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.93, y: -1.0927553, z: 56.28}
+  m_LocalPosition: {x: 23.93, y: 18.7, z: 56.28}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27816,6 +27780,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -33693,6 +33658,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 0
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -50422,27 +50388,13 @@ GameObject:
   - component: {fileID: 1236256231}
   - component: {fileID: 1236256230}
   - component: {fileID: 1236256229}
-  - component: {fileID: 1236256228}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1236256228
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236256227}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1236256229
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50501,7 +50453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236256227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.75, y: -1.0927553, z: 36.61}
+  m_LocalPosition: {x: 23.75, y: 18.7, z: 36.61}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51326,6 +51278,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -51542,6 +51495,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -52843,6 +52797,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -55185,6 +55140,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -60099,6 +60055,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -60460,27 +60417,13 @@ GameObject:
   - component: {fileID: 1501590892}
   - component: {fileID: 1501590891}
   - component: {fileID: 1501590890}
-  - component: {fileID: 1501590889}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1501590889
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501590888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1501590890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60539,7 +60482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501590888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.56, y: -1.0927553, z: 44.92}
+  m_LocalPosition: {x: 31.56, y: 18.7, z: 44.92}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60765,6 +60708,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -61092,6 +61036,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -63077,6 +63022,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -66443,27 +66389,13 @@ GameObject:
   - component: {fileID: 1679468433}
   - component: {fileID: 1679468432}
   - component: {fileID: 1679468431}
-  - component: {fileID: 1679468430}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1679468430
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679468429}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1679468431
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66522,7 +66454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679468429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.88, y: -1.0927553, z: 49.15}
+  m_LocalPosition: {x: 10.88, y: 18.7, z: 49.15}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67248,27 +67180,13 @@ GameObject:
   - component: {fileID: 1709478760}
   - component: {fileID: 1709478759}
   - component: {fileID: 1709478758}
-  - component: {fileID: 1709478757}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1709478757
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709478756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1709478758
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67327,7 +67245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709478756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.89, y: -1.0927553, z: 23.88}
+  m_LocalPosition: {x: -4.89, y: 18.7, z: 23.88}
   m_LocalScale: {x: 6.2061, y: 6.2061, z: 6.2061}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71852,6 +71770,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -77909,6 +77828,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 50
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -88984,6 +88904,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 1
   heldBy: {fileID: 0}
   isHeavy: 0
@@ -91419,6 +91340,7 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 0
   stabForce: 1
+  stabRotational: 0
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
