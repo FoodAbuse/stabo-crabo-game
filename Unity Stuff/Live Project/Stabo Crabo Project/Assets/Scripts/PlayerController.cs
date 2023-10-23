@@ -198,7 +198,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            crabAnimator.SetBool("isWalking", false); //un-set walking animation
+            if(!pivoting)
+            {
+                crabAnimator.SetBool("isWalking", false); //un-set walking animation
+            }
             crabAnimator.SetBool("isRunning", false); //un-set sprinting animation
         }
     }
@@ -229,6 +232,11 @@ public class PlayerController : MonoBehaviour
         if(pivoting)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+            crabAnimator.SetBool("isWalking", true); //play walking animation
+        }
+        else
+        {
+            crabAnimator.SetBool("isWalking", false); //stop walking animation
         }
     }
 
