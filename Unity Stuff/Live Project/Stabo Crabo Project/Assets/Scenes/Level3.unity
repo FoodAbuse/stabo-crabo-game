@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21062647, g: 0.13152711, b: 0.024238518, a: 1}
+  m_IndirectSpecularColor: {r: 0.21062702, g: 0.13152698, b: 0.024238491, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6169,9 +6169,10 @@ GameObject:
   - component: {fileID: 135572593}
   - component: {fileID: 135572592}
   - component: {fileID: 135572596}
+  - component: {fileID: 135572597}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6283,6 +6284,30 @@ MonoBehaviour:
   spawnProps: []
   spawnVelocity: 0
   debugMode: 0
+--- !u!114 &135572597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135572591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2494f1cc30423343894ac28c7ded92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoomed: 0
+  storedTag: 
+  canBeStabbed: 1
+  stabForce: 0
+  stabRotational: 0
+  canBeGrabbed: 0
+  heldBy: {fileID: 0}
+  isHeavy: 0
+  preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
+  priority: 0
+  indicator: {fileID: 0}
 --- !u!1001 &136634784
 PrefabInstance:
   m_ObjectHideFlags: 0
