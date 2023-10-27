@@ -107,6 +107,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""debug"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""28095aca-960e-4f5c-a876-3bb4f523f45c"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -351,6 +360,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""PivotLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf56f1d8-703f-4643-bec0-23ae06262222"",
+                    ""path"": ""<Keyboard>/pageDown"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -368,6 +388,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Gameplay_UiStart = m_Gameplay.FindAction("UiStart", throwIfNotFound: true);
         m_Gameplay_PivotRight = m_Gameplay.FindAction("PivotRight", throwIfNotFound: true);
         m_Gameplay_PivotLeft = m_Gameplay.FindAction("PivotLeft", throwIfNotFound: true);
+        m_Gameplay_debug = m_Gameplay.FindAction("debug", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -436,6 +457,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_UiStart;
     private readonly InputAction m_Gameplay_PivotRight;
     private readonly InputAction m_Gameplay_PivotLeft;
+    private readonly InputAction m_Gameplay_debug;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -449,6 +471,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @UiStart => m_Wrapper.m_Gameplay_UiStart;
         public InputAction @PivotRight => m_Wrapper.m_Gameplay_PivotRight;
         public InputAction @PivotLeft => m_Wrapper.m_Gameplay_PivotLeft;
+        public InputAction @debug => m_Wrapper.m_Gameplay_debug;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,6 +508,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PivotLeft.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
                 @PivotLeft.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
                 @PivotLeft.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPivotLeft;
+                @debug.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDebug;
+                @debug.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDebug;
+                @debug.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDebug;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -516,6 +542,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @PivotLeft.started += instance.OnPivotLeft;
                 @PivotLeft.performed += instance.OnPivotLeft;
                 @PivotLeft.canceled += instance.OnPivotLeft;
+                @debug.started += instance.OnDebug;
+                @debug.performed += instance.OnDebug;
+                @debug.canceled += instance.OnDebug;
             }
         }
     }
@@ -531,5 +560,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnUiStart(InputAction.CallbackContext context);
         void OnPivotRight(InputAction.CallbackContext context);
         void OnPivotLeft(InputAction.CallbackContext context);
+        void OnDebug(InputAction.CallbackContext context);
     }
 }
