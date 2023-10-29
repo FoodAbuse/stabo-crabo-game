@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
 
     //private Transform grabParent; //commented out because so far everything dropped should go under _prop afterwards
-    //[HideInInspector]
+    [HideInInspector]
     public Transform grabObject;
     public GameObject wornObject;
 
@@ -309,8 +309,7 @@ public class PlayerController : MonoBehaviour
                     }
 
                     Destroy(grabObject.gameObject); //deletes the wearable object
-                    wornObject.SetActive(true);
-                    //grabObject.GetComponent()
+                    wornObject.SetActive(true);                    
                     isWearingObject = true;
 
                     grabObject = null;
