@@ -187,10 +187,13 @@ MonoBehaviour:
   storedTag: 
   canBeStabbed: 1
   stabForce: 0
+  stabRotational: 0
   canBeGrabbed: 0
   heldBy: {fileID: 0}
   isHeavy: 0
   preferredPos: {x: 0, y: 0, z: 0}
+  preferredRotation: {x: 0, y: 0, z: 0, w: 0}
+  priority: 0
   indicator: {fileID: 0}
 --- !u!114 &4582632870821672938
 MonoBehaviour:
@@ -215,9 +218,13 @@ MonoBehaviour:
   destroyObjects:
   - {fileID: 6523464362383995788}
   destroyTrigger: 0
+  destroySelf: 0
+  onlyDestroyComponent: 0
   spawnProps:
   - {fileID: 8814750342392893556, guid: f4066208e0a984d4dbd3504603fd3c9b, type: 3}
   - {fileID: 8541780393931300342, guid: 51cec03e606a50248a0d81f9a06b6c3b, type: 3}
+  spawnVelocity: 0
+  debugMode: 0
 --- !u!65 &6325295245360061880
 BoxCollider:
   m_ObjectHideFlags: 0
