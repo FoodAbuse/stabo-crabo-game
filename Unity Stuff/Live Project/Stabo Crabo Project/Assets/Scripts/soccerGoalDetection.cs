@@ -9,6 +9,8 @@ public class soccerGoalDetection : MonoBehaviour
 
     public Vector3 ballSpawn;
 
+    public float respawnTime = 3f;
+
     
     private GameObject playerRef;
     public bool confettiReset;
