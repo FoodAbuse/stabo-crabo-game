@@ -62,12 +62,12 @@ public class ShaderSwapper : MonoBehaviour
 
             if (activeObject.materials.Length > 1)
             {
-                Debug.Log("extra material found");
+                //Debug.Log("extra material found");
                 int materialCount = activeObject.materials.Length;
 
                 for (int i = 1; i < materialCount; i++)
                 {
-                    Debug.Log("updating material no. "+i);
+                    //Debug.Log("updating material no. "+i);
                     activeObject.materials[i].SetColor("_HighlightColour", highlightColour);
                     activeObject.materials[i].SetColor("_ShadowColour", shadowColour);                    
                 }
