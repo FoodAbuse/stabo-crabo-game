@@ -9,7 +9,11 @@ public class soccerGoalDetection : MonoBehaviour
 
     public Vector3 ballSpawn;
 
+    
     private GameObject playerRef;
+    public bool confettiReset;
+    public float confettiTimer;
+
     // Start is called before the first frame update
     public bool hasScored = false;
     void Start()
@@ -20,7 +24,16 @@ public class soccerGoalDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (confettiReset == true)
+        {
+            confettiTimer += Time.deltaTime;
+
+                if (confettiTimer >= 3.0f)
+                {
+                    Confetti.SetActive(false);
+                    confettiReset = false;
+                }
+        }
     }
     private void OnTriggerEnter(Collider other) 
     {
@@ -30,6 +43,8 @@ public class soccerGoalDetection : MonoBehaviour
             if (Confetti != null)
             {
                 Confetti.SetActive(true);
+                confettiTimer = 0;
+                confettiReset = true;                
             }
 
             hasScored = true;

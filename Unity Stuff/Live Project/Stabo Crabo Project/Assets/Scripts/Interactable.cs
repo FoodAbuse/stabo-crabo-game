@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
     public bool stabRotational = false; //casuses stab force to be applied as rotation
 
     public bool canBeGrabbed = true;
+    public bool canBeWorn = false;
     public GameObject heldBy; //which object is holding this one
     public bool isHeavy;
 

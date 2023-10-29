@@ -30,8 +30,12 @@ public class PlayerController : MonoBehaviour
 
 
     //private Transform grabParent; //commented out because so far everything dropped should go under _prop afterwards
-    [HideInInspector]
+    //[HideInInspector]
     public Transform grabObject;
+    public GameObject wornObject;
+
+    [HideInInspector]
+    public bool isWearingObject = false;
     [HideInInspector]
     public Transform stabObject;
     [SerializeField]
@@ -293,6 +297,22 @@ public class PlayerController : MonoBehaviour
                 grabObject = grabCollider.selected.transform; //save the prop
                 if(!grabObject.GetComponent<Interactable>().canBeGrabbed) //if the object cannot be grabbed, return
                 {
+                    grabObject = null;
+                    return;
+                }
+                if(grabObject.GetComponent<Interactable>().canBeWorn) //Cheap stand-in for now but as we are not yet planning on having multiple wearables this will work
+                {
+                    if(isWearingObject) //In case somehow a second wearable ends up in scene, prevents deleting the other item and returns instead
+                    {
+                        grabObject = null;
+                        return;
+                    }
+
+                    Destroy(grabObject.gameObject); //deletes the wearable object
+                    wornObject.SetActive(true);
+                    //grabObject.GetComponent()
+                    isWearingObject = true;
+
                     grabObject = null;
                     return;
                 }

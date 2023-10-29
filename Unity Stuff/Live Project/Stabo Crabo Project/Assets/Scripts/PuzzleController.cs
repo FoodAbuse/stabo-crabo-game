@@ -21,7 +21,7 @@ using UnityEngine.Events;
 public class PuzzleController : MonoBehaviour
 {
     //triggers and inputs
-    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400, Timed = 500, OnStab = 600}
+    public enum Trigger {OnStart = 0, ObjectTag = 100, HeldObject = 200, NotHeldObject = 250, AnyObject = 300, AllObjects = 400, Timed = 500, OnStab = 600, WornObject = 700}
     public Trigger myTrigger;
     public string lookForTag;
     public List<GameObject> lookForObjects;
@@ -104,6 +104,15 @@ public class PuzzleController : MonoBehaviour
                         {
                             Outcome();
                         }
+                    }
+                }
+                break;
+            case Trigger.WornObject:
+                if(other.tag == "Player")
+                {
+                    if(other.GetComponent<PlayerController>().wornObject==true)
+                    {
+                        Outcome();
                     }
                 }
                 break;
