@@ -115,17 +115,14 @@ public class soccerGoalDetection : MonoBehaviour
         Debug.Log(angle);
 
         ballRef.transform.LookAt (returnTarget.transform);
-
-        /*
-        Quaternion firingAngle = Quaternion.Euler(0, ballRef.transform.rotation.y, ballRef.transform.rotation.z);
-        ballRef.transform.rotation = firingAngle;
-        */
+        //Quaternion firingAngle = Quaternion.Euler(0, ballRef.transform.rotation.y, ballRef.transform.rotation.z);
+        //ballRef.transform.rotation = firingAngle;
 
         float offsetForce = Vector3.Distance(ballRef.transform.position, returnTarget.transform.position) * returnAssist;
         float returnForce = 230f + offsetForce;
 
         ballRef.GetComponent<volleyballLauncher>().Launch();
-        ballRef.GetComponent<Rigidbody>().AddForce(ballRef.transform.forward * 230);
+        ballRef.GetComponent<Rigidbody>().AddForce(ballRef.transform.forward * 230 * -1);
         
         returningToSender = true;
         hasScored = false;
