@@ -122,7 +122,7 @@ public class soccerGoalDetection : MonoBehaviour
         float returnForce = 230f + offsetForce;
 
         ballRef.GetComponent<volleyballLauncher>().Launch();
-        ballRef.GetComponent<Rigidbody>().AddForce(ballRef.transform.forward * 230 * -1);
+        ballRef.GetComponent<Rigidbody>().AddForce(ballRef.transform.forward * 230);
         
         returningToSender = true;
         hasScored = false;
