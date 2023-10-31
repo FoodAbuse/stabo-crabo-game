@@ -344,6 +344,8 @@ GameObject:
   - component: {fileID: 8091591929494536338}
   - component: {fileID: 4494807100355635450}
   - component: {fileID: 3843005679017573005}
+  - component: {fileID: 6250339073746226416}
+  - component: {fileID: 4079303832570308524}
   m_Layer: 0
   m_Name: ambulanceBody
   m_TagString: Untagged
@@ -417,6 +419,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6250339073746226416
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136330512197796262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.872461, y: 3.3960419, z: 6.617971}
+  m_Center: {x: -0.00000011920933, y: 0.000000059604645, z: -0.00000011920933}
+--- !u!114 &4079303832570308524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136330512197796262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3909790615086026681
 GameObject:
   m_ObjectHideFlags: 0
