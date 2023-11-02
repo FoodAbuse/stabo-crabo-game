@@ -9,15 +9,24 @@ public class ShaderSwapper : MonoBehaviour
     public Color highlightColour;
     public Color shadowColour;
 
+    public Color defaultHighlight;
+    public Color defaultShadow;
+    public Color desiredHighlight;
+    public Color desiredShadow;
+
+    public GameObject currentItem;
     public Renderer[] activeObjectsInScene;
-    //private PlayerControls controls;
+
 
     public bool Generate = false;
 
+
+    
     // Start is called before the first frame update
     void Awake()
     {
-        //controls = new PlayerControls();
+        highlightColour = desiredHighlight;
+        shadowColour = desiredShadow;
     }
 
     // Update is called once per frame
@@ -26,8 +35,8 @@ public class ShaderSwapper : MonoBehaviour
         
         if (Generate)
         {
-            //Debug.Log("key pressed");
             GatherActiveMaterials();
+            //setColor();
             Generate = false;
         }
     }
@@ -35,46 +44,66 @@ public class ShaderSwapper : MonoBehaviour
     public void GatherActiveMaterials()
     {
         activeObjectsInScene = Object.FindObjectsOfType<Renderer>();
-
+        
         foreach (Renderer activeObject in activeObjectsInScene)
         {
+            currentItem = activeObject.gameObject;
+            
             //GameObject self = activeObject.gameObject;
-            if (activeObject.material.shader == (targetShader1 || targetShader2))
+            if (activeObject.sharedMaterial.shader == (targetShader1 || targetShader2))
             {
+                //activeMaterials.Add(activeObject.sharedMaterial);
+
+                
+                int materialsInObject = activeObject.sharedMaterials.Length;
+                
                 //Debug.Log("Found Material");
-                if (activeObject.materials.Length > 1)
-            {
-                Debug.Log("extra material found");
-                int materialCount = activeObject.materials.Length;
-
-                for (int i = 1; i < materialCount; i++)
-                    {
-                        //Debug.Log("updating material no. "+i);
-                        activeObject.materials[i].SetColor("_HighlightColour", highlightColour);
-                        activeObject.materials[i].SetColor("_ShadowColour", shadowColour);                    
-                    }
-            }
-                
-                activeObject.material.SetColor("_HighlightColour", highlightColour);
-                activeObject.material.SetColor("_ShadowColour", shadowColour);
-                
-            }
-
-            if (activeObject.materials.Length > 1)
-            {
-                //Debug.Log("extra material found");
-                int materialCount = activeObject.materials.Length;
-
-                for (int i = 1; i < materialCount; i++)
+                if (activeObject.sharedMaterials.Length == 1)
                 {
-                    //Debug.Log("updating material no. "+i);
-                    activeObject.materials[i].SetColor("_HighlightColour", highlightColour);
-                    activeObject.materials[i].SetColor("_ShadowColour", shadowColour);                    
+                    activeObject.sharedMaterial.SetColor("_defaultHighlight", highlightColour);
+                    activeObject.sharedMaterial.SetColor("_defaultShadow", shadowColour);
+                }
+                else
+                {
+
+                    for (int i = 0; i < materialsInObject; i++)
+                    {   
+                        
+
+                            activeObject.sharedMaterials[i].SetColor("_defaultHighlight", highlightColour);
+                            activeObject.sharedMaterials[i].SetColor("_defaultShadow", shadowColour);                                   
+                                           
+                    }            
                 }
                 
+                
+            }
+            else
+            {
+                break;
             }
         }
 
+
         activeObjectsInScene = null;
+        currentItem = null;
     }
+
+
+    public void setColor()
+    {
+        
+       Shader.SetGlobalColor("_defaultHighlight", highlightColour);
+       Shader.SetGlobalColor("_defaultShadow", shadowColour);
+    }
+
+    public void OnApplicationQuit() 
+    {
+        highlightColour = defaultHighlight;
+        shadowColour = defaultShadow;
+
+        GatherActiveMaterials();
+    }
+
+    
 }

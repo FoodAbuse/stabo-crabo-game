@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ConeBrown
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d51f8663e6b0ffb4a93803d581b7354f,
+    type: 3}
   m_Parent: {fileID: 2100000, guid: a8a9ae0ce1732b34b84c7ef5d954e7cf, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,8 +18,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -33,6 +33,10 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.41568628, g: 0.33333334, b: 0.2, a: 1}
     - _Color: {r: 0.41568625, g: 0.3333333, b: 0.19999996, a: 1}
+    - _HighlightColour: {r: 1, g: 0.99215686, b: 0.9607843, a: 0}
+    - _ShadowColour: {r: 0.89411765, g: 0.90588236, b: 0.94509804, a: 0}
+    - _defaultHighlight: {r: 1, g: 0.99215686, b: 0.9607843, a: 0}
+    - _defaultShadow: {r: 0.89411765, g: 0.90588236, b: 0.94509804, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3450745763159369441
 MonoBehaviour:
