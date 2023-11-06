@@ -110,7 +110,7 @@ public class PuzzleController : MonoBehaviour
             case Trigger.WornObject:
                 if(other.tag == "Player")
                 {
-                    if(other.GetComponent<PlayerController>().wornObject==true)
+                    if(other.GetComponent<PlayerController>().isWearingObject==true)
                     {
                         Outcome();
                     }
