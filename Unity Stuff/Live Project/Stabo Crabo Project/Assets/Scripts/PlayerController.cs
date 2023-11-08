@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     private bool isDragging = false;
 
     public Transform cam;
+    //bubbles
+    [SerializeField]
+    private GameObject bubble; //prefab to spawn over head to as speech bubble
+    private GameObject myBubble; //the instance that was created from the above prefab
+    [SerializeField]
+    private Transform pointAboveHead; //point for spawning hint bubbles, identifiers etc
 
 
     //private Transform grabParent; //commented out because so far everything dropped should go under _prop afterwards
@@ -425,5 +431,23 @@ public class PlayerController : MonoBehaviour
     private void FinishStab() //in lieu of an animation or timed co-routine, invoking this function at a delay
     {
         armTargetR.localPosition = startPosArmTargetR; //return the arm to its start posiiton
+    }
+
+    public void BubbleOn(Sprite bubbleSprite) //creates a bubble above the NPC that shows an image
+    {
+        
+        if(!myBubble) //if we don't yet have a bubble, make one
+        {
+            myBubble = Instantiate(bubble, pointAboveHead.position, Quaternion.Euler(0,0,0)); //spawn the bubble prefab
+            myBubble.GetComponent<BubbleController>().anchor = pointAboveHead;
+            myBubble.transform.position = new Vector3(pointAboveHead.position.x, pointAboveHead.position.y + myBubble.GetComponent<BubbleController>().offset, pointAboveHead.position.z);
+        }
+        myBubble.GetComponent<SpriteRenderer>().sprite = bubbleSprite; //set the image on the bubble
+    }
+
+    public void BubbleOff()
+    {
+        if(!myBubble){return;} //return if this was called when we don't have a bubble
+        Destroy(myBubble);
     }
 }
