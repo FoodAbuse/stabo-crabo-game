@@ -490,6 +490,25 @@ public class NPCController : Interactable
         }        
     }
 
+    public void PanickMode(Transform scaryThingPosition)
+    {
+        float dir = Vector3.Dot(transform.right, scaryThingPosition.position - transform.position);
+        if(dir >= 0.0f) //if Dot is the same direction, the player is on the left
+            {
+                animator.SetFloat("PlayerDirection", 1.0f); //right
+            }
+            else
+            {
+                animator.SetFloat("PlayerDirection", -1.0f); //left
+            }
+            
+            gameObject.tag = ("Killable");
+            fleeFrom = scaryThingPosition;
+
+            speedRun = 2;
+            myState = States.Fleeing;
+    }
+
     public IEnumerator Flee(Transform crabPos)
     {
         if(fleeTime == 0.0f) //if the flee time is 0 they kick instead
