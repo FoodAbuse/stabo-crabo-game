@@ -8,7 +8,7 @@ ModelImporter:
     second: NPC_DoormanIdle
   externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -16,7 +16,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
@@ -31,8 +31,21 @@ ModelImporter:
       has translation animation that will be discarded.\n\t'QuickRigCharacter2_Neck'
       has translation animation that will be discarded.\n\t'QuickRigCharacter2_Head'
       has translation animation that will be discarded.\n"
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftLowerLeg
+      average position error 1.8 mm and maximum position error 1.8 mm at time 1:
+      3 (56.5%) Frame 27\n\tRightLowerLeg average position error 1.8 mm and maximum
+      position error 1.8 mm at time 1: 0 (52.2%) Frame 24\n\tLeftUpperArm average
+      position error 2.2 mm and maximum position error 5.2 mm at time 1: 0 (50.0%)
+      Frame 24\n\tLeftLowerArm average position error 2.7 mm and maximum position
+      error 5.2 mm at time 1: 0 (52.2%) Frame 24\n\tLeftHand average position error
+      2.2 mm and maximum position error 5.1 mm at time 1: 0 (50.0%) Frame 24\n\tRightUpperArm
+      average position error 2.2 mm and maximum position error 5.2 mm at time 1:
+      0 (50.0%) Frame 24\n\tRightLowerArm average position error 2.7 mm and maximum
+      position error 5.2 mm at time 1: 0 (52.2%) Frame 24\n\tRightHand average position
+      error 2.2 mm and maximum position error 5.1 mm at time 1: 0 (50.0%) Frame 24\n\tHead
+      average position error 0.5 mm and maximum position error 1.4 mm at time 0:15
+      (30.4%) Frame 15\n"
+    animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0
     animationCompression: 3
@@ -40,7 +53,34 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - CTRLS
+    - CTRLS/LeftFootCtrl
+    - CTRLS/LeftHandIK
+    - CTRLS/RightFootCtrl
+    - CTRLS/RightHandIK
+    - CTRLS/Root
+    - CTRLS/Root/HipsCtrl
+    - CTRLS/Root/HipsCtrl/LeftUpLegFK
+    - CTRLS/Root/HipsCtrl/WaistCtrl
+    - CTRLS/Root/HipsCtrl/RThighCtrl
+    - CTRLS/Root/HipsCtrl/RightUpLegIK
+    - CTRLS/Root/HipsCtrl/RightUpLegFK
+    - CTRLS/Root/HipsCtrl/LThighCtrl
+    - CTRLS/Root/HipsCtrl/LeftUpLegIK
+    - CTRLS/Root/HipsCtrl/LeftUpLegFK/LeftLegFK
+    - CTRLS/Root/HipsCtrl/LeftUpLegIK/LeftLegIK
+    - CTRLS/Root/HipsCtrl/LThighCtrl/LKneeCtrl
+    - CTRLS/Root/HipsCtrl/RightUpLegFK/RightLegFK
+    - CTRLS/Root/HipsCtrl/RightUpLegIK/RightLegIK
+    - CTRLS/Root/HipsCtrl/RThighCtrl/RKneeCtrl
+    - CTRLS/Root/HipsCtrl/WaistCtrl/ChestCtrl
+    - CTRLS/Root/HipsCtrl/LThighCtrl/LKneeCtrl/LAnkleCtrl
+    - CTRLS/Root/HipsCtrl/LThighCtrl/LKneeCtrl/LAnkleCtrl/LToeCtrl
+    - CTRLS/Root/HipsCtrl/RightUpLegFK/RightLegFK/RightFootFK
+    - CTRLS/Root/HipsCtrl/RightUpLegIK/RightLegIK/RightFootIK
+    - CTRLS/Root/HipsCtrl/RThighCtrl/RKneeCtrl/RAnkleCtrl
+    - CTRLS/Root/HipsCtrl/WaistCtrl/ChestCtrl/PecsCtrl
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
@@ -81,15 +121,15 @@ ModelImporter:
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    keepQuads: 0
+    keepQuads: 1
     weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
