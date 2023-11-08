@@ -6,12 +6,15 @@ public class CrabBubble : MonoBehaviour
 {
     [SerializeField]
     private Sprite bubbleSprite;
+    private PlayerController playerRef;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<PlayerController>().BubbleOn(bubbleSprite);
+            playerRef = other.GetComponent<PlayerController>();
+
+            playerRef.BubbleOn(bubbleSprite);
         }
     }
 
@@ -19,7 +22,11 @@ public class CrabBubble : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<PlayerController>().BubbleOff();
+            playerRef.BubbleOff();            
         }
+    }
+    void OnDisable() 
+    {
+        playerRef.BubbleOff();
     }
 }

@@ -443,11 +443,13 @@ public class PlayerController : MonoBehaviour
             myBubble.transform.position = new Vector3(pointAboveHead.position.x, pointAboveHead.position.y + myBubble.GetComponent<BubbleController>().offset, pointAboveHead.position.z);
         }
         myBubble.GetComponent<SpriteRenderer>().sprite = bubbleSprite; //set the image on the bubble
+        myBubble.GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 0.5f);
     }
 
     public void BubbleOff()
     {
         if(!myBubble){return;} //return if this was called when we don't have a bubble
+        myBubble.GetComponent<SpriteRenderer>().color = new Color (1f, 1f, 1f, 1f);
         Destroy(myBubble);
     }
 }
