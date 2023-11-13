@@ -46,7 +46,7 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
-        if(npc.myBehaviour == NPCController.Behaviours.Defending || npc.myBehaviour == NPCController.Behaviours.Guarding) //set seeking player bool
+        if(npc.myBehaviour == NPCController.Behaviours.Defending || npc.myBehaviour == NPCController.Behaviours.Guarding || npc.myBehaviour == NPCController.Behaviours.Panicked) //set seeking player bool
         {
             seekingPlayer = true;
         }

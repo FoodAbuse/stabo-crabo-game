@@ -54,7 +54,7 @@ public class NPCController : Interactable
     private FieldOfView FOV; //FOV script reference
 
     //NPC behaviour variable
-    public enum Behaviours {Idle = 100, Roaming = 200, Sleeping = 300, Defending = 400, Guarding = 500, Dead = 900}
+    public enum Behaviours {Idle = 100, Roaming = 200, Sleeping = 300, Defending = 400, Guarding = 500, Panicked = 600, Dead = 900}
     public enum States {Standing, Sitting, Lying, Walking, Chasing, Fleeing, Ragdoll, Pickup, Putdown, Attacking, ReturningObj, Swimming} //these are things that an NPC can do based on what the behaviour dictates
     public Behaviours myBehaviour; //The Current behaviour of the NPC
     [SerializeField]
@@ -143,25 +143,15 @@ public class NPCController : Interactable
             shoveCD -= 1 * Time.deltaTime;
         }
 
-
-        /*if (WHAMMY)
-        {
-            EnableRagdoll();
-            timerKO += Time.deltaTime;
-
-            if (timerKO >= 2f)
-            {
-                DisableRagdoll();
-                timerKO = 0;
-                WHAMMY = false;
-            }
-        }*/
-
         if(myBehaviour != Behaviours.Dead && myState != States.Fleeing) //if we are not dead, and not fleeing
         {
             if(FOV.canSeeTarget) //and the FOV script has triggered on a target that we can see
             {
-                if(FOV.distanceToTarget <= 0.5f) //if we have reached our target
+                if(myBehaviour == Behaviours.Panicked)
+                {
+                    StartCoroutine("Flee", FOV.target); //if we are panicked, flee if we see the crab
+                }
+                else if(FOV.distanceToTarget <= 0.5f) //if we have reached our target
                 {
                     if(FOV.target.tag == "Player") //if we were chasing the player
                     {
@@ -206,7 +196,6 @@ public class NPCController : Interactable
                 BubbleOff();
             }
 
-            
         }
         //behaviours based on current State
         switch(myState)
@@ -490,28 +479,9 @@ public class NPCController : Interactable
         }        
     }
 
-    public void PanickMode(Transform scaryThingPosition)
-    {
-        float dir = Vector3.Dot(transform.right, scaryThingPosition.position - transform.position);
-        if(dir >= 0.0f) //if Dot is the same direction, the player is on the left
-            {
-                animator.SetFloat("PlayerDirection", 1.0f); //right
-            }
-            else
-            {
-                animator.SetFloat("PlayerDirection", -1.0f); //left
-            }
-            
-            gameObject.tag = ("Killable");
-            fleeFrom = scaryThingPosition;
-
-            speedRun = 2;
-            myState = States.Fleeing;
-    }
-
     public IEnumerator Flee(Transform crabPos)
     {
-        if(fleeTime == 0.0f) //if the flee time is 0 they kick instead
+        if(fleeTime == 0.0f || myBehaviour == Behaviours.Dead) //if the flee time is 0 or they are dead, sckip
         {
             yield break;
         }
