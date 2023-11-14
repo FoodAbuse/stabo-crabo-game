@@ -27,6 +27,7 @@ public class CrabBubble : MonoBehaviour
     }
     void OnDisable() 
     {
+        if(!playerRef) return; //if player ref has not been assigned when this is disabled, just return
         playerRef.BubbleOff();
     }
 }

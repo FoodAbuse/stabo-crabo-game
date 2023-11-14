@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
 		}*/
 
         controls = new PlayerControls();
-        controls.Gameplay.UiStart.performed += ctx => IntroBtn();
+        controls.Gameplay.UiStart.performed += ctx => IntroBtn(ctx.control.device);
     }
 
     void OnEnable()
@@ -77,12 +77,14 @@ public class UIManager : MonoBehaviour
         //panelCurrent = panelTitle;
     }
 
-    void IntroBtn()
+
+    void IntroBtn(InputDevice device)
     {
-        if(panelTitle.GetComponent<CanvasGroup>().interactable && panelTitle.activeSelf) //checks if the title screen is currently active
+        if(panelTitle && panelTitle.GetComponent<CanvasGroup>().interactable && panelTitle.activeSelf) //checks if the title screen is currently active
         {
             panelTitle.SetActive(false); //disables title screen
             MenuScreen(panelMain);
+            ApplicationManager.isKeyboardAndMouse = device.name.Equals("Keyboard") || device.name.Equals("Mouse");
         }
     }
 
@@ -112,7 +114,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowTip(string tipKey) //starts a tip fade-in animation
     {
-        tipAnimator = GameObject.Find("Txt_" + tipKey + "Tip").GetComponent<Animator>(); //assigns the appropriate animator
+        string tipRef = ApplicationManager.isKeyboardAndMouse ? "KM" : "C"; //c for controller
+        tipAnimator = GameObject.Find(tipRef + "_Txt_" + tipKey + "Tip").GetComponent<Animator>(); //assigns the appropriate animator
         tipAnimator.SetBool("Visible", true); //starts it's animaton
     }
     public void HideTip() //starts a tip fade-out animation
@@ -126,8 +129,20 @@ public class UIManager : MonoBehaviour
 
     public void EscapeScreen() //called form game manager for escape phase
     {
-        ShowTip("Escape"); //bring up esape text
-        escapePanel.SetBool("Visible", true); //the escape panel animation
+        HideTip(); //hide any remaining tips
+        if(levelName == "Level3")
+        {
+            ShowTip("Kill");
+            escapePanel.Play("UI_Redbars_Start");
+            escapePanel.SetBool("Visible", true);
+        }
+        else
+        {
+            ShowTip("Escape"); //bring up esape text
+            escapePanel.Play("UI_Blackbars_Start");
+            escapePanel.SetBool("Visible", true); //the escape panel animation
+        }
+        
     }
 
     public void Outro() //called form game manager for outro phase

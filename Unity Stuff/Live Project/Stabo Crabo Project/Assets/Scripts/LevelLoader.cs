@@ -58,6 +58,11 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(levelName); //load the scene
         uiManager.levelName = levelName;
         transition.SetBool("Start", false); //play animation - fade from black
+        if(levelName == "MainMenu")
+        {
+            uiManager.MenuScreen(uiManager.panelTitle);
+            StartCoroutine("InitialiseTitle");
+        }
     }
 
     IEnumerator InitialiseTitle()
