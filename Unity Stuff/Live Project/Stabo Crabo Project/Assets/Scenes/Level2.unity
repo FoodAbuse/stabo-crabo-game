@@ -22204,7 +22204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &520989877
 Transform:
   m_ObjectHideFlags: 0
@@ -22242,7 +22242,13 @@ MonoBehaviour:
   desiredShadow: {r: 0, g: 0, b: 0, a: 0}
   currentItem: {fileID: 0}
   activeObjectsInScene: []
-  Generate: 1
+  highlightLevel1: {r: 0, g: 0, b: 0, a: 0}
+  shadowLevel1: {r: 0, g: 0, b: 0, a: 0}
+  highlightLevel2: {r: 0, g: 0, b: 0, a: 0}
+  shadowLevel2: {r: 0, g: 0, b: 0, a: 0}
+  highlightLevel3: {r: 0, g: 0, b: 0, a: 0}
+  shadowLevel3: {r: 0, g: 0, b: 0, a: 0}
+  Generate: 0
 --- !u!4 &522961928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 379658804611645292, guid: 9534b8dc497a23b4c8adf984fb4beb8c,

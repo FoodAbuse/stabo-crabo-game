@@ -13,6 +13,7 @@ public class LevelLoader : MonoBehaviour
     public float openingFade = 3.0f; //speed of the fade at the start of the game
     public float transitionSpeed = 3.0f; //speed of the fade between scenes
     public UIManager uiManager; //reference the UI manager
+    public ShaderSwapper shaderSwapper; //reference for the Shader Controller
 
     void Awake()
 	{
@@ -26,6 +27,7 @@ public class LevelLoader : MonoBehaviour
 			if (_instance != this) //Otherwise if there is a different level loader
 				Destroy(gameObject); //Destroy this object, because it is a duplicate
 		}*/
+        shaderSwapper = GetComponent<ShaderSwapper>();
     }
 
     void Start()
@@ -57,6 +59,8 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionPause); //pauses the co-routine for x amount of seconds
         SceneManager.LoadScene(levelName); //load the scene
         uiManager.levelName = levelName;
+        shaderSwapper.AssignSceneColour(levelName); //Determines which scene colour to assign based on level name
+        shaderSwapper.setColour();
         transition.SetBool("Start", false); //play animation - fade from black
         if(levelName == "MainMenu")
         {

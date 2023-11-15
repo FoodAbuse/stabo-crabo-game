@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class ShaderSwapper : MonoBehaviour
 {
     public Shader targetShader1;
@@ -18,29 +20,81 @@ public class ShaderSwapper : MonoBehaviour
     public Renderer[] activeObjectsInScene;
 
 
-    public bool Generate = false;
+    [Header("Level Presets")]
+    [Space(10)]
 
+    [SerializeField]
+    private Color highlightLevel1;
+    [SerializeField]
+    private Color shadowLevel1;
+    [Space(5)]
+
+    [SerializeField]
+    private Color highlightLevel2;
+    [SerializeField]
+    private Color shadowLevel2;
+    [Space(5)]
+
+    [SerializeField]
+    private Color highlightLevel3;
+    [SerializeField]
+    private Color shadowLevel3;
+    [Space(5)]
+
+
+    public bool Generate = false;
+    private string globalShadow = ("_GlobalShadow");
+    private string globalHighlight = ("_GlobalHighlight");
 
     
-    // Start is called before the first frame update
     void Awake()
     {
-        highlightColour = desiredHighlight;
-        shadowColour = desiredShadow;
+        //AssignSceneColour();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
+    {   
+        AssignSceneColour(SceneManager.GetActiveScene().name);
+
+        SetGlobalColor(globalHighlight, defaultHighlight);
+        SetGlobalColor(globalShadow, defaultShadow);
+        //GatherActiveMaterials();
+    }
+    public void AssignSceneColour(string sceneName)
     {
-        
-        if (Generate)
+
+        string o = sceneName;
+
+        if (o == ("MainMenu") || o == ("Level1"))
         {
-            GatherActiveMaterials();
-            //setColor();
-            Generate = false;
+            highlightColour = highlightLevel1;
+            shadowColour = shadowLevel1;
+            return;
+        }
+        if (o == ("Level2"))
+        {
+            Debug.Log("Shaders set to Lv2 Lighting");
+            highlightColour = highlightLevel2;
+            shadowColour = shadowLevel2;
+            return;
+        }
+        if (o == ("Level3"))
+        {
+            Debug.Log("Shaders set to Lv3 Lighting");
+            highlightColour = highlightLevel3;
+            shadowColour = shadowLevel3;
+            return;
+        }
+
+        else
+        {
+            Debug.Log("Error: Scene ref not recognized. Ref = " +o);
+            highlightColour = defaultHighlight;
+            shadowColour = defaultShadow;
         }
     }
 
+   
     public void GatherActiveMaterials()
     {
         activeObjectsInScene = Object.FindObjectsOfType<Renderer>();
@@ -90,19 +144,24 @@ public class ShaderSwapper : MonoBehaviour
     }
 
 
-    public void setColor()
+    public void setColour()
     {
         
-       Shader.SetGlobalColor("_defaultHighlight", highlightColour);
-       Shader.SetGlobalColor("_defaultShadow", shadowColour);
+       Shader.SetGlobalColor(globalHighlight, highlightColour);
+       Shader.SetGlobalColor(globalShadow, shadowColour);
     }
 
     public void OnApplicationQuit() 
     {
         highlightColour = defaultHighlight;
         shadowColour = defaultShadow;
+        
+        setColour();
+    }
 
-        GatherActiveMaterials();
+    public static void SetGlobalColor(string globalName, Color globalColour)
+    {
+        Shader.SetGlobalColor(globalName, globalColour);
     }
 
     

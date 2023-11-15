@@ -58201,6 +58201,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: shadowLevel3.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: shadowLevel3.b
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: shadowLevel3.g
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: shadowLevel3.r
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: highlightLevel3.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: highlightLevel3.b
+      value: 0.6901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: highlightLevel3.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: highlightLevel3.r
+      value: 0.37254903
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2130656895}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: AssignSceneColour
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ShaderSwapper, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358818338592074367, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8086453354230412876, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
         type: 3}
       propertyPath: m_Color.b
@@ -105682,6 +105757,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1146895244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2130656895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1155990011407170800, guid: 8065c86366df4ea4ba8e94b9c26a3acc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1069286852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f241085256d764584288017374cae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2131126399
 GameObject:
   m_ObjectHideFlags: 0
