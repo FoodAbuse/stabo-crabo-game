@@ -37839,7 +37839,7 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -37873,6 +37873,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1184635125}
@@ -37903,6 +37913,16 @@ PrefabInstance:
       objectReference: {fileID: 46870143}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 228224745}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 425573072}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -37929,6 +37949,16 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
@@ -37963,6 +37993,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: NPCController, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -37990,6 +38030,16 @@ PrefabInstance:
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
       value: HintManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
@@ -38059,6 +38109,16 @@ PrefabInstance:
     - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
         type: 3}
       propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807783324004936323, guid: 841e5288ea69d7e4cac47d59b047ade0,
+        type: 3}
+      propertyPath: myOutput.m_PersistentCalls.m_Calls.Array.data[7].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -66837,6 +66897,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 999594786}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 732108515}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
