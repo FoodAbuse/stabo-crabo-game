@@ -370,6 +370,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2356999613527583244}
     m_Position: {x: 130, y: 720, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -2226253680089947883}
+    m_Position: {x: -300, y: 870, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -516,6 +519,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-2226253680089947883
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NPC_DefaultFish
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 5d52c6c10cfd45643957348e58c98178, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-1870126270700606388
 AnimatorState:
   serializedVersion: 6
@@ -536,7 +565,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 941315a63dfff4d4c8b63273f7b81bb6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 894110726ee152a4d8a06ef8e8a0d250, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
