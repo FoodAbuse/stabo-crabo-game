@@ -481,7 +481,7 @@ public class NPCController : Interactable
 
     public IEnumerator Flee(Transform crabPos)
     {
-        if(fleeTime == 0.0f || myBehaviour == Behaviours.Dead) //if the flee time is 0 or they are dead, sckip
+        if(fleeTime == 0.0f || myBehaviour == Behaviours.Dead || agent == null) //if the flee time is 0 or they are dead, sckip
         {
             yield break;
         }
