@@ -54,12 +54,15 @@ public class HairSelection : MonoBehaviour
 
     public enum NPC_HairStyle {style1, style2, style3, style4}
 
+    public int timesLooped = 0;
+    [SerializeField]
+    private GameObject problemHair;
 
 
 
     void Awake()
     {
-        activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
+        //activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
 
         if (npcType == NPC_Type.standard || npcType == NPC_Type.child)
         {
@@ -114,8 +117,10 @@ public class HairSelection : MonoBehaviour
 
 
 
-    void Randomize()
+    public void Randomize()
     {
+
+        timesLooped++;
         // Randomizes Hair Colour
         randomColourRef = Random.Range(1, 6);
             //Debug.Log("Colour ref = " + randomColourRef);
@@ -180,7 +185,7 @@ public class HairSelection : MonoBehaviour
                 geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = maleSkin3;
             }
 
-            //geoRef.GetComponent<SkinnedMeshRenderer>().materials[0] = activeSkin;
+            activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
         }
 
         if (gender == NPC_gender.female)
@@ -198,9 +203,13 @@ public class HairSelection : MonoBehaviour
                 geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = femaleSkin3;
             }
 
-            
+            activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
         }
-        
+
+        if (problemHair != null)
+        {
+            ValidateProblemHair();
+        }
     }
 
     void randomizeChild()
@@ -255,7 +264,7 @@ public class HairSelection : MonoBehaviour
 
 
         // Sets Skin from ChildNPC Skins
-        if (randomSkinRef == 1)
+            if (randomSkinRef == 1)
             {
                 geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = childSkin1;
             }
@@ -269,7 +278,7 @@ public class HairSelection : MonoBehaviour
             }
 
 
-
+        activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
     }
 
     void RandomizePolice ()
@@ -290,6 +299,7 @@ public class HairSelection : MonoBehaviour
             {
                 geoRef.GetComponent<SkinnedMeshRenderer>().sharedMaterial = policeSkin3;
             }
+        activeSkin = geoRef.GetComponent<SkinnedMeshRenderer>().material;
     }
 
     void BlackHairRandomize()
@@ -318,6 +328,7 @@ public class HairSelection : MonoBehaviour
 
     void BlondeHairRandomize()
     {
+        timesLooped++;
         hairBundleRef = gameObject.transform.GetChild(1).gameObject;
 
         if (gender == NPC_gender.female)
@@ -390,6 +401,7 @@ public class HairSelection : MonoBehaviour
 
     void RedHairRandomize()
     {
+        timesLooped++;
         hairBundleRef = gameObject.transform.GetChild(4).gameObject;
 
         if (gender == NPC_gender.female)
@@ -411,4 +423,63 @@ public class HairSelection : MonoBehaviour
             activeHair.tag = "ActiveHair";
         }
     }
+
+    public void SetToPreset(int colour, int style, int genderRef)
+    {
+        if (genderRef == 0) //we are f
+        {
+            gender = NPC_gender.female;
+        }
+        else //we are m
+        {
+            gender = NPC_gender.male;
+        }
+
+        randomStyleRef = style;
+
+        if (colour == 1)
+        {
+            hairColour = NPC_HairColour.black;
+            BlackHairRandomize();
+        }
+        // 2 = Blonde
+        else if (colour == 2)
+        {
+            hairColour = NPC_HairColour.blonde;
+            BlondeHairRandomize();
+        }
+
+        // 3 = Brown
+        if (colour == 3)
+        {
+            hairColour = NPC_HairColour.brown;
+            BrownHairRandomize();
+        }
+
+        // 4 = Grey
+        if (colour == 4)
+        {
+            hairColour = NPC_HairColour.grey;
+            GreyHairRandomize();
+        }
+
+        // 5 = Red
+        if (colour == 5)
+        {
+            hairColour = NPC_HairColour.red;
+            RedHairRandomize();
+        }
+
+        ValidateProblemHair();
+    }
+
+    public void ValidateProblemHair()
+    {
+        if (problemHair != activeHair)
+        {
+            Destroy(problemHair);
+        }
+    }
 }
+
+

@@ -69,7 +69,10 @@ public class GameManager : MonoBehaviour
 
 
         // Clears unused hair from the scene
-        toDelete = GameObject.FindGameObjectsWithTag("InactiveHair");
+        if (levelName != "Level3")
+        {
+            toDelete = GameObject.FindGameObjectsWithTag("InactiveHair");
+        }
         
         for (int i = 0; i < toDelete.Length; i++)
         {
